@@ -1,0 +1,6 @@
+#!/bin/bash
+
+OLD_DIR="`pwd`"
+cd "/usr/share/pysiogame"
+python /usr/share/pysiogame/pysiogame.py "$@"
+cd "$OLD_DIR"

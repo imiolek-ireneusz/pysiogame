@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=pySioGame
+_GenericName=Educational Activity Pack for Kids
+_Comment=A little set of educational apps for kids
+Exec=pysiogame
+Icon=pysiogame
+Terminal=false
+Type=Application
+Categories=Game;KidsGame;
