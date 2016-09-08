@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
-#Cinderella by Brothers Grim
-#for Touch Typing Tutor
+# Schneewittchen ( Snowwhite )by Brothers Grimm
+# http://gutenberg.spiegel.de/buch/-6248/150
+# for Touch Typing Tutor
 cinderella = [#1
 [[1,1,1,1,1],
-['The wife of a rich man fell sick, and as she felt that her end was drawing near, she called her only daughter to her bedside and said, "Dear child, be good and pious, and then the good God will always protect thee, and I will look down on thee from heaven and be near thee." ',
-"Thereupon she closed her eyes and departed. Every day the maiden went out to her mother's grave, and wept, and she remained pious and good. When winter came the snow spread a white sheet over the grave, and when the spring sun had drawn it off again, the man had taken another wife. ",
-'The woman had brought two daughters into the house with her, who were beautiful and fair of face, but vile and black of heart. Now began a bad time for the poor step-child. "Is the stupid goose to sit in the parlour with us?" said they. ',
-'"He who wants to eat bread must earn it; out with the kitchen-wench." They took her pretty clothes away from her, put an old grey bedgown on her, and gave her wooden shoes. "Just look at the proud princess, how decked out she is!" they cried, and laughed, and led her into the kitchen. ',
-"There she had to do hard work from morning till night, get up before daybreak, carry water, light fires, cook and wash. Besides this, the sisters did her every imaginable injury-they mocked her and emptied her peas and lentils into the ashes, so that she was forced to sit and pick them out again." 
+['Es war einmal mitten im Winter, und die Schneeflocken fielen wie Federn vom Himmel herab. Da saß eine Königin an einem Fenster, das einen Rahmen von schwarzem Ebenholz hatte, und nähte. Und wie sie so nähte und nach dem Schnee aufblickte, stach sie sich mit der Nadel in den Finger, und es fielen drei Tropfen Blut in den Schnee. ',
+"Und weil das Rote im weißen Schnee so schön aussah, dachte sie bei sich: Hätt' ich ein Kind, so weiß wie Schnee, so rot wie Blut und so schwarz wie das Holz an dem Rahmen! Bald darauf bekam sie ein Töchterlein, das war so weiß wie Schnee, so rot wie Blut und so schwarzhaarig wie Ebenholz und ward darum Schneewittchen (Schneeweißchen) genannt. ",
+'Und wie das Kind geboren war, starb die Königin. Über ein Jahr nahm sich der König eine andere Gemahlin. Es war eine schöne Frau, aber sie war stolz und übermütig und konnte nicht leiden, daß sie an Schönheit von jemand sollte übertroffen werden. ',
+'Sie hatte einen wunderbaren Spiegel; wenn sie vor den trat und sich darin beschaute, sprach sie: "Spieglein, Spieglein an der Wand, Wer ist die Schönste im ganzen Land?" so antwortete der Spiegel: "Frau Königin, Ihr seid die Schönste im Land."',
+"Da war sie zufrieden, denn sie wußte, daß der Spiegel die Wahrheit sagte. Schneewittchen aber wuchs heran und wurde immer schöner, und als es sieben Jahre alt war, war es so schön, wie der klare Tag und schöner als die Königin selbst. Als diese einmal ihren Spiegel fragte: " 
 ]],#2
 [[1,1,1,1,1],
 ["In the evening when she had worked till she was weary she had no bed to go to, but had to sleep by the fireside in the ashes. And as on that account she always looked dusty and dirty, they called her Cinderella. ",

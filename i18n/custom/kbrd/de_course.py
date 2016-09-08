@@ -53,7 +53,7 @@ course = []
 #add English qwerty course
 course.extend(base_qwerty)
 
-#add Language specific word list - words taken from en_gb_di.py file.
+#add Language specific word list - words taken from de_di.py file.
 word_list = get_word_list(di)
 word_course = word_typing_course(word_list)
 course.extend(word_course)
