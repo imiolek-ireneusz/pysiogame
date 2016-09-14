@@ -979,6 +979,96 @@ class Board:
         down  = (s.grid_x, s.grid_y + s.grid_h, s.grid_w,1)
         left  = (s.grid_x - 1, s.grid_y, 1, s.grid_h)
         right = (s.grid_x + s.grid_w, s.grid_y, 1, s.grid_h)
+        teleport = (s.grid_x + x, s.grid_y + y, s.grid_w, s.grid_h)
+
+        #assign 'area to check' to direction
+        if   x ==  0 and y == -1:
+            new_rect = up
+            self.laby_dir = 2
+        elif x ==  0 and y ==  1:
+            new_rect = down
+            self.laby_dir = 3
+        elif x == -1 and y ==  0:
+            new_rect = left
+            self.laby_dir = 1
+        elif x ==  1 and y ==  0:
+            new_rect = right
+            self.laby_dir = 0
+
+        #diagonal move (but only for 1x1 blocks: prepare the 2 step move alternatives to check against
+        #alt1a -> alternative path 1 firt move: a, second move: b
+        else:
+            new_rect = teleport
+            if self.mainloop.game_board.allow_teleport is True:
+                alt1a = (s.grid_x + x, s.grid_y + y, s.grid_w, s.grid_h)
+                alt1b = (s.grid_x + x, s.grid_y + y, s.grid_w, s.grid_h)
+                alt2a = (s.grid_x + x, s.grid_y + y, s.grid_w, s.grid_h)
+                alt2b = (s.grid_x + x, s.grid_y + y, s.grid_w, s.grid_h)
+            else:#s.grid_w == 1 and s.grid_h == 1:
+                if x <= -1 and y <= -1: #up-left
+                    alt1a = up
+                    alt1b = (s.grid_x - 1, s.grid_y-1, 1, s.grid_h)
+                    alt2a = left
+                    alt2b = (s.grid_x -1 , s.grid_y -1, s.grid_w, 1)
+                elif x >=  1 and y <= -1: #up-right
+                    alt1a = up
+                    alt1b = (s.grid_x + s.grid_w, s.grid_y-1, 1, s.grid_h)
+                    alt2a = right
+                    alt2b = (s.grid_x+1, s.grid_y -1, s.grid_w, 1)
+                elif x <= -1 and y >=  1: #down-left
+                    alt1a = down
+                    alt1b = (s.grid_x - 1, s.grid_y+1, 1, s.grid_h)
+                    alt2a = left
+                    alt2b = (s.grid_x-1, s.grid_y + s.grid_h, s.grid_w,1)
+                elif x >=  1 and y >=  1: #down-right
+                    alt1a = down
+                    alt1b = (s.grid_x + s.grid_w, s.grid_y+1, 1, s.grid_h)
+                    alt2a = right
+                    alt2b = (s.grid_x+1, s.grid_y + s.grid_h, s.grid_w,1)
+
+        mdir = [0,0]
+        if x == 0 or y == 0:
+            #standard move: check if positions are empty and move the unit
+            if self._isfree(*new_rect):
+                self._move_unit(ship_id,ai,x,y)
+            else:
+                if ai == False and s.audible:
+                    self.mainloop.sfx.play(11)
+        elif x != 0 and y != 0:
+            if True:#s.grid_w == 1 and s.grid_h == 1:
+                self.labi_dir = -1
+                #diagonal move simple path finder: check both alternatives in turn and move if possible
+                #decreased number of checks to get the direction
+                if self._isfree(*alt1a): #if move up or down possible change y in first alternative
+                    mdir[1]=y
+                    if self._isfree(*alt1b): #if move left or right possible change x in first alt.
+                        mdir[0]=x
+                    else: mdir[0]=0
+                elif self._isfree(*alt2a): #else if horizontal move possible change x first
+                    mdir[0]=x
+                    if self._isfree(*alt2b): #and if second move possible change y second
+                        mdir[1]=y
+                    else: mdir[1]=0
+                else:
+                    if ai == False and s.audible:
+                        self.mainloop.sfx.play(11)
+                if mdir != [0,0]:
+                    self._move_unit(ship_id,ai,mdir[0],mdir[1])
+
+    """
+
+    def move(self, ship_id, x, y, ai=False):
+        'move the ship, diagonal move possible only if two-step non diagonal move is possible'
+        if ai == True:
+            s = self.aiunits[ship_id]
+        else:
+            s = self.ships[self.active_ship]
+        #check direction and move if fields in that direction are free
+        #set out what squares need checking if move has been taken in each direction
+        up    = (s.grid_x, s.grid_y -1, s.grid_w, 1)
+        down  = (s.grid_x, s.grid_y + s.grid_h, s.grid_w,1)
+        left  = (s.grid_x - 1, s.grid_y, 1, s.grid_h)
+        right = (s.grid_x + s.grid_w, s.grid_y, 1, s.grid_h)
 
         #assign 'area to check' to direction
         if   x ==  0 and y == -1:
@@ -1046,7 +1136,7 @@ class Board:
                         self.mainloop.sfx.play(11)
                 if mdir != [0,0]:
                     self._move_unit(ship_id,ai,mdir[0],mdir[1])
-
+    """
     def moved(self):
         pass #print("board - moved")
 
