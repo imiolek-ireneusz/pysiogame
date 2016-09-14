@@ -158,9 +158,13 @@ class Language():
         elif self.lang == 'de':
             import i18n.custom.de
             import i18n.custom.word_lists.de_di
+            import i18n.custom.kbrd.de
+            import i18n.custom.kbrd.de_course
             self.voice = ["-vde+m1"]
             self.di = i18n.custom.word_lists.de_di.di
             self.lang_file = i18n.custom.de
+            self.kbrd = i18n.custom.kbrd.de
+            self.kbrd_course_mod = i18n.custom.kbrd.de_course
             self.lang_id = 12
         elif self.lang == 'ru':
             import i18n.custom.ru

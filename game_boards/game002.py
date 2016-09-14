@@ -20,7 +20,7 @@ class Board(gd.BoardGame):
         color2 = (255,255,255)
 
         font_color = (40,40,40)
-        data = [15,13]
+        data = [16,14]
         #stretch width to fit the screen size
         x_count = self.get_x_count(data[1],even=None)
         if x_count > 15:
@@ -66,6 +66,9 @@ class Board(gd.BoardGame):
         self.board.add_unit(0,top,3,1,classes.board.Label,["Portuguese","Português"],color2,"",6)
         self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Américo Monteiro",color2,"",6)
         top += 1
+        self.board.add_unit(0,top,3,1,classes.board.Label,["German","Deutsch"],color1,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Oliver van der Bürie",color1,"",6)
+        top += 1
         self.board.add_unit(0,top,3,1,classes.board.Label,["Russian","Русский"],color1,"",6)
         self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Anton Kayukov (Антон Каюков)", "Alexey Loginov (Алексей Логинов)"],color1,"",6)
         top += 1
@@ -77,13 +80,10 @@ class Board(gd.BoardGame):
         top += 1
         self.board.add_unit(0,top,data[0],1,classes.board.Letter,"<<",color2,"",0)
         self.btn_back = self.board.ships[-1]
-
         """
         self.board.add_unit(0,5,3,1,classes.board.Label,"French",color1,"",6)
         self.board.add_unit(3,5,data[0]-3,1,classes.board.Label,"Not Translated",color1,"",6)
 
-        self.board.add_unit(0,7,3,1,classes.board.Label,"German",color1,"",6)
-        self.board.add_unit(3,7,data[0]-3,1,classes.board.Label,"Not Translated",color1,"",6)
 
         self.board.add_unit(0,9,3,1,classes.board.Label,"Finnish",color1,"",6)
         self.board.add_unit(3,9,data[0]-3,1,classes.board.Label,"Not Translated",color1,"",6)
