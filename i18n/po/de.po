@@ -84,19 +84,19 @@ msgstr[0] "Wassermelone"
 msgstr[1] "Wassermelonen"
 
 msgid "Equilateral Triangle"
-msgstr "Dreieck"
+msgstr "Gleichseitiges Dreieck"
 
 msgid "Isosceles Triangle"
-msgstr "Dreieck"
+msgstr "Gleichschenkliges Dreieck"
 
 msgid "Obtuse Triangle"
-msgstr "Dreieck"
+msgstr "Stumpfwinkliges Dreieck"
 
 msgid "Right Triangle"
-msgstr "Dreieck"
+msgstr "Rechtwinkliges Dreieck"
 
 msgid "Acute Triangle"
-msgstr "Dreieck"
+msgstr "Spitzwinkliges Dreieck"
 
 msgid "Square"
 msgstr "Quadrat"
@@ -105,10 +105,10 @@ msgid "Rectangle"
 msgstr "Rechteck"
 
 msgid "Right Trapezium"
-msgstr "Trapez"
+msgstr "Rechtwinkliges Trapez"
 
 msgid "Isosceles Trapezium"
-msgstr "Trapez"
+msgstr "Gleichschenkliges Trapez"
 
 msgid "Rhombus"
 msgstr "Rombus"
@@ -132,16 +132,16 @@ msgid "Cube"
 msgstr "Würfel"
 
 msgid "Square Prism"
-msgstr "Prisma"
+msgstr "Quadratisches Prisma"
 
 msgid "Triangular Prism"
-msgstr "Prisma"
+msgstr "Dreieckiges Prisma"
 
 msgid "Square Pyramid"
-msgstr "Pyramide"
+msgstr "Quadratische Pyramide"
 
 msgid "Triangular Pyramid"
-msgstr "Pyramide"
+msgstr "Dreieckige Pyramide"
 
 msgid "Sphere"
 msgstr "Sphäre"
@@ -165,28 +165,28 @@ msgid "Hi Stranger :) Would you like to log in so we know who you are?"
 msgstr "Hallo Fremder :) Möchtest Du Dich einloggen und Dich vorstellen?"
 
 msgid "Log in:"
-msgstr "Einloggen"
+msgstr "Einloggen:"
 
 msgid "user name:"
-msgstr "Nutzername"
+msgstr "Nutzername:"
 
 msgid "password:"
-msgstr "Passwort"
+msgstr "Passwort:"
 
 msgid "Login"
 msgstr "Login"
 
 msgid "Add new user:"
-msgstr "Neuen Nutzer anlegen"
+msgstr "Neuen Nutzer anlegen:"
 
 msgid "confirm password:"
-msgstr "Passwort bestätigen"
+msgstr "Passwort bestätigen:"
 
 msgid "Register new user"
 msgstr "Neuen Nutzer registrieren"
 
 msgid "Administrator Login:"
-msgstr "Administrator Login"
+msgstr "Administrator Login:"
 
 msgid "User Management"
 msgstr "Nutzerverwaltung"
@@ -296,7 +296,7 @@ msgid "Registered:"
 msgstr "Registriert"
 
 msgid "Last login:"
-msgstr "Letzer Besuch"
+msgstr "Letzer Besuch:"
 
 msgid "Preferences saved..."
 msgstr "Einstellungen gespeichert..."
@@ -623,7 +623,7 @@ msgid "surface area:"
 msgstr "Oberflächenbereich:"
 
 msgid "volume:"
-msgstr "Lautstärke:"
+msgstr "Volumen:"
 
 msgid "Perfect!"
 msgstr "Perfekt!"
@@ -1016,7 +1016,7 @@ msgid "Do it yourself"
 msgstr "Mach es selber"
 
 msgid "Ratio"
-msgstr "Verhältnisse"
+msgstr "Verhältnis"
 
 msgid "Working with large numbers"
 msgstr "Arbeiten mit großen Zahlen"
@@ -1187,7 +1187,7 @@ msgid "Level"
 msgstr "Level"
 
 msgid "Find solution"
-msgstr "Finde eine Lösung"
+msgstr "Finde die Lösung"
 
 msgid "Find missing number"
 msgstr "Finde die fehlende Zahl"
@@ -1196,7 +1196,7 @@ msgid "Achievements"
 msgstr "Auszeichnungen"
 
 msgid "Select age group:"
-msgstr "Wähle eine Altersgruppe:"
+msgstr "Wähle deine Altersgruppe:"
 
 msgid "show activities for:"
 msgstr "Zeige Aktivitäten von:"
@@ -1235,7 +1235,7 @@ msgid "Ready to go to the next level?"
 msgstr "Fertig für den nächsten Level?"
 
 msgid "Language arts"
-msgstr "Sprachkunst"
+msgstr "Sprachen"
 
 msgid "Other"
 msgstr "Andere"
