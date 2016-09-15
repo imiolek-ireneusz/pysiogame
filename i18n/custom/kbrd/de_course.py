@@ -25,17 +25,17 @@ base_qwerty = [
 
 #lvl5 - learning letters - yuiop
 [[4,4,4, 3,3,3,3],
-["jyj juj ", "jyj juj kik lol pop ", "jnyj jmuj ", "kiujk loikj ", "polkiuj jnhuj kmjik ", "plokijuhy hyjukilop ", "yhikujolp pokuh "]
+["jzj juj ", "jzj juj kik lol pop ", "jnzj jmuj ", "kiujk loikj ", "polkiuj jnhuj kmjik ", "plokijuhz hzjukilop ", "zhikujolp pokuh "]
 ],
 
 #lvl6 - learning letters - zxcvb
 [[4,4,4, 3,3],
-["fbf fvf ", "fbf fvf dcd sxs aza ", "awdx sefc drgv ", "azs sxd dcf fvg ", "azsxdcfvb bvfcdxsza "]
+["fbf fvf ", "fbf fvf dcd sxs aya ", "awdx sefc drgv ", "ays sxd dcf fvg ", "aysxdcfvb bvfcdxsya "]
 ],
 
 #lvl7 - learning uppercase letters
 [[3,3,3],
-["As Sd Df Fg Gh Hj Jk Kl L; ", "Qa Ws Ed Rf Tf Yj Uj Ik Ol P; ", "Za Xs Cd Vf Bf Nj Mj "]
+["As Sd Df Fg Gh Hj Jk Kl L; ", "Qa Ws Ed Rf Tf Zj Uj Ik Ol P; ", "Ya Xs Cd Vf Bf Nj Mj "]
 ],
 
 #lvl8 - learning position of ", . ; : ?" !
@@ -45,7 +45,7 @@ base_qwerty = [
 
 #lvl9 - quick home keys revision
 [[2,2],
-["aqaza swsxs dedcd frftfvfbfgf ", "jyjujnjmjhj kik,k lol.l ;p; "]
+["aqaya swsxs dedcd frftfvfbfgf ", "jzjujnjmjhj kik,k lol.l ;p; "]
 ]]
 
 course = []
