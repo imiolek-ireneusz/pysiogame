@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import gc
 import random
+import time
 
 #file initialising level control
 class Level:
@@ -13,6 +14,7 @@ class Level:
         self.games_per_lvl = gpl #number of games to play in order to level up
         self.lvl_count = lvl_count #number of levels
         self.completed = 0 #how many times was this level completed - loaded from db later on
+        self.completed_time = time.time()
         self.restart()
 
         self.dp = self.mainloop.lang.dp
@@ -136,6 +138,7 @@ class Level:
                     self.mainloop.sfx.play(14)
                 self.dialog_type = 0
                 self.game_board.show_msg = True
+                self.completed_time = time.time()
             else:
                 self.game_board.mainloop.db.update_completion(self.game_board.mainloop.userid, self.game_board.active_game.dbgameid, self.lvl)
                 if self.lvl < self.lvl_count:
@@ -146,6 +149,7 @@ class Level:
                     #self.game_board.show_msg = True
                 else:
                     self.game_won(tts)
+                self.completed_time = time.time()
             self.next_pressed = True
 
     def next_board_load(self,tts=""):

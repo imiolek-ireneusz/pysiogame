@@ -311,11 +311,13 @@ class Board(gd.BoardGame):
         self.level.lvl_count = len(self.course)
 
         if self.lang.lang in ["en_GB", "en_US"]:
-            self.chapters = [1,3,5,7,10,13,15,18,20,22,24,26,28]
+            self.chapters = [1, 3, 5, 7, 10, 13, 15, 18, 20, 22, 24, 26, 28]
         elif self.lang.lang == "pl":
-            self.chapters = [1,3,5,7,10,12,14,16,18,20,23,26,29,32]
+            self.chapters = [1, 3, 5, 7, 10, 12, 14, 16, 18, 20, 23, 26, 29, 32]
         elif self.lang.lang in ("ru","uk"):
-            self.chapters = [1,3,5,7,10,13,15,18,20,22,24,26,28]
+            self.chapters = [1, 3, 5, 7, 10, 13, 15, 18, 20, 22, 24, 26, 28]
+        elif self.lang.lang == "de":
+            self.chapters = [1, 3, 5, 7, 10, 13, 15, 18, 20, 22, 24, 26, 29]
         self.t_string = self.course[self.level.lvl-1][1]
         self.t_multi  = self.course[self.level.lvl-1][0]
 

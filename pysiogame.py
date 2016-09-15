@@ -34,6 +34,7 @@ import os, sys
 import pygame
 import threading
 import gc
+import time
 
 # setting the working directory to the directory of this file
 os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))
@@ -148,7 +149,7 @@ class GamePlay(threading.Thread):
         """toggle between fullscreen and windowed version with CTRL + F
         current activity will be reset"""
         self.redraw_needed = [True,True,True]
-        if self.config.fullscreen == True:
+        if self.config.fullscreen is True:
             self.config.fullscreen = False
             self.size = self.wn_size[:]
             self.screen = pygame.display.set_mode(self.size, pygame.RESIZABLE)
@@ -230,7 +231,7 @@ class GamePlay(threading.Thread):
         self.m.lang_change()
         self.game_board.line_color = self.game_board.board.board_bg.line_color
 
-        if scheme == None: s_id = 0
+        if scheme is None: s_id = 0
         elif scheme == "WB": s_id = 1
         elif scheme == "BW": s_id = 2
         elif scheme == "BY": s_id = 3
@@ -264,9 +265,9 @@ class GamePlay(threading.Thread):
         clock=pygame.time.Clock()
         self.clock = clock
 
-        while self.done4good == False:
+        while self.done4good is False:
             if self.window_state == "LOG IN":
-                self.done == False
+                self.done = False
                 self.set_init_vals()
                 if self.config.platform != "windows":
                     os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (self.config.window_pos[0],self.config.window_pos[1])
@@ -280,7 +281,7 @@ class GamePlay(threading.Thread):
                 self.loginscreen = classes.loginscreen.LoginScreen(self, self.screen, self.size)
                 #clock=pygame.time.Clock()
 
-                while self.done == False and self.userid < 0:
+                while self.done is False and self.userid < 0:
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                             self.done = True #mark to finish the loop and the game
@@ -306,7 +307,7 @@ class GamePlay(threading.Thread):
             if self.window_state == "GAME":
                 self.set_up_user()
 
-                self.done == False
+                self.done = False
                 #self.force_no_resize = True
                 self.set_init_vals()
                 #if self.config.platform != "windows":
@@ -372,9 +373,10 @@ class GamePlay(threading.Thread):
                 #self.video_resize_count = 0
                 #self.resize_func = 0
                 # -------- Main Program Loop ----------- #
-                while self.done==False:
+                while self.done is False:
                     # start, switch or continue a game
                     #not really an implementation of a State Machine but does the job
+
                     if m.active_game_id != m.game_started_id:# or m.active_game_id == 0: #if game id changed since last frame or selected activity is the Language changing panel
                         if self.game_board is not None:
                             #if this is not the first start of a game - the self.game_board has been already 'created' at least once
@@ -404,6 +406,13 @@ class GamePlay(threading.Thread):
                         info.new_game(self.game_board,self.info_bar)
                         self.game_board.level.prev_lvl = self.game_board.level.lvl
                         gc.collect()
+
+                    if not self.show_dialogwnd:
+                        if self.game_board.show_msg == True:
+                            # if dialog after completing the game is shown then hide it and load next game
+                            if time.time() - self.game_board.level.completed_time > 1.25:
+                                self.game_board.show_msg = False
+                                self.game_board.level.next_board_load()
 
                     #Process or delegate events
                     #mods = pygame.key.get_mods()
