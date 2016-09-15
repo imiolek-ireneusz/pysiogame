@@ -4,6 +4,7 @@ Translations:
     English US - Ireneusz Imiolek (some corrections needed)
     Finnish - Aapo Rantalainen
     French - Gino Ingras
+    German - Oliver van der Bürie
     Greek - Στέλιος, versys650gr, sdim, lucinos and other members of the Official Greek Community of Linux Mint - http://linuxmint.gr
     Hebrew - Ori Hoch
     Italian - Giuliano
@@ -358,3 +359,5 @@ Cinderella in the Touch Typing Tutor:
 	Kopciuszek - Bracia Grim - http://www.gutenberg.org/files/28044/28044-h/28044-h.htm
 	Золушка - Шарль Перро - Charles Perrault -  http://sheba.spb.ru/libra/perro_zolushka.htm
 	Cendrillon par Charles Perrault - http://www.alyon.org/litterature/livres/XVIII/esprit_salon/perrault/cendrillon.html
+	
+        Schneewittchen (Snowwhite) by Brothers Grimm - http://gutenberg.spiegel.de/buch/-6248/150
