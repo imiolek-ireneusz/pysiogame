@@ -7,6 +7,7 @@ import classes.simple_vector as sv
 import classes.board
 import random
 import pygame
+import sys
 from math import sqrt
 
 
@@ -208,7 +209,10 @@ class Board(gd.BoardGame):
             self.btn_down = False
 
     def paint_bg_letter(self):
-        txt = self.active_letter
+        if sys.version_info < (3, 0):
+            txt = unicode(self.active_letter, "utf-8")
+        else:
+            txt = self.active_letter
         text = self.canvas_block.font.render("%s" % (txt), 1, (220, 220, 220, 0))
 
         font_x = ((self.board.scale*self.canvas_block.grid_w-self.canvas_block.font.size(txt)[0])//2)
