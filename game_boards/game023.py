@@ -18,6 +18,7 @@ class Board(gd.BoardGame):
         self.vis_buttons = [0,1,1,1,1,1,1,0,0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
         self.change_count = 0
+        self.allow_teleport = False
         s = random.randrange(150, 205, 5)
         v = random.randrange(150, 205, 5)
         h = random.randrange(0, 255, 5)
@@ -60,6 +61,8 @@ class Board(gd.BoardGame):
         letter_table =  []
         letter_table.extend(self.lang.alphabet_lc)
         letter_table.extend(self.lang.accents_lc)
+        letter_table.extend(self.lang.alphabet_uc)
+        letter_table.extend(self.lang.accents_uc)
 
         self.word = self.lang.di[data[4]][random.randrange(1,self.lang.di[data[4]][0])]
         if sys.version_info < (3, 0):

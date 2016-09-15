@@ -17,6 +17,7 @@ class Board(gd.BoardGame):
         gd.BoardGame.__init__(self,mainloop,speaker,config,screen_w,screen_h,11,7)
 
     def create_game_objects(self, level = 1):
+        self.allow_teleport = False
         s = random.randrange(150, 205, 5)
         v = random.randrange(150, 205, 5)
         h = random.randrange(0, 255, 5)

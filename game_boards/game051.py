@@ -60,6 +60,7 @@ class Board(gd.BoardGame):
 
 
     def create_game_objects(self, level = 1):
+        self.allow_teleport = False
         self.board.decolorable = False
         self.board.draw_grid = False
 

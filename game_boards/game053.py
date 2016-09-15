@@ -13,6 +13,7 @@ class Board(gd.BoardGame):
         gd.BoardGame.__init__(self,mainloop,speaker,config,screen_w,screen_h,11,9)
 
     def create_game_objects(self, level = 1):
+        self.allow_teleport = False
         self.board.draw_grid = False
 
         color = ex.hsv_to_rgb(225,15,235)

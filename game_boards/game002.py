@@ -54,31 +54,31 @@ class Board(gd.BoardGame):
         self.board.add_unit(0,top,3,1,classes.board.Label,["French","Français"],color2,"",6)
         self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Gino Ingras"],color2,"",6)
         top += 1
-        self.board.add_unit(0,top,3,1,classes.board.Label,["Greek","Ελληνικά"],color1,"",6)
-        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Στέλιος, versys650gr, sdim, lucinos and other members of","The Official Greek Community of Linux Mint  -  http://linuxmint.gr"],color1,"",6)
-        top += 1
-        self.board.add_unit(0,top,3,1,classes.board.Label,["Hebrew","תירבע"],color2,"",6)
-        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Ori Hoch"],color2,"",6)
-        top += 1
-        self.board.add_unit(0,top,3,1,classes.board.Label,["Italian","Italiano"],color1,"",6)
-        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Giuliano",color1,"",6)
-        top += 1
-        self.board.add_unit(0,top,3,1,classes.board.Label,["Portuguese","Português"],color2,"",6)
-        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Américo Monteiro",color2,"",6)
-        top += 1
         self.board.add_unit(0,top,3,1,classes.board.Label,["German","Deutsch"],color1,"",6)
         self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Oliver van der Bürie",color1,"",6)
         top += 1
-        self.board.add_unit(0,top,3,1,classes.board.Label,["Russian","Русский"],color1,"",6)
-        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Anton Kayukov (Антон Каюков)", "Alexey Loginov (Алексей Логинов)"],color1,"",6)
+        self.board.add_unit(0,top,3,1,classes.board.Label,["Greek","Ελληνικά"],color2,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Στέλιος, versys650gr, sdim, lucinos and other members of","The Official Greek Community of Linux Mint  -  http://linuxmint.gr"],color2,"",6)
         top += 1
-        self.board.add_unit(0,top,3,1,classes.board.Label,["Spanish","Español"],color2,"",6)
-        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Miriam Ruiz","http://www.miriamruiz.es"],color2,"",6)
+        self.board.add_unit(0,top,3,1,classes.board.Label,["Hebrew","תירבע"],color1,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Ori Hoch"],color1,"",6)
         top += 1
-        self.board.add_unit(0,top,3,1,classes.board.Label,["Ukrainian","Українська"],color1,"",6)
-        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Yuri Chornoivan (Юрій Чорноіван)",color1,"",6)
+        self.board.add_unit(0,top,3,1,classes.board.Label,["Italian","Italiano"],color2,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Giuliano",color2,"",6)
         top += 1
-        self.board.add_unit(0,top,data[0],1,classes.board.Letter,"<<",color2,"",0)
+        self.board.add_unit(0,top,3,1,classes.board.Label,["Portuguese","Português"],color1,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Américo Monteiro",color1,"",6)
+        top += 1
+        self.board.add_unit(0,top,3,1,classes.board.Label,["Russian","Русский"],color2,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Anton Kayukov (Антон Каюков)", "Alexey Loginov (Алексей Логинов)"],color2,"",6)
+        top += 1
+        self.board.add_unit(0,top,3,1,classes.board.Label,["Spanish","Español"],color1,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Miriam Ruiz","http://www.miriamruiz.es"],color1,"",6)
+        top += 1
+        self.board.add_unit(0,top,3,1,classes.board.Label,["Ukrainian","Українська"],color2,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Yuri Chornoivan (Юрій Чорноіван)",color2,"",6)
+        top += 1
+        self.board.add_unit(0,top,data[0],1,classes.board.Letter,"<<",color1,"",0)
         self.btn_back = self.board.ships[-1]
         """
         self.board.add_unit(0,5,3,1,classes.board.Label,"French",color1,"",6)

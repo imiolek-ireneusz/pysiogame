@@ -15,6 +15,7 @@ class Board(gd.BoardGame):
     def create_game_objects(self, level = 1):
         self.vis_buttons = [1,1,1,1,1,1,1,1,0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
+        self.allow_teleport = False
         s = random.randrange(100, 150, 5)
         v = random.randrange(230, 255, 5)
         h = random.randrange(0, 255, 5)

@@ -47,7 +47,9 @@ class Board(gd.BoardGame):
         self.points = data[4]
         letter_table =  []
         letter_table.extend(self.lang.alphabet_lc)
+        letter_table.extend(self.lang.alphabet_uc)
         letter_table.extend(self.lang.accents_lc)
+        letter_table.extend(self.lang.accents_uc)
 
         self.words = self.lang.di[data[3]]
         self.data = data
@@ -56,13 +58,13 @@ class Board(gd.BoardGame):
         self.board.level_start(data[0],data[1],self.layout.scale)
         self.word = self.words[random.randrange(1,self.words[0])]
         if sys.version_info < (3, 0):
-            self.wordu = unicode(self.word,"utf-8")
+            self.wordu = unicode(self.word, "utf-8")
             word_len = len(self.wordu)
             self.word_l = []
             #dirty way of replacing the word with letters from alphabet
             for each in self.wordu:
                 for i in range(len(letter_table)):
-                    if each == unicode(letter_table[i],"utf-8"):
+                    if each == unicode(letter_table[i], "utf-8"):
                         self.word_l.append(letter_table[i])
         else:
             word_len = len(self.word)
@@ -70,7 +72,7 @@ class Board(gd.BoardGame):
 
         self.num_list = []
 
-        choice_list = self.lang.alphabet_lc
+        choice_list = self.lang.alphabet_lc + self.lang.alphabet_uc
         for i in range(data[2]-word_len):#adding noice letters
             index = random.randrange(0,len(choice_list))
             self.num_list.append(choice_list[index])
