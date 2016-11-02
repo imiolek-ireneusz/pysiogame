@@ -1,8 +1,8 @@
 Changelog:
 pySioGame - 3.60.814:
     - added German translation by Oliver van der Bürie
-    - fixed a issue where the word games would break if word contained upper case letter
-    - changed the game so that objects can jump over other objects rather than being stuck, when direct path was not free (except for the games where the previous behaviour was expected or needed), previously whlst that behaviour would be considered a feature, it would casuse unnecesary frustration more often then needed.
+    - fixed an issue where the word games would break if word contained upper case letter
+    - changed the game so that objects can jump over other objects rather than being stuck, when direct path was not free (except for the games where the previous behaviour was expected or needed), previously whilst that behaviour would be considered a feature, it would cause unnecessary frustration more often then needed.
 pySioGame - 3.51.117:
     - just some minor clean ups, to fix a number of issues when packaging
 pySioGame - 3.50.311:

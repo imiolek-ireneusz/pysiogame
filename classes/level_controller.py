@@ -3,31 +3,30 @@ import gc
 import random
 import time
 
-#file initialising level control
+# file initialising level control
 class Level:
-    def __init__(self,board,mainloop,gpl,lvl_count):
+    def __init__(self, board, mainloop, gpl, lvl_count):
         self.game_board = board
         self.mainloop = mainloop
         self.next_pressed = False
         self.name = self.mainloop.user_name
-        self.prev_lvl = -1 #used to check if level changed
-        self.games_per_lvl = gpl #number of games to play in order to level up
-        self.lvl_count = lvl_count #number of levels
-        self.completed = 0 #how many times was this level completed - loaded from db later on
+        self.prev_lvl = -1  # used to check if level changed
+        self.games_per_lvl = gpl  # number of games to play in order to level up
+        self.lvl_count = lvl_count  # number of levels
+        self.completed = 0  # how many times was this level completed - loaded from db later on
         self.completed_time = time.time()
         self.restart()
 
         self.dp = self.mainloop.lang.dp
 
     def restart(self):
-        self.lvl = 1 #current level
-        self.game_step = 1 #used to store number of games played in this level
-
+        self.lvl = 1 # current level
+        self.game_step = 1 # used to store number of games played in this level
 
     def levelup(self):
-        self.mainloop.dialog.show_dialog(2,self.mainloop.lang.d["Ready to go to the next level?"],self.manual_levelup,self.reset_level)
+        self.mainloop.dialog.show_dialog(2, self.mainloop.lang.d["Ready to go to the next level?"], self.manual_levelup, self.reset_level)
 
-    def manual_levelup(self,args=None):
+    def manual_levelup(self, args=None):
         if self.lvl < self.lvl_count:
             self.lvl += 1
             self.mainloop.sfx.play(7)
@@ -63,13 +62,13 @@ class Level:
                 self.mainloop.sfx.play(9)
                 self.load_level_plus()
 
-    def get_current_chapter(self,chs,lch):
+    def get_current_chapter(self, chs, lch):
         if self.lvl == self.lvl_count:
             return lch-1
         elif self.lvl == 1:
             return 0
         else:
-            for i in range(0,lch-1):
+            for i in range(0, lch-1):
                 if chs[i] <= self.lvl < chs[i+1]:
                     return i
             return None
@@ -86,7 +85,6 @@ class Level:
         self.game_board.mainloop.db.update_cursor(self.game_board.mainloop.userid, self.game_board.active_game.dbgameid, self.lvl)
         self.game_board.mainloop.m.load_levels()
 
-
     def welcome(self):
         pass
 
@@ -101,7 +99,6 @@ class Level:
         self.game_board.show_msg = True
         self.game_board.mainloop.redraw_needed[0] = True
 
-
     def game_won(self,tts=""):
         #print("Congratulations you won the game")
         if tts != None:
@@ -112,7 +109,6 @@ class Level:
         self.dialog_type = 0
         self.game_board.show_msg = True
         self.game_board.mainloop.score = 0
-
 
     def try_again(self, silent = False):
         self.mainloop.info.btns[0].img = self.mainloop.info.btns[0].img_3
@@ -127,7 +123,7 @@ class Level:
             self.game_board.mainloop.redraw_needed[0] = True
             if self.game_step < self.games_per_lvl:
                 if self.mainloop.speaker.talkative:
-                    if tts=="":
+                    if tts == "":
                         #pick a praise phrase
                         index = random.randrange(0,len(self.dp["Great job!"]))
                         praise = self.dp["Great job!"][index]
@@ -144,7 +140,7 @@ class Level:
                 if self.lvl < self.lvl_count:
                     self.levelup()
                     if tts != None:
-                        self.game_board.say(self.dp["Perfect! Level completed!"],6)
+                        self.game_board.say(self.dp["Perfect! Level completed!"], 6)
                     #self.dialog_type = 0
                     #self.game_board.show_msg = True
                 else:
@@ -152,7 +148,7 @@ class Level:
                 self.completed_time = time.time()
             self.next_pressed = True
 
-    def next_board_load(self,tts=""):
+    def next_board_load(self, tts=""):
         if self.game_step < self.games_per_lvl:
             self.game_step += 1
             self.load_level()
@@ -175,7 +171,6 @@ class Level:
     def reset_level(self):
         self.game_step = 1
         self.load_level()
-
 
     def update_level_dictx(self):
         self.update_level_dict()

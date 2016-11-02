@@ -868,10 +868,19 @@ class Board:
         for i in range(len(sizes)):
             sizes[i] = sizes[i]/self.mainloop.config.font_multiplier
 
+        #test_fonts = pygame.font.get_fonts()
+        #print(test_fonts)
+        #trebuchetms
+        #font_path = pygame.font.match_font('eufm10')
+        #split_path = os.path.split(font_path)
+        #print(split_path[-1])
+
         self.font_sizes = [pygame.font.Font(os.path.join('res', 'fonts', self.mainloop.config.font_dir, self.mainloop.config.font_name_1), (int(float(self.points)/float(sizes[i])))) for i in range(len(sizes))]
         #12+ handwritten
         h_sizes = [25,17,10,1.1,1.5,2,2.3,0.7]
         handwritten_sizes = [pygame.font.Font(os.path.join('res', 'fonts', 'pysiogameFonts', 'pysiogameHand.ttf'), (int(float(self.points)*float(h_sizes[i])))) for i in range(len(h_sizes))]
+        #handwritten_sizes = [pygame.font.Font(font_path, (int(float(self.points) * float(h_sizes[i])))) for i in range(len(h_sizes))]
+
         self.font_sizes.extend(handwritten_sizes)
         #20
         self.font_sizes.append(pygame.font.Font(os.path.join('res', 'fonts', 'pysiogameFonts', 'pysiogameLatinPrint.ttf'), (int(float(self.points)*float(30)))))
