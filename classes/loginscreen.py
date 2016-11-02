@@ -1114,7 +1114,7 @@ class LoginScreen:
         self.flang()
         new_guest = ex.unival(self.lang.b["Guest"])
         self.mainloop.db.change_username(prev_guest, new_guest)
-        self.login_welcome_msg =  self.lang.b["Hi Stranger"]
+        self.login_welcome_msg = self.lang.b["Hi Stranger"]
 
     def fselect_lang(self):
         iso_code = self.mainloop.db.get_lang()

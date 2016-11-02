@@ -102,7 +102,7 @@ class I18n():
         #self.d["Educational Activity Pack for Kids"] = _("Educational Activity Pack for Kids")
         self.d["Credits_long"] = _("Laby, 2010 by Mehdi Cherti (mehdidc) \n Sounds by various authors who contributed their works to freesound.org. \n Images by various authors who contributed their works to openclipart.org (Public Domain) and http://www.art4apps.org/ - Art4Apps by Smart4Kids - under a Creative Commons License (CC BY-SA). \n Please view credits.txt for more info about authors of media files used in this project")
         self.d["Lic_title"] = _("Licence")
-        self.d["Lic_desc"] = _("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.")
+        self.d["Lic_desc"] = _("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.")
         self.d["A little set of educational apps for kids"] = _("A little set of educational apps for kids")
 
         self.d["Logged in as: "] = _("Logged in as: ")
@@ -455,7 +455,7 @@ class I18n():
         self.d["Complete the word"] = _("Complete the word")
 
         self.d["Do you want to exit the game?"] = _("Do you want to exit the game?")
-        self.d["Do you want to log out of the game?"] = _("Do you want to  log out of the game?")
+        self.d["Do you want to log out of the game?"] = _("Do you want to log out of the game?")
         self.d["Ready to go to the next level?"] = _("Ready to go to the next level?")
 
         #New as of pysiogame3

@@ -1093,8 +1093,8 @@ msgstr ""
 msgid "Licence"
 msgstr "Licence"
 
-msgid "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgid "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. You should have received a copy of the GNU General Public License along with this program.If not, see <http://www.gnu.org/licenses/>."
 
 msgid "A little set of educational apps for kids"
 msgstr "A little set of educational apps for kids"
@@ -1169,6 +1169,51 @@ msgid "Find missing number"
 msgstr ""
 
 msgid "Achievements"
+msgstr ""
+
+msgid "Select age group:"
+msgstr ""
+
+msgid "show activities for:"
+msgstr ""
+
+msgid "preschool"
+msgstr ""
+
+msgid "Year 1"
+msgstr ""
+
+msgid "Year 2"
+msgstr ""
+
+msgid "Year 3"
+msgstr ""
+
+msgid "Year 4"
+msgstr ""
+
+msgid "Year 5"
+msgstr ""
+
+msgid "Year 6"
+msgstr ""
+
+msgid "show all"
+msgstr ""
+
+msgid "Do you want to exit the game?"
+msgstr ""
+
+msgid "Do you want to log out of the game?"
+msgstr ""
+
+msgid "Ready to go to the next level?"
+msgstr ""
+
+msgid "Language arts"
+msgstr ""
+
+msgid "Other"
 msgstr ""
 
 msgid "Educational Activity Pack for Kids"
