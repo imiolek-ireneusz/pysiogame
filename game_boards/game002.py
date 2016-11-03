@@ -52,7 +52,7 @@ class Board(gd.BoardGame):
         self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Aapo Rantalainen"],color1,"",6)
         top += 1
         self.board.add_unit(0,top,3,1,classes.board.Label,["French","Français"],color2,"",6)
-        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Gino Ingras"],color2,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Gino Ingras", "edited by Johnny Jazeix"],color2,"",6)
         top += 1
         self.board.add_unit(0,top,3,1,classes.board.Label,["German","Deutsch"],color1,"",6)
         self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Oliver van der Bürie",color1,"",6)

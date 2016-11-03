@@ -11,6 +11,7 @@
 
 import os, sys
 import shutil
+import datetime
 
 def findNremove(path,file_patterns, dir_patterns,maxdepth=1):
     cpath=path.count(os.sep)
@@ -90,7 +91,13 @@ if __name__ == "__main__":
                 print("\nVersion number updated.\n")
     else:
         dir_patterns =["__pycache__"]
-        print("\nVersion not updated - no version number in parent folder name.\n")
+        t = datetime.date.today()
+        c = t.strftime('%Y%m%d')
+        v = "3.%s.%s" % (c[3:5], c[5:])
+
+        with open(os.path.join(path, "classes", "cversion.py"), "w") as s_file:
+            s_file.write('ver = "%s"' % v)
+            print("\nVersion updated - based on todays date - no version number in parent folder name.\n")
         
     #move the files to the locale directory based on its locale code
     distribute_mo(path, popath, ".mo")
@@ -99,4 +106,3 @@ if __name__ == "__main__":
     findNremove(path, file_patterns, dir_patterns, 5)
     
     print("Done!\n")
-

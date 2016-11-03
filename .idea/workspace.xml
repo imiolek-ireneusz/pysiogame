@@ -2,52 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de10a678-2b49-40e3-93db-019c06c6b574" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/ar/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/ar/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/ca/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/ca/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/da/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/da/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/de/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/de/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/el/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/el/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/en_GB/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/en_GB/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/en_US/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/en_US/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/es_ES/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/es_ES/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/fi/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/fi/LC_MESSAGES/pysiogame.mo" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/fr/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/fr/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/he/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/he/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/it/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/it/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/nl/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/nl/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/pl/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/pl/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/pt_PT/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/pt_PT/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/sk/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/sk/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/te_ST/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/te_ST/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/uk/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/uk/LC_MESSAGES/pysiogame.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/zh/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/zh/LC_MESSAGES/pysiogame.mo" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/loginscreen.py" afterPath="$PROJECT_DIR$/classes/loginscreen.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/custom/default.py" afterPath="$PROJECT_DIR$/i18n/custom/default.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/custom/fr.py" afterPath="$PROJECT_DIR$/i18n/custom/fr.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/default.pot" afterPath="$PROJECT_DIR$/i18n/default.pot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/ar.po" afterPath="$PROJECT_DIR$/i18n/po/ar.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/ca.po" afterPath="$PROJECT_DIR$/i18n/po/ca.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/da.po" afterPath="$PROJECT_DIR$/i18n/po/da.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/de.po" afterPath="$PROJECT_DIR$/i18n/po/de.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/el.po" afterPath="$PROJECT_DIR$/i18n/po/el.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/en_GB.po" afterPath="$PROJECT_DIR$/i18n/po/en_GB.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/en_US.po" afterPath="$PROJECT_DIR$/i18n/po/en_US.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/es_ES.po" afterPath="$PROJECT_DIR$/i18n/po/es_ES.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/fi.po" afterPath="$PROJECT_DIR$/i18n/po/fi.po" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGES.txt" afterPath="$PROJECT_DIR$/CHANGES.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/cversion.py" afterPath="$PROJECT_DIR$/classes/cversion.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cleanup.py" afterPath="$PROJECT_DIR$/cleanup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game_boards/game002.py" afterPath="$PROJECT_DIR$/game_boards/game002.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/fr.po" afterPath="$PROJECT_DIR$/i18n/po/fr.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/he.po" afterPath="$PROJECT_DIR$/i18n/po/he.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/it.po" afterPath="$PROJECT_DIR$/i18n/po/it.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/nl.po" afterPath="$PROJECT_DIR$/i18n/po/nl.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/pl.po" afterPath="$PROJECT_DIR$/i18n/po/pl.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/pt_PT.po" afterPath="$PROJECT_DIR$/i18n/po/pt_PT.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/ru.po" afterPath="$PROJECT_DIR$/i18n/po/ru.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/sk.po" afterPath="$PROJECT_DIR$/i18n/po/sk.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/te_ST.po" afterPath="$PROJECT_DIR$/i18n/po/te_ST.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/uk.po" afterPath="$PROJECT_DIR$/i18n/po/uk.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/zh.po" afterPath="$PROJECT_DIR$/i18n/po/zh.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/fonts/pysiogameFonts/LICENCE.txt" afterPath="$PROJECT_DIR$/res/fonts/pysiogameFonts/LICENCE.txt" />
     </list>
     <ignored path="pysiogame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,21 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="fr.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/i18n/custom/fr.py">
+      <file leaf-file-name="menu.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classes/menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1544">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="18">
+              <caret line="939" column="40" selection-start-line="939" selection-start-column="40" selection-end-line="939" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/menu.py">
+      <file leaf-file-name="game002.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game_boards/game002.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="939" column="40" selection-start-line="939" selection-start-column="40" selection-end-line="939" selection-end-column="40" />
+            <state relative-caret-position="360">
+              <caret line="54" column="83" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -90,18 +51,50 @@
       <file leaf-file-name="game003.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game_boards/game003.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-144">
+            <state relative-caret-position="342">
               <caret line="25" column="50" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loginscreen.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="loginscreen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/loginscreen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="1116" column="33" selection-start-line="1116" selection-start-column="33" selection-end-line="1116" selection-end-column="33" />
+            <state relative-caret-position="20214">
+              <caret line="1125" column="37" selection-start-line="1125" selection-start-column="37" selection-end-line="1125" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cleanup.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cleanup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="774">
+              <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+              <folding>
+                <element signature="e#759#773#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cversion.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classes/cversion.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CHANGES.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CHANGES.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -110,8 +103,8 @@
       <file leaf-file-name="fr.po" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/i18n/po/fr.po">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="161" column="12" selection-start-line="161" selection-start-column="7" selection-end-line="161" selection-end-column="12" />
+            <state relative-caret-position="4311">
+              <caret line="1097" column="21" selection-start-line="1097" selection-start-column="21" selection-end-line="1097" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -120,7 +113,7 @@
       <file leaf-file-name="default.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/i18n/custom/default.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="594">
               <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
               <folding />
             </state>
@@ -145,9 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/game_boards/game002.py" />
-        <option value="$PROJECT_DIR$/game_boards/game013.py" />
-        <option value="$PROJECT_DIR$/game_boards/game023.py" />
         <option value="$PROJECT_DIR$/game_boards/game025.py" />
         <option value="$PROJECT_DIR$/game_boards/game032.py" />
         <option value="$PROJECT_DIR$/game_boards/game036.py" />
@@ -167,7 +157,6 @@
         <option value="$PROJECT_DIR$/i18n/custom/kbrd/de_course.py" />
         <option value="$PROJECT_DIR$/game_boards/game068.py" />
         <option value="$PROJECT_DIR$/game_boards/game010.py" />
-        <option value="$PROJECT_DIR$/CHANGES.txt" />
         <option value="$PROJECT_DIR$/classes/board.py" />
         <option value="$PROJECT_DIR$/classes/game_driver.py" />
         <option value="$PROJECT_DIR$/game_boards/game000_test.py" />
@@ -190,12 +179,16 @@
         <option value="$PROJECT_DIR$/i18n/po/ar.po" />
         <option value="$PROJECT_DIR$/i18n/po/ca.po" />
         <option value="$PROJECT_DIR$/i18n/po/da.po" />
-        <option value="$PROJECT_DIR$/i18n/po/fr.po" />
         <option value="$PROJECT_DIR$/i18n/default.pot" />
         <option value="$PROJECT_DIR$/i18n/po/en_GB.po" />
         <option value="$PROJECT_DIR$/res/fonts/pysiogameFonts/LICENCE.txt" />
         <option value="$PROJECT_DIR$/i18n/custom/default.py" />
         <option value="$PROJECT_DIR$/classes/loginscreen.py" />
+        <option value="$PROJECT_DIR$/cleanup.py" />
+        <option value="$PROJECT_DIR$/classes/cversion.py" />
+        <option value="$PROJECT_DIR$/CHANGES.txt" />
+        <option value="$PROJECT_DIR$/game_boards/game002.py" />
+        <option value="$PROJECT_DIR$/i18n/po/fr.po" />
       </list>
     </option>
   </component>
@@ -230,6 +223,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pysiogame">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -276,21 +284,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="custom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game_boards" />
+              <option name="myItemId" value="po" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,21 +300,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pysiogame">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -494,7 +473,6 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24945416" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -506,6 +484,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -547,27 +526,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/classes/cversion.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/dbconn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3348">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/dialog.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/dialogwnd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1138">
@@ -642,7 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8784">
           <caret line="491" column="8" selection-start-line="491" selection-start-column="8" selection-end-line="491" selection-end-column="108" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -650,7 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -658,7 +614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -666,7 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6876">
           <caret line="386" column="117" selection-start-line="386" selection-start-column="117" selection-end-line="386" selection-end-column="117" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -678,20 +632,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game_boards/game002.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game_boards/game000_test.py" />
     <entry file="file://$PROJECT_DIR$/game_boards/game000.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1818">
           <caret line="106" column="42" selection-start-line="106" selection-start-column="42" selection-end-line="106" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -699,7 +644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="142" column="82" selection-start-line="142" selection-start-column="82" selection-end-line="142" selection-end-column="82" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -707,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="1230" column="22" selection-start-line="1230" selection-start-column="22" selection-end-line="1230" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -715,7 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="1258" column="22" selection-start-line="1258" selection-start-column="22" selection-end-line="1258" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -723,7 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="1245" column="22" selection-start-line="1245" selection-start-column="22" selection-end-line="1245" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -731,7 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="1260" column="21" selection-start-line="1260" selection-start-column="21" selection-end-line="1260" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -739,7 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="1236" column="22" selection-start-line="1236" selection-start-column="22" selection-end-line="1236" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -747,7 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="1232" column="22" selection-start-line="1232" selection-start-column="22" selection-end-line="1232" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -755,7 +693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="1275" column="22" selection-start-line="1275" selection-start-column="22" selection-end-line="1275" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -763,7 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="479">
           <caret line="1255" column="22" selection-start-line="1255" selection-start-column="22" selection-end-line="1255" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -771,7 +707,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="479">
           <caret line="1268" column="22" selection-start-line="1268" selection-start-column="22" selection-end-line="1268" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -779,7 +714,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="479">
           <caret line="1235" column="21" selection-start-line="1235" selection-start-column="21" selection-end-line="1235" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -787,7 +721,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="497">
           <caret line="1249" column="23" selection-start-line="1249" selection-start-column="23" selection-end-line="1249" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -795,7 +728,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="479">
           <caret line="1292" column="22" selection-start-line="1292" selection-start-column="22" selection-end-line="1292" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -803,7 +735,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10649">
           <caret line="1247" column="22" selection-start-line="1247" selection-start-column="22" selection-end-line="1247" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -811,7 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="1140" column="37" selection-start-line="1140" selection-start-column="1" selection-end-line="1140" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -819,7 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="1117" column="1" selection-start-line="1117" selection-start-column="1" selection-end-line="1117" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -827,7 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="1108" column="38" selection-start-line="1108" selection-start-column="38" selection-end-line="1108" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -835,7 +763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
           <caret line="1126" column="34" selection-start-line="1126" selection-start-column="34" selection-end-line="1126" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -843,7 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
           <caret line="923" column="0" selection-start-line="878" selection-start-column="0" selection-end-line="923" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -851,7 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="519">
           <caret line="1206" column="22" selection-start-line="1206" selection-start-column="22" selection-end-line="1206" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -859,7 +784,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="1247" column="22" selection-start-line="1247" selection-start-column="22" selection-end-line="1247" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -867,13 +791,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2322">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/i18n/custom/fr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1544">
+        <state relative-caret-position="18">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
@@ -883,21 +806,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/i18n/po/fr.po">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="161" column="12" selection-start-line="161" selection-start-column="7" selection-end-line="161" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/i18n/custom/default.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="594">
           <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
           <folding />
         </state>
@@ -911,17 +825,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/menu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="939" column="40" selection-start-line="939" selection-start-column="40" selection-end-line="939" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game_boards/game003.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
+        <state relative-caret-position="342">
           <caret line="25" column="50" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="50" />
           <folding />
         </state>
@@ -929,9 +835,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/loginscreen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="1116" column="33" selection-start-line="1116" selection-start-column="33" selection-end-line="1116" selection-end-column="33" />
+        <state relative-caret-position="20214">
+          <caret line="1125" column="37" selection-start-line="1125" selection-start-column="37" selection-end-line="1125" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGES.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/cversion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/menu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="939" column="40" selection-start-line="939" selection-start-column="40" selection-end-line="939" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_boards/game002.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="54" column="83" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/i18n/po/fr.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4311">
+          <caret line="1097" column="21" selection-start-line="1097" selection-start-column="21" selection-end-line="1097" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cleanup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
+          <folding>
+            <element signature="e#759#773#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
