@@ -4,10 +4,8 @@
     <list default="true" id="de10a678-2b49-40e3-93db-019c06c6b574" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/fr/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/fr/LC_MESSAGES/pysiogame.mo" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGES.txt" afterPath="$PROJECT_DIR$/CHANGES.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CREDITS.txt" afterPath="$PROJECT_DIR$/CREDITS.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/cversion.py" afterPath="$PROJECT_DIR$/classes/cversion.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cleanup.py" afterPath="$PROJECT_DIR$/cleanup.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game_boards/game002.py" afterPath="$PROJECT_DIR$/game_boards/game002.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/fr.po" afterPath="$PROJECT_DIR$/i18n/po/fr.po" />
     </list>
     <ignored path="pysiogame.iws" />
@@ -31,7 +29,7 @@
       <file leaf-file-name="menu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
+            <state relative-caret-position="16776">
               <caret line="939" column="40" selection-start-line="939" selection-start-column="40" selection-end-line="939" selection-end-column="40" />
               <folding />
             </state>
@@ -41,8 +39,8 @@
       <file leaf-file-name="game002.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game_boards/game002.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="54" column="83" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
+            <state relative-caret-position="126">
+              <caret line="54" column="106" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="106" />
               <folding />
             </state>
           </provider>
@@ -68,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cleanup.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cleanup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cleanup.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="774">
@@ -103,18 +101,18 @@
       <file leaf-file-name="fr.po" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/i18n/po/fr.po">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4311">
-              <caret line="1097" column="21" selection-start-line="1097" selection-start-column="21" selection-end-line="1097" selection-end-column="21" />
+            <state relative-caret-position="474">
+              <caret line="1237" column="9" selection-start-line="1237" selection-start-column="9" selection-end-line="1237" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/i18n/custom/default.py">
+      <file leaf-file-name="CREDITS.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CREDITS.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+            <state relative-caret-position="90">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -138,7 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/game_boards/game025.py" />
         <option value="$PROJECT_DIR$/game_boards/game032.py" />
         <option value="$PROJECT_DIR$/game_boards/game036.py" />
         <option value="$PROJECT_DIR$/game_boards/game033.py" />
@@ -189,6 +186,7 @@
         <option value="$PROJECT_DIR$/CHANGES.txt" />
         <option value="$PROJECT_DIR$/game_boards/game002.py" />
         <option value="$PROJECT_DIR$/i18n/po/fr.po" />
+        <option value="$PROJECT_DIR$/CREDITS.txt" />
       </list>
     </option>
   </component>
@@ -285,6 +283,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="po" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pysiogame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pysiogame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game_boards" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -526,13 +538,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/classes/dialogwnd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1138">
-          <caret line="268" column="34" selection-start-line="268" selection-start-column="34" selection-end-line="268" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/extras.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4140">
@@ -798,7 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -849,34 +853,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/cversion.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
+        <state relative-caret-position="16776">
           <caret line="939" column="40" selection-start-line="939" selection-start-column="40" selection-end-line="939" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game_boards/game002.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="54" column="83" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/i18n/po/fr.po">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4311">
-          <caret line="1097" column="21" selection-start-line="1097" selection-start-column="21" selection-end-line="1097" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -888,6 +868,38 @@
           <folding>
             <element signature="e#759#773#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_boards/game002.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="54" column="106" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/cversion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/i18n/po/fr.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="1237" column="9" selection-start-line="1237" selection-start-column="9" selection-end-line="1237" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CREDITS.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>

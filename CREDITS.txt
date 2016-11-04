@@ -3,7 +3,7 @@ Translations:
     English UK - Ireneusz Imiolek (some corrections needed)
     English US - Ireneusz Imiolek (some corrections needed)
     Finnish - Aapo Rantalainen
-    French - Gino Ingras
+    French - Gino Ingras, edited by Johnny Jazeix
     German - Oliver van der Bürie
     Greek - Στέλιος, versys650gr, sdim, lucinos and other members of the Official Greek Community of Linux Mint - http://linuxmint.gr
     Hebrew - Ori Hoch
