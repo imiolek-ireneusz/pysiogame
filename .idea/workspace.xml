@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de10a678-2b49-40e3-93db-019c06c6b574" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/el/LC_MESSAGES/pysiogame.mo" afterPath="$PROJECT_DIR$/locale/el/LC_MESSAGES/pysiogame.mo" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/master/.idea/workspace.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/cversion.py" afterPath="$PROJECT_DIR$/classes/cversion.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/i18n/po/el.po" afterPath="$PROJECT_DIR$/i18n/po/el.po" />
     </list>
     <ignored path="pysiogame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +26,7 @@
       <file leaf-file-name="menu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/classes/menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1692">
+            <state relative-caret-position="17964">
               <caret line="1005" column="13" selection-start-line="1005" selection-start-column="13" selection-end-line="1005" selection-end-column="13" />
               <folding />
             </state>
@@ -77,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="el.po" pinned="false" current-in-tab="true">
+      <file leaf-file-name="el.po" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/i18n/po/el.po">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1140">
+            <state relative-caret-position="1998">
               <caret line="1276" column="0" selection-start-line="1276" selection-start-column="0" selection-end-line="1276" selection-end-column="0" />
               <folding />
             </state>
@@ -117,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CREDITS.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CREDITS.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CREDITS.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+            <state relative-caret-position="126">
+              <caret line="7" column="176" selection-start-line="7" selection-start-column="176" selection-end-line="7" selection-end-column="176" />
               <folding />
             </state>
           </provider>
@@ -184,8 +182,8 @@
         <option value="$PROJECT_DIR$/CHANGES.txt" />
         <option value="$PROJECT_DIR$/game_boards/game002.py" />
         <option value="$PROJECT_DIR$/i18n/po/fr.po" />
-        <option value="$PROJECT_DIR$/CREDITS.txt" />
         <option value="$PROJECT_DIR$/i18n/po/el.po" />
+        <option value="$PROJECT_DIR$/CREDITS.txt" />
       </list>
     </option>
   </component>
@@ -220,6 +218,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pysiogame">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -236,85 +249,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="pysiogame" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i18n" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i18n" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="po" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="i18n" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="custom" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pysiogame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pysiogame">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -846,14 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CREDITS.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/i18n/po/fr.po">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22266">
@@ -890,7 +816,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1692">
+        <state relative-caret-position="17964">
           <caret line="1005" column="13" selection-start-line="1005" selection-start-column="13" selection-end-line="1005" selection-end-column="13" />
           <folding />
         </state>
@@ -898,8 +824,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/i18n/po/el.po">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
+        <state relative-caret-position="1998">
           <caret line="1276" column="0" selection-start-line="1276" selection-start-column="0" selection-end-line="1276" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CREDITS.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="176" selection-start-line="7" selection-start-column="176" selection-end-line="7" selection-end-column="176" />
           <folding />
         </state>
       </provider>
