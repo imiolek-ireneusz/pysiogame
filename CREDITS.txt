@@ -5,7 +5,7 @@ Translations:
     Finnish - Aapo Rantalainen
     French - Gino Ingras, edited by Johnny Jazeix
     German - Oliver van der Bürie
-    Greek - Στέλιος, versys650gr, sdim, lucinos and other members of the Official Greek Community of Linux Mint - http://linuxmint.gr
+    Greek - Στέλιος, versys650gr, sdim, lucinos and other members of the Official Greek Community of Linux Mint - http://linuxmint.gr, recently updated by Αλέξανδρος Μοσκοφίδης
     Hebrew - Ori Hoch
     Italian - Giuliano
     Polish - Kamila Roszak-Imiolek, Ireneusz Imiolek
