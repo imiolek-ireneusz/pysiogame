@@ -8,13 +8,12 @@ import copy
 import classes.extras as ex
 
 class Unit(pygame.sprite.Sprite):
-    'basic class for all on-board objects'
+    """basic class for all on-board objects"""
     def __init__(self,board,grid_x=0,grid_y=0,grid_w=1,grid_h=1,value="",color=(0,0,0),**kwargs):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
 
-
-        #grid location and size
+        # grid location and size
         self.grid_x = grid_x
         self.grid_y = grid_y
         self.grid_w = grid_w
@@ -38,26 +37,26 @@ class Unit(pygame.sprite.Sprite):
         self.show_value = True
         self.readable = True
         self.highlight = True
-        self.audible = False #use true to enable sounds on unit move
+        self.audible = False  # use true to enable sounds on unit move
         self.outline_highlight = False
         self.font_color = (0,0,0,0)
-        self.align = 0 #align: 0 - centered, 1 - left, 2 - right
-        self.valign = 0 #align: 0 - centered, 1 - top
+        self.align = 0  # align: 0 - centered, 1 - left, 2 - right
+        self.valign = 0  # align: 0 - centered, 1 - top
         self.update_me = True
         # Set height, width, the -1 is to give it some space around for the margin
         self.image = pygame.Surface([grid_w*board.scale-1, grid_h*board.scale-1])
         self.image.fill(self.color)
 
-        #http://www.pygame.org/docs/ref/surface.html - surface.fill() comment
-        #self.image = pygame.Surface([grid_w*board.scale-1, grid_h*board.scale-1],flags=pygame.SRCALPHA)
-        #self.image.fill(self.color,special_flags=pygame.BLEND_RGBA_MIN)
+        # http://www.pygame.org/docs/ref/surface.html - surface.fill() comment
+        # self.image = pygame.Surface([grid_w*board.scale-1, grid_h*board.scale-1],flags=pygame.SRCALPHA)
+        # self.image.fill(self.color,special_flags=pygame.BLEND_RGBA_MIN)
         self.painting = self.image
 
         # Make our top-left corner the passed-in location. The +1 is the margin
         self.rect = self.image.get_rect()
         self.rect.topleft = [grid_x*board.scale+1,grid_y*board.scale+1]
 
-        #scale font size:
+        # scale font size:
         self.font = board.font_sizes[0]
         self.text_wrap = True
 
@@ -72,7 +71,7 @@ class Unit(pygame.sprite.Sprite):
             self.rect.topleft = [self.grid_x*self.board.scale+1,self.grid_y*self.board.scale+1]
         else:
             self.image = pygame.Surface([1,1])
-            #self.painting = self.image
+            # self.painting = self.image
             self.rect = self.image.get_rect()
             self.rect.topleft = [self.grid_x*self.board.scale+1,self.grid_y*self.board.scale+1]
 
@@ -104,16 +103,16 @@ class Unit(pygame.sprite.Sprite):
 
             self.image.fill(self.color)
             self.image.blit(self.painting,(0,0))
-            if self.hasimg == False:
+            if not self.hasimg:
                 if len(self.value) > 0:
                     if self.show_value:
                         if sys.version_info < (3, 0):
                             if isinstance(self.value, basestring):
-                                #if a passed argument is a string turn it into a 1 item list
+                                # if a passed argument is a string turn it into a 1 item list
                                 if self.font.size(self.value)[0] < self.rect.w or not self.text_wrap:
                                     value = [self.value]
                                 else:
-                                    #else enter extra line breaks
+                                    # else enter extra line breaks
                                     if len(self.value) > 5:
                                         line = ""
                                         test_line = ""
@@ -149,16 +148,16 @@ class Unit(pygame.sprite.Sprite):
                                         if len(test_line) > 0:
                                             value.append(test_line)
 
-                                        #value = [self.value]
+                                        # value = [self.value]
                                     else:
                                         value = [self.value]
                             else:
                                 value = self.value
                         else:
                             if isinstance(self.value, str):
-                                #if a passed argument is a string turn it into a 1 item list
-                                value = [self.value]
-                                #if a passed argument is a string turn it into a 1 item list
+                                # if a passed argument is a string turn it into a 1 item list
+                                # value = [self.value]
+                                # if a passed argument is a string turn it into a 1 item list
                                 if self.font.size(self.value)[0] < self.rect.w or not self.text_wrap:
                                     value = [self.value]
                                 else:
@@ -191,14 +190,11 @@ class Unit(pygame.sprite.Sprite):
                                                 word += valx[i]
                                         if len(test_line) > 0:
                                             value.append(test_line)
-
-                                        #value = [self.value]
+                                        # value = [self.value]
                                     else:
                                         value = [self.value]
                             else:
                                 value = self.value
-
-
 
                         lv = len(value)
                         for i in range(lv):
@@ -222,7 +218,7 @@ class Unit(pygame.sprite.Sprite):
                                 font_x = board.scale*self.grid_w - self.font.size(val)[0]-5
                             if lv == 1:
                                 font_y = ((board.scale*self.grid_h-self.font.size(val)[1])//2)
-                            elif lv == self.grid_h: #number of items is equal to grid height of an object - distribute lines equally in each grid square
+                            elif lv == self.grid_h:  # number of items is equal to grid height of an object - distribute lines equally in each grid square
                                 font_y = ((board.scale-self.font.size(val)[1])//2)+board.scale*i
                             else:
                                 if self.valign == 0:
@@ -293,7 +289,6 @@ class Unit(pygame.sprite.Sprite):
             w2 = 2
         pygame.draw.lines(self.image, color, True, [[x-width,y],[self.board.scale*self.grid_w-w2+width,y],[self.board.scale*self.grid_w-w2,y-width],[self.board.scale*self.grid_w-w2,self.board.scale*self.grid_h-w2+width],[self.board.scale*self.grid_w-w2+width,self.board.scale*self.grid_h-w2],[x-width,self.board.scale*self.grid_h-w2], [x,self.board.scale*self.grid_h-w2+width],[x,y-width]],width)
 
-
     def set_outline(self, color = [255,0,0], width = 2):
         'enables the draw_outline and sets line color and width'
         self.perm_outline = True
@@ -341,7 +336,7 @@ class Ship(Unit):
     def move(self,board,x,y):
         board.move(self.unit_id,x,y)
 
-    def update(self, board, point,**kwargs):
+    def update(self, board, point, **kwargs):
         if self.update_me:
             Unit.update(self,board)
             if self.lockable and self.locked:
@@ -366,7 +361,6 @@ class Ship(Unit):
         pygame.draw.line(self.image, color,[point[0]+board.scale//2,point[1]],[point[0]+board.scale//2,point[1]+board.scale],1)
         pygame.draw.line(self.image, color,[point[0],point[1]+board.scale//2],[point[0]+board.scale,point[1]+board.scale//2],1)
 
-
 class Letter(Ship):
     def __init__(self,board,grid_x=0,grid_y=0,grid_w=1,grid_h=1,value="",initcolor = (255,157,23),font_size=0,**kwargs):
         Ship.__init__(self,board,grid_x,grid_y,grid_w,grid_h,value,initcolor,**kwargs)
@@ -381,7 +375,6 @@ class MultiColorLetters(Letter):
         Letter.__init__(self,board,grid_x,grid_y,grid_w,grid_h,value,initcolor,**kwargs)
         self.set_font_colors((0,0,0),(0,0,0))
         self.set_value(value)
-
         #print(self.value)
 
     def set_value(self,new_value):
@@ -399,7 +392,6 @@ class MultiColorLetters(Letter):
         col = []
         txtln = []
         tmp = ""
-
         #for i in range(ln-1):
         ln = len(text)
         i = 0
@@ -443,9 +435,6 @@ class MultiColorLetters(Letter):
             if self.show_value:
                 val = ex.unival(self.value)
                 #lv = len(val)
-
-
-
                 if self.align == 0:
                     font_x = ((board.scale*self.grid_w-self.font.size(val)[0])//2)
                 elif self.align == 1:
@@ -457,8 +446,6 @@ class MultiColorLetters(Letter):
                 for i in range(len(self.coltxt[0])):
                     text = self.font.render("%s" % (self.coltxt[1][i]), 1, self.colors[self.coltxt[0][i]])
                     self.image.blit(text, (font_x+self.coltxt[2][i],font_y))
-
-
 
             if self.speaker_val_update:
                 self.speaker_val = self.value
@@ -645,7 +632,6 @@ class ImgCenteredShip(Ship):
                 self.img_pos = (pos_x,pos_y)
             except:
                 pass
-
         #self.image.set_colorkey(self.initcolor)
 
     def update(self, board, **kwargs):
@@ -710,7 +696,6 @@ class MultiImgSprite(ImgShip):
 
     def set_frame(self, frame):
         self.frame = frame
-
         xg = self.frame_flow[self.frame] % self.row_data[0]
         yg = self.frame_flow[self.frame] // self.row_data[0]
         if self.correction:
@@ -861,7 +846,6 @@ class Board:
         self.points = int(round((self.scale * 72 /96)*1.2,0))
 
         #sizes= [0 1    2   3    4 5    6   7    8 9   10 11 11-hw 12-hw]
-
 
         #sizes = [1.0,1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0,3.5,4.0]
         sizes = [1.25,1.5,1.75,2.0,2.25,2.5,2.75,3.0,3.5,4.0,4.75,7]
@@ -1024,12 +1008,12 @@ class Board:
                     alt1b = (s.grid_x + s.grid_w, s.grid_y-1, 1, s.grid_h)
                     alt2a = right
                     alt2b = (s.grid_x+1, s.grid_y -1, s.grid_w, 1)
-                elif x <= -1 and y >=  1: #down-left
+                elif x <= -1 and y >= 1: #down-left
                     alt1a = down
                     alt1b = (s.grid_x - 1, s.grid_y+1, 1, s.grid_h)
                     alt2a = left
                     alt2b = (s.grid_x-1, s.grid_y + s.grid_h, s.grid_w,1)
-                elif x >=  1 and y >=  1: #down-right
+                elif x >=  1 and y >= 1: #down-right
                     alt1a = down
                     alt1b = (s.grid_x + s.grid_w, s.grid_y+1, 1, s.grid_h)
                     alt2a = right
