@@ -339,8 +339,13 @@ class Board(gd.BoardGame):
         elif self.lang.lang == "ru":
             self.chapters = [1,3,5,7,10,13,15,18,20,22,24,26,28]
 
-        self.t_string = self.course[self.level.lvl-1][1]
-        self.t_multi  = self.course[self.level.lvl-1][0]
+        if self.level.lvl > len(self.course):
+            self.level.lvl = len(self.course) - 1
+            self.t_string = self.course[self.level.lvl-1][1]
+            self.t_multi = self.course[self.level.lvl-1][0]
+        else:
+            self.t_string = self.course[-1][1]
+            self.t_multi = self.course[-1][0]
 
         if sys.version_info < (3, 0):
             self.current_line = unicode((self.t_string[0]*self.t_multi[0]).strip(), "utf-8")
