@@ -2,13 +2,14 @@
 # Copyright (C) 2012 - 2013 Ireneusz Imiolek
 # This file is distributed under the same license as the pysiogame package.
 # Translated by Στέλιος, versys650gr, sdim, lucinos and other members of The Official Greek Community of Linux Mint, 2013
+# Updated by Alexandros Moskofidis
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.31.105\n"
 "Report-Msgid-Bugs-To: Ireneusz Imiolek <imiolek.i@gmail.com>\n"
 "POT-Creation-Date: 2013-11-01 15:33+0000\n"
-"PO-Revision-Date: 2016-11-02 13:27+0000\n"
+"PO-Revision-Date: 2016-11-12 22:15+0000\n"
 "Last-Translator: Ireneusz Imiolek <imiolek.i@googlemail.com>\n"
 "Language-Team: Ireneusz Imiolek <imiolek.i@gmail.com>\n"
 "Language: el\n"
@@ -363,7 +364,7 @@ msgid "Games & Mazes"
 msgstr "Παιχνίδια και Λαβύρινθοι"
 
 msgid "Multiplayer Games"
-msgstr "Multi-Player Παιχνίδια"
+msgstr "Παιχνίδια πολλαπλών παικτών"
 
 msgid "About."
 msgstr "Σχετικά με"
@@ -570,7 +571,7 @@ msgid "Write a word:"
 msgstr "Γράψε μια λέξη:"
 
 msgid "Build the following word using the letters below."
-msgstr ""
+msgstr "Σχημάτισε την επόμενη λέξη χρησιμοποιώντας τα παρακάτω γράμματα"
 
 msgid ""
 "Find and separate the Even Numbers from the Odd Numbers in the above series."
@@ -610,7 +611,7 @@ msgid "Perfect!!!"
 msgstr "Τέλεια!"
 
 msgid "Awesome!"
-msgstr "σούπερ!"
+msgstr "Σούπερ!"
 
 msgid "Fantastic job!"
 msgstr "Φανταστική δουλειά!"
@@ -622,16 +623,16 @@ msgid "Perfect! Level completed!"
 msgstr "Τέλεια! Το στάδιο αυτό ολοκληρώθηκε!"
 
 msgid "area:"
-msgstr "επιφάνεια:"
+msgstr "περιοχή:"
 
 msgid "perimeter:"
-msgstr "περιφέρεια:"
+msgstr "περίμετρος:"
 
 msgid "circumference:"
 msgstr "περιφέρεια:"
 
 msgid "surface area:"
-msgstr "εμβαδόν επιφάνειας:"
+msgstr "χώρος περιοχής:"
 
 msgid "volume:"
 msgstr "όγκος:"
@@ -1122,16 +1123,18 @@ msgid ""
 " Please view credits.txt for more info about authors of media files used in "
 "this project"
 msgstr ""
-"Laby, 2010 by Mehdi Cherti (mehdidc) \n"
-" Sounds by various authors who contributed their works to freesound.org. \n"
-" Images by various authors who contributed their works to openclipart.org "
-"(Public Domain) and http://www.art4apps.org/ - Art4Apps by Smart4Kids - "
-"under a Creative Commons License (CC BY-SA). \n"
-" Please view credits.txt for more info about authors of media files used in "
-"this project"
+"Laby, 2010 από Mehdi Cherti (mehdidc) \n"
+" Ήχοι από διάφορους καλλιτέχνες που συνεισέφεραν τη δουλειά τους στο "
+"freesound.org. \n"
+" Εικόνες από διάφορους δημιουργούς που συνεισέφεραν τη δουλειά τους στο "
+"openclipart.org (Public Domain) και στο http://www.art4apps.org/ - Art4Apps "
+"από Smart4Kids -διανομή με άδεια Creative Commons (CC BY-SA). \n"
+"Παρακαλώ διαβάστε το αρχείο credits.txt για περισσότερες πληροφορίες σχετικά "
+"με τους δημιουργούς των αρχείων πολυμέσων που χρησιμοποιήθηκαν σε αυτό το "
+"έργο."
 
 msgid "Licence"
-msgstr "Licence"
+msgstr "Άδεια"
 
 msgid ""
 "This program is free software: you can redistribute it and/or modify it "
@@ -1140,58 +1143,62 @@ msgid ""
 "any later version. You should have received a copy of the GNU General Public "
 "License along with this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
-"This program is free software: you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation, either version 3 of the License, or (at your option) "
-"any later version. You should have received a copy of the GNU General Public "
-"License along with this program. If not, see <http://www.gnu.org/licenses/>."
+"Το παρόν έργο είναι Ελεύθερο Λογισμικό: επιτρέπεται η διανομή του καθώς και "
+"η τροποποίηση του με βάση τους όρους του διέπουν τις άδειες τύπου GNU "
+"General Public License οι οποίες έχουν δημοσιευτεί από το Free Software "
+"Foundation (είτε η έκδοση 3 της άδειας είτε κάποια μεταγενέστερη έκδοση). Θα "
+"πρέπει να έχετε λάβει και ένα αντίγραφο άδειας GNU General Public License "
+"μαζί με αυτή την εφαρμογή. Αν δεν την έχετε λάβει επισκεφθείτε το <http://"
+"www.gnu.org/licenses/>."
 
 msgid "A little set of educational apps for kids"
-msgstr ""
+msgstr "Ένα μικρό σετ εκπαιδευτικών εφαρμογών για παιδιά"
 
 msgid "Complete the word"
-msgstr ""
+msgstr "Ολοκλήρωσε τη λέξη"
 
 msgid "Word Builder - Animals"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Ζώα"
 
 msgid "Word Builder - Sports"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Αθλήματα"
 
 msgid "Word Builder - Body"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Σώμα"
 
 msgid "Word Builder - People"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Άνθρωποι"
 
 msgid "Word Builder - Actions"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Ενέργειες"
 
 msgid "Word Builder - Constructions"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Κατασκευές"
 
 msgid "Word Builder - Nature"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Φύση"
 
 msgid "Word Builder - Jobs"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Δουλειές"
 
 msgid "Word Builder - Clothes and Accessories"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Ρούχα και αξεσουάρ"
 
 msgid "Word Builder - Fruits and Vegetables"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Φρούτα και λαχανικά"
 
 msgid "Word Builder - Transport"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Μεταφορικά μέσα"
 
 msgid "Word Builder - Food"
-msgstr ""
+msgstr "Σχηματισμός λέξεων - Φαγητό"
 
 msgid ""
 "Images from: http://www.art4apps.org/ - Art4Apps by Smart4Kids - Creative "
 "Commons License (CC BY-SA)"
 msgstr ""
+"Εικόνες από: http://www.art4apps.org/ - Art4Apps by Smart4Kids - Creative "
+"Commons License (CC BY-SA)"
 
 msgid "Decimals and Fractions"
 msgstr "Δεκαδικοί και κλάσματα"
@@ -1251,19 +1258,19 @@ msgid "show all"
 msgstr "δείξε τα όλα"
 
 msgid "Do you want to exit the game?"
-msgstr ""
+msgstr "Θέλεις να κλείσεις το παιχνίδι;"
 
 msgid "Do you want to log out of the game?"
-msgstr ""
+msgstr "Θέλεις να αποσυνδεθείς από το παιχνίδι;"
 
 msgid "Ready to go to the next level?"
-msgstr ""
+msgstr "Έτοιμος για το επόμενο επίπεδο;"
 
 msgid "Language arts"
-msgstr ""
+msgstr "Γλωσσικές τέχνες"
 
 msgid "Other"
-msgstr ""
+msgstr "Άλλα"
 
 msgid "Educational Activity Pack for Kids"
-msgstr ""
+msgstr "Εκπαιδευτικό πακέτο δραστηριοτήτων για παιδιά"
