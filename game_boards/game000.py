@@ -77,7 +77,7 @@ class Board(gd.BoardGame):
         self.board.add_unit(0,4,data[0],1,classes.board.Label,"www.pysiogame.net",color,"",2)
         self.board.units[-1].font_color = (63,99,182)
         if not self.mainloop.speaker.started:
-            self.board.add_unit(0,8,data[0],2,classes.board.Label,["You may like to install espeak to use its text to speech functionality,","however this is not required to successfully use the game.","http://espeak.sourceforge.net/"],color,"",5)
+            self.board.add_unit(0,8,data[0],2,classes.board.Label,self.lang.d["please install espeak"],color,"",5)
             self.board.units[-1].font_color = (63,99,182)
         centre = data[0] // 2
         self.board.add_unit(0,10,centre,1,classes.board.Letter,">> %s <<" % self.lang.d["Credits"],color2,"",3)
