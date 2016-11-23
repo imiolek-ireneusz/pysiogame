@@ -58,7 +58,7 @@ class Board(gd.BoardGame):
         self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,"Oliver van der Bürie",color1,"",6)
         top += 1
         self.board.add_unit(0,top,3,1,classes.board.Label,["Greek","Ελληνικά"],color2,"",6)
-        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Στέλιος, versys650gr, sdim, lucinos and other members of The Official Greek Community of Linux Mint,", "updated and edited by Αλέξανδρος Μοσκοφίδης"],color2,"",6)
+        self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Στέλιος, versys650gr, sdim, lucinos and other members of The Official Greek Community of Linux Mint,", "updated and edited by Alexandros Moskofidis (Αλέξανδρος Μοσκοφίδης)"],color2,"",6)
         top += 1
         self.board.add_unit(0,top,3,1,classes.board.Label,["Hebrew","תירבע"],color1,"",6)
         self.board.add_unit(3,top,data[0]-3,1,classes.board.Label,["Ori Hoch"],color1,"",6)

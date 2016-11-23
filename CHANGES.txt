@@ -1,4 +1,7 @@
 Changelog:
+pySioGame - 3.61.120:
+    - updated Greek translation by Alexandros Moskofidis
+    - minor bug fixes
 pySioGame - 3.61.102:
     - added corrections to French translation - translation files updated by: Johnny Jazeix
     - updated Spanish translation - may need double checking - updated with use of Google Translate
