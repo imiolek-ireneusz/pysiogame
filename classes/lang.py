@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import with_statement
-import os, sys
 
 import gettext
 import locale
-from classes.extras import unival
+import os
+import sys
+
 from classes.extras import reverse
+from classes.extras import unival
+
 
 # game003.py holds the GUI for language switching for game screen and loginscreen for the login/admin screen
 
@@ -20,17 +23,17 @@ class Language():
         else:
             # windows
             locale.setlocale(locale.LC_ALL, '')
-        #locale.setlocale(locale.LC_MESSAGES, '') # use user's preferred locale
+        # locale.setlocale(locale.LC_MESSAGES, '') # use user's preferred locale
 
         self.config = configo
-        self.alphabet_26 = ["en_GB","en_US","pt_PT"]
+        self.alphabet_26 = ["en_GB", "en_US", "pt_PT"]
         self.def_imported = False
         self.trans = dict()
         self.lang_titles = self.config.lang_titles
         self.all_lng = self.config.all_lng
         self.ok_lng = self.config.ok_lng
 
-    def load_language(self, lang_code = None):
+    def load_language(self, lang_code=None):
         if lang_code is None:
             if self.config.settings["lang"] not in self.all_lng:
                 self.config.reset_settings()
@@ -49,13 +52,13 @@ class Language():
 
     def get_lang_attr(self):
         filename = os.path.join(self.locale_dir, self.lang, "LC_MESSAGES", "pysiogame.mo")
-        #filename = "locale/%s/LC_MESSAGES/pysiogame.mo" % self.lang
+        # filename = "locale/%s/LC_MESSAGES/pysiogame.mo" % self.lang
         try:
-            #print("Opening message file %s for locale %s" % (filename, self.lang) )
-            self.trans[self.lang] = gettext.GNUTranslations(open( filename, "rb" ) )
+            # print("Opening message file %s for locale %s" % (filename, self.lang) )
+            self.trans[self.lang] = gettext.GNUTranslations(open(filename, "rb"))
         except IOError:
             print("Locale not found. Using default messages")
-            self.trans[self.lang]  = gettext.NullTranslations()
+            self.trans[self.lang] = gettext.NullTranslations()
 
         self.trans[self.lang].install()
 
@@ -69,13 +72,13 @@ class Language():
         self.has_cursive = True
         font_variant = 0
         self.ico_suffix = ""
-        self.lang_id = 0 # used to identify the language in database - do not reorganize numbers when adding new language
+        self.lang_id = 0  # used to identify the language in database - do not reorganize numbers when adding new language
         if self.lang == 'en_US':
             import i18n.custom.en_us
             import i18n.custom.word_lists.en_us_di
             import i18n.custom.kbrd.en_us
             import i18n.custom.kbrd.en_course
-            #self.voice = ["-s 170","-a 100","-p 80","-ven-us+m1"]
+            # self.voice = ["-s 170","-a 100","-p 80","-ven-us+m1"]
             self.voice = ["-ven-us+m1"]
             self.di = i18n.custom.word_lists.en_us_di.di
             self.lang_file = i18n.custom.en_us
@@ -87,7 +90,7 @@ class Language():
             import i18n.custom.word_lists.pl_di
             import i18n.custom.kbrd.pl
             import i18n.custom.kbrd.pl_course
-            #self.voice = ["-s 160","-a 100","-p 80","-vpl+m1"] #"-g 5",
+            # self.voice = ["-s 160","-a 100","-p 80","-vpl+m1"] #"-g 5",
             self.voice = ["-vpl+m1"]
             self.di = i18n.custom.word_lists.pl_di.di
             self.lang_file = i18n.custom.pl
@@ -97,7 +100,7 @@ class Language():
         elif self.lang == 'sk':
             import i18n.custom.sk
             import i18n.custom.word_lists.sk_di
-            #self.voice = ["-s 160","-a 100","-p 80","-vpl+m1"] #"-g 5",
+            # self.voice = ["-s 160","-a 100","-p 80","-vpl+m1"] #"-g 5",
             self.voice = ["-vsk+m1"]
             self.di = i18n.custom.word_lists.sk_di.di
             self.lang_file = i18n.custom.sk
@@ -171,9 +174,9 @@ class Language():
             import i18n.custom.word_lists.ru_di
             import i18n.custom.kbrd.ru
             import i18n.custom.kbrd.ru_course
-            #self.voice = ["-s 130","-a 100","-p 80","-vru+m1"]
-            #self.voice = ["-vru+m1"] s 150 -vru
-            self.voice = ["-s 150","-vru"]
+            # self.voice = ["-s 130","-a 100","-p 80","-vru+m1"]
+            # self.voice = ["-vru+m1"] s 150 -vru
+            self.voice = ["-s 150", "-vru"]
             self.di = i18n.custom.word_lists.ru_di.di
             self.lang_file = i18n.custom.ru
             self.kbrd = i18n.custom.kbrd.ru
@@ -202,7 +205,7 @@ class Language():
             self.di = i18n.custom.word_lists.fi_di.di
             self.lang_file = i18n.custom.fi
             self.lang_id = 15
-        elif self.lang == 'el': #Greek
+        elif self.lang == 'el':  # Greek
             import i18n.custom.el
             import i18n.custom.word_lists.el_di
             import i18n.custom.kbrd.el
@@ -214,10 +217,10 @@ class Language():
             self.kbrd_course_mod = i18n.custom.kbrd.el_course
             self.ico_suffix = "el"
             self.lang_id = 16
-        elif self.lang == 'he': #Hebrew
+        elif self.lang == 'he':  # Hebrew
             import i18n.custom.he
             import i18n.custom.word_lists.he_di
-            self.voice = ["-ven+m1"]#None
+            self.voice = ["-ven+m1"]  # None
             self.di = i18n.custom.word_lists.he_di.di
             self.lang_file = i18n.custom.he
             self.time2spk = self.lang_file.time2spk
@@ -226,10 +229,10 @@ class Language():
             self.has_cursive = False
             self.alpha = i18n.custom.he.alpha
             self.n2spk = self.lang_file.n2spk
-            #font_variant = 1
+            # font_variant = 1
             self.ico_suffix = "he"
             self.lang_id = 17
-        elif self.lang == 'ar': #Arabic
+        elif self.lang == 'ar':  # Arabic
             import i18n.custom.ar
             import i18n.custom.word_lists.ar_di
             self.voice = None
@@ -242,14 +245,14 @@ class Language():
             self.n2spk = self.lang_file.n2spk
             self.ico_suffix = "ar"
             self.lang_id = 2
-        elif self.lang == 'cn': #Arabic
+        elif self.lang == 'cn':  # Arabic
             import i18n.custom.cn
             import i18n.custom.word_lists.cn_di
             self.voice = None
             self.di = i18n.custom.word_lists.cn_di.di
             self.lang_file = i18n.custom.cn
-            #self.alpha = i18n.custom.cn.alpha
-            #self.n2spk = self.lang_file.n2spk
+            # self.alpha = i18n.custom.cn.alpha
+            # self.n2spk = self.lang_file.n2spk
             self.ico_suffix = ""
             self.lang_id = 18
 
@@ -260,7 +263,7 @@ class Language():
             self.di = i18n.custom.word_lists.te_st_di.di
             self.lang_file = i18n.custom.te_st
             self.lang_id = 1
-        else:# self.lang == 'en_GB':
+        else:  # self.lang == 'en_GB':
             import i18n.custom.en_gb
             import i18n.custom.word_lists.en_gb_di
             import i18n.custom.kbrd.en_gb
@@ -272,7 +275,7 @@ class Language():
             self.kbrd_course_mod = i18n.custom.kbrd.en_course
             self.lang_id = 1
 
-        if self.lang in ["ar","he"]:
+        if self.lang in ["ar", "he"]:
             self.config.font_multiplier = 1.1
             self.config.font_line_height_adjustment = 1.5
             self.config.font_start_at_adjustment = 5
@@ -325,9 +328,8 @@ class Language():
                         if isinstance(each[index], str):
                             each[index] = reverse(each[index], self.alpha, self.lang)
 
-
         self.dp.update(self.d)
-        #if self.lang == 'ru' or self.lang == 'he':
+        # if self.lang == 'ru' or self.lang == 'he':
         self.dp.update(self.lang_file.dp)
         if self.lang == "he":
             s = unival(self.d['abc_flashcards_word_sequence'][0])
