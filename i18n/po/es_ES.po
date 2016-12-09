@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: 1.31.105\n"
 "Report-Msgid-Bugs-To: Ireneusz Imiolek <imiolek.i@gmail.com>\n"
 "POT-Creation-Date: 2013-11-01 15:33+0000\n"
-"PO-Revision-Date: 2016-11-18 23:14+0000\n"
+"PO-Revision-Date: 2016-12-09 11:06+0000\n"
 "Last-Translator: Ireneusz Imiolek <imiolek.i@googlemail.com>\n"
 "Language-Team: Miriam Ruiz\n"
 "Language: es\n"
@@ -157,19 +157,19 @@ msgid "Torus"
 msgstr "Toro"
 
 msgid "Default Language:"
-msgstr "Idioma predeterminado:"
+msgstr "Idioma por defecto:"
 
 msgid "Guest"
 msgstr "Invitado"
 
 msgid "Hi Stranger :) Would you like to log in so we know who you are?"
-msgstr "Hola extraño :) ¿Te gustaría iniciar sesión para que sepamos quién eres?"
+msgstr "¡Hola desconocido! ¿Quieres decirme tu nombre para saber quien eres?"
 
 msgid "Log in:"
-msgstr "Iniciar sesión:"
+msgstr "Entrar:"
 
 msgid "user name:"
-msgstr "nombre de usuario:"
+msgstr "usuario:"
 
 msgid "password:"
 msgstr "contraseña:"
@@ -178,7 +178,7 @@ msgid "remember me"
 msgstr "recuérdame"
 
 msgid "Login"
-msgstr "Iniciar sesión"
+msgstr "Entrar"
 
 msgid "Add new user:"
 msgstr "Añadir nuevo usuario:"
@@ -187,16 +187,16 @@ msgid "confirm password:"
 msgstr "confirmar contraseña:"
 
 msgid "Register new user"
-msgstr "Register"
+msgstr "Register nuevo usuario"
 
 msgid "Administrator Login:"
-msgstr "Acceso del administrador:"
+msgstr "Usuario Administrador:"
 
 msgid "User Management"
-msgstr "Administración de usuarios"
+msgstr "Usuario gestor"
 
 msgid "Please select a user from the list."
-msgstr "Seleccione un usuario de la lista."
+msgstr "Por favor, selecciona un usuario de la lista"
 
 msgid "Delete user"
 msgstr "Borrar usuario"
@@ -209,31 +209,31 @@ msgstr "Cancelar"
 
 #, python-format
 msgid "%s deleted from database."
-msgstr " %s eliminado de la base de datos."
+msgstr " %s borrado de la base de datos."
 
 msgid "Failed to delete the user."
-msgstr "No se pudo eliminar el usuario."
+msgstr "Error al borrrar usuario."
 
 msgid "Preferences"
 msgstr "Preferencias"
 
 msgid "switch to full screen after login"
-msgstr "cambiar a pantalla completa después de iniciar sesión"
+msgstr "cambiar a pantalla completa después de entrar"
 
 msgid "allow adding new users on login screen"
-msgstr "permitir agregar nuevos usuarios en la pantalla de inicio de sesión"
+msgstr "permitir añadir usuarios en la pantalla de login"
 
 msgid "display languages with uncompleted translations"
-msgstr "mostrar idiomas con traducciones incompletas"
+msgstr "mostrar idiomas con traduciones incompletas"
 
 msgid "require password to log in"
-msgstr "requiere contraseña para iniciar sesión"
+msgstr "pedir contraseña para entrar"
 
 msgid "require password to access admin area"
-msgstr "requiere contraseña para acceder al área de administración"
+msgstr "pedir contraseña para acceder al panel de administrador"
 
 msgid "Update admin's password:"
-msgstr "Actualizar contraseña de administrador:"
+msgstr "Actualizar la contraseña de administrador:"
 
 msgid "previous password:"
 msgstr "contraseña anterior:"
@@ -245,77 +245,77 @@ msgid "confirm new password:"
 msgstr "confirmar nueva contraseña:"
 
 msgid "Create admin's account:"
-msgstr "Crear una cuenta de administrador:"
+msgstr "Crear cuenta administrador:"
 
 msgid "admin's user name:"
-msgstr "Nombre de usuario de administrador:"
+msgstr "usuario administrador:"
 
 msgid "admin's password:"
-msgstr "Contraseña de administrador:"
+msgstr "contraseña administrador:"
 
 msgid "confirm admin's password:"
-msgstr "Confirmar la contraseña de administrador:"
+msgstr "confirmar contraseña administrador:"
 
 msgid "Save"
 msgstr "Guardar"
 
 msgid "Please enter user name (at least 3 characters long)"
-msgstr "Por favor ingrese el nombre de usuario (al menos 3 caracteres)"
+msgstr "Por favor introduce el nombre de usuario (al menos 3 caracteres)"
 
 msgid "Please enter password (at least 4 characters long)"
-msgstr "Por favor ingrese la contraseña (al menos 4 caracteres)"
+msgstr "Por favor introduce la contraseña (al menos 4 caracteres)"
 
 msgid "This username and password combination doesn't exist."
-msgstr "Esta combinación de nombre de usuario y contraseña no existe."
+msgstr "La combinación de usuario y contraseña no existe."
 
 msgid "This username doesn't exist."
-msgstr "Este nombre de usuario no existe."
+msgstr "El usuario no existe."
 
 msgid "Passwords don't match"
 msgstr "Las contraseñas no coinciden"
 
 #, python-format
 msgid "%s added"
-msgstr "%s  añadido"
+msgstr "%s añadido"
 
 msgid "This user name already exists, please choose a different one"
-msgstr "Este nombre de usuario ya existe, por favor, elija otro"
+msgstr "Este usuario ya existe, prueba con un nombre diferente"
 
 msgid "Admin's password has been updated"
-msgstr "Se ha actualizado la contraseña de administrador"
+msgstr "La contraseña de administrador se ha actualizado"
 
 msgid "ERROR: This operation is not allowed at this point"
-msgstr "ERROR: Esta operación no está permitida en este momento"
+msgstr "ERROR: Esta operación no está permitida aquí"
 
 msgid "Please enter previous password (at least 4 characters long)"
-msgstr "Introduzca la contraseña anterior (con un mínimo de 4 caracteres)"
+msgstr "Por favor introduce la contraseñña anterior (al menos 4 caracteres)"
 
 msgid "Please enter new password (at least 4 characters long)"
-msgstr "Introduzca una nueva contraseña (con un mínimo de 4 caracteres)"
+msgstr "Por favor introduce la nueva contraseña (al menos 4 caracteres)"
 
 msgid "Previous password doesn't seem to be in the database"
-msgstr "La contraseña anterior no parece estar en la base de datos"
+msgstr "La contraseña anterior no está en la base de datos"
 
 msgid "Registered:"
 msgstr "Registrado:"
 
 msgid "Last login:"
-msgstr "Último acceso:"
+msgstr "Última entrada:"
 
 msgid "Preferences saved..."
-msgstr "Se han guardado las preferencias..."
+msgstr "Preferencias guardadas..."
 
 msgid "Score: "
 msgstr "Puntuación:"
 
 msgid "Logged in as: "
-msgstr "Conectado como:"
+msgstr "Accedido como: "
 
 msgid "(Log out)"
-msgstr "(Cerrar sesión)"
+msgstr "(Salir)"
 
 msgid "Addition Table"
-msgstr "Tabla de adición"
+msgstr "Tabla de adiciones"
 
 msgid "Hello"
 msgstr "Hola"
@@ -570,7 +570,7 @@ msgid "Write a word:"
 msgstr "Escribe una palabra:"
 
 msgid "Build the following word using the letters below."
-msgstr "Construye la siguiente palabra usando las letras de abajo."
+msgstr "Construye las siguientes palabras usando las letras inferiores."
 
 msgid "Find and separate the Even Numbers from the Odd Numbers in the above series."
 msgstr "Encuentra y separa los números pares de los números impares en la serie de arriba."
@@ -1116,58 +1116,58 @@ msgid "A little set of educational apps for kids"
 msgstr "Un conjunto de aplicaciones educativas para niños"
 
 msgid "Word Builder - Animals"
-msgstr "Construye las palabras - Animales"
+msgstr "Constructor de palabras - Animales"
 
 msgid "Complete the word"
-msgstr "Completa la palabra"
+msgstr "Completar la palabra"
 
 msgid "Word Builder - Sports"
-msgstr "Construye las palabras - Deportes"
+msgstr "Constructor de palabras - Deportes"
 
 msgid "Word Builder - Body"
-msgstr "Construye las palabras - Cuerpo"
+msgstr "Constructor de palabras - El cuerpo"
 
 msgid "Word Builder - People"
-msgstr "Construye las palabras - Gente"
+msgstr "Constructor de palabras - Gente"
 
 msgid "Word Builder - Actions"
-msgstr "Construye las palabras - Comportamientos"
+msgstr "Constructor de palabras - Acciones"
 
 msgid "Word Builder - Constructions"
-msgstr "Construye las palabras - Construcciones"
+msgstr "\"Constructor de palabras - Construcciones"
 
 msgid "Word Builder - Nature"
-msgstr "Construye las palabras - Naturaleza"
+msgstr "Constructor de palabras - Naturaleza"
 
 msgid "Word Builder - Jobs"
-msgstr "Construye las palabras - Trabajos"
+msgstr "Constructor de palabras - Trabajos"
 
 msgid "Word Builder - Clothes and Accessories"
-msgstr "Construye las palabras - Ropa y accesorios"
+msgstr "Constructor de palabras - Ropa y accesorios"
 
 msgid "Word Builder - Fruits and Vegetables"
-msgstr "Construye las palabras - Frutas y verduras"
+msgstr "Constructor de palabras - Frutas y vegetales"
 
 msgid "Word Builder - Transport"
-msgstr "Construye las palabras - Medios de transporte"
+msgstr "Constructor de palabras - Transporte"
 
 msgid "Word Builder - Food"
-msgstr "Construye las palabras - Comida"
+msgstr "Constructor de palabras - Comida"
 
 msgid "Images from: http://www.art4apps.org/ - Art4Apps by Smart4Kids - Creative Commons License (CC BY-SA)"
-msgstr "Imágenes de: http://www.art4apps.org/ - Art4Apps por Smart4Kids - Creative Commons License (CC BY-SA)"
+msgstr "Imágenes de: http://www.art4apps.org/ - Art4Apps by Smart4Kids - Creative Licencia Creative Commons (CC BY-SA)"
 
 msgid "Decimals and Fractions"
 msgstr "Decimales y fracciones"
 
 msgid "Decimals, fractions and percentages"
-msgstr "Décimales, fracciones y porcentajes"
+msgstr "Decimales, fracciones y porcentajes"
 
 msgid "Decimals, fractions, ratios and percentages"
-msgstr "Decimales, fracciones, razones y porcentajes"
+msgstr "Decimales, fracciones, proporciones y porcentajes"
 
 msgid "Shapes and Solids"
-msgstr "Formas y Sólidos"
+msgstr "Curvas y sólidos"
 
 msgid "Translation Credits"
 msgstr "Créditos de traducción"
@@ -1176,58 +1176,58 @@ msgid "Level"
 msgstr "Nivel"
 
 msgid "Find solution"
-msgstr "Encuentra la solución"
+msgstr "Encontrar solución"
 
 msgid "Find missing number"
-msgstr "Encuentra el número que falta"
+msgstr "Enconttrar número perdido"
 
 msgid "Achievements"
 msgstr "Logros"
 
 msgid "Select age group:"
-msgstr "Seleccionar el grupo de edad:"
+msgstr "Seleccionar grupo de edad:"
 
 msgid "show activities for:"
-msgstr "Mostrar actividades para:"
+msgstr "mostrar actividades para:"
 
 msgid "preschool"
 msgstr "Preescolar"
 
 msgid "Year 1"
-msgstr "Primer grado"
+msgstr "Año 1"
 
 msgid "Year 2"
-msgstr "Segundo grado"
+msgstr "Año 2"
 
 msgid "Year 3"
-msgstr "Tercer grado"
+msgstr "Año 3"
 
 msgid "Year 4"
-msgstr "Cuarto grado"
+msgstr "Año 4"
 
 msgid "Year 5"
-msgstr "Quinto grado"
+msgstr "Año 5"
 
 msgid "Year 6"
-msgstr "Sexto grado"
+msgstr "Año 6"
 
 msgid "show all"
-msgstr "Todos"
+msgstr "mostrar todo"
 
 msgid "Do you want to exit the game?"
 msgstr "¿Quieres salir del juego?"
 
 msgid "Do you want to log out of the game?"
-msgstr "¿Quieres cerrar la sesión del juego?"
+msgstr "¿Quieres cerrar sessión del juego?"
 
 msgid "Ready to go to the next level?"
-msgstr "¿Estás listo para pasar al siguiente nivel?"
+msgstr "¿Preparado para ir al siguiente nivel?"
 
 msgid "Language arts"
 msgstr "Artes del lenguaje"
 
 msgid "Other"
-msgstr "Otras Actividades"
+msgstr "Otro"
 
 msgid "Educational Activity Pack for Kids"
 msgstr "Paquete de actividades educativas para niños"
