@@ -96,9 +96,9 @@ class Board(gd.BoardGame):
         self.board.units[-1].set_outline(self.col_y, 1)
 
         # adding colour strips
-        self.board.add_door(1, data[1] - 1, 2, 1, classes.board.Door, "", self.col_c, "", 0)
-        self.board.add_door(4, data[1] - 1, 2, 1, classes.board.Door, "", self.col_m, "", 0)
-        self.board.add_door(7, data[1] - 1, 2, 1, classes.board.Door, "", self.col_y, "", 0)
+        self.board.add_door(1, data[1] - 1, 2, 1, classes.board.Door, "", self.col_c, "", 0, door_alpha=False)
+        self.board.add_door(4, data[1] - 1, 2, 1, classes.board.Door, "", self.col_m, "", 0, door_alpha=False)
+        self.board.add_door(7, data[1] - 1, 2, 1, classes.board.Door, "", self.col_y, "", 0, door_alpha=False)
 
         # white background
         self.board.add_door(1, 0, 2, data[1], classes.board.Door, "", self.col_bg, "", 0)

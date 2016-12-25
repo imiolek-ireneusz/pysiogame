@@ -24,16 +24,19 @@ class Board(gd.BoardGame):
             s = random.randrange(100, 150, 5)
             v = random.randrange(230, 255, 5)
             h = random.randrange(0, 255, 5)
-            self.bg_col = (255, 255, 255)
+            self.bg_col = (255, 255, 255, 0)
             color1 = ex.hsv_to_rgb(h, s, v)  # highlight 2
             self.color2 = ex.hsv_to_rgb(h, 255, 170)  # contours & borders
             bg_color = ex.hsv_to_rgb(h, 40, 255)
         else:
-            self.bg_col = self.mainloop.scheme.u_color
+            cl = self.mainloop.scheme.u_color
+            self.bg_col = (cl[0], cl[1], cl[2], 0)
             color1 = self.mainloop.scheme.u_font_color  # (0,0,0)#ex.hsv_to_rgb(h,s,v) #highlight 2
             self.color2 = self.mainloop.scheme.u_font_color3  # contours & borders
             bg_color = self.bg_col
 
+        # bg_color = (255, 255, 255, 0)
+        # self.bg_col = (255, 255, 255, 0)
         if self.level.lvl == 1:
             data = [9, 6, 3, 5, 5, 1]
         elif self.level.lvl == 2:
@@ -111,7 +114,7 @@ class Board(gd.BoardGame):
             for i in range(5, 9):
                 slots.append([i, j])
         random.shuffle(slots)
-        num2 = 0
+        # num2 = 0
         while len(numbers) < data[4]:
             num1 = random.randrange(1, data[3] - 1)
             if self.mainloop.m.game_variant == 3:
@@ -176,11 +179,11 @@ class Board(gd.BoardGame):
                 disp = str(decimal)
 
             self.board.add_unit(xy[0] + xo, xy[1], 1 + ew, 1, obj_classes[f_index], disp, self.bg_col, "",
-                                self.font_size)
+                                self.font_size, alpha=True)
             if ew == 1:
                 canvas = pygame.Surface([size * 2, size - 1])
             else:
-                canvas = pygame.Surface([size, size - 1])
+                canvas = pygame.Surface([size, size - 1], flags=pygame.SRCALPHA)
             canvas.fill(self.bg_col)
             drawing_f[f_index](numbers[i - f_index * 5], canvas, size, center, color1)  # data[7](data, canvas, i)
 
@@ -193,6 +196,8 @@ class Board(gd.BoardGame):
                 self.board.ships[-1].font_color = self.color2
                 self.board.ships[-1].painting = canvas.copy()
                 self.board.ships[-1].readable = False
+                self.board.ships[-1].highlight = False
+
         ind = len(self.board.units)
         for i in range(0, 5):
             self.board.add_door(0, i, 5 + xo, 1, classes.board.Door, "", self.bg_col, "")
@@ -219,7 +224,7 @@ class Board(gd.BoardGame):
         while angle < angle_e:  # maximum of 158 lines per pi
             x = (r - 2) * cos(angle) + center[0]
             y = (r - 2) * sin(angle) + center[1]
-            pygame.draw.line(canvas, color, [center[0], center[1]], [x, y], 2)
+            pygame.draw.line(canvas, color, [center[0], center[1]], [x, y], 3)
             i += 1
             angle = angle_start + 0.02 * (i)
 
@@ -233,7 +238,8 @@ class Board(gd.BoardGame):
             y = r * sin(angle) + center[1]
 
             # Draw the line from the center to the calculated end point
-            pygame.draw.aaline(canvas, self.color2, [center[0], center[1]], [x, y])
+            # pygame.draw.aaline(canvas, self.color2, [center[0], center[1]], [x, y])
+            pygame.draw.line(canvas, self.color2, [center[0], center[1]], [x, y], 1)
 
     def draw_polygons(self, numbers, canvas, size, center, color):
         half = False
@@ -260,23 +266,32 @@ class Board(gd.BoardGame):
             # angle for line
             angle = angle_start + angle_step * i
             # Calculate the x,y for the end point
-            x = r * cos(angle) + center[0]
-            y = r * sin(angle) + center[1]
+            if i > 0:
+                x = r * cos(angle) + center[0]
+            else:
+                x = center[0]
 
+            y = r * sin(angle) + center[1]
             # Draw the line from the center to the calculated end point
-            if half == False or (half == True and i % 2 == 0):
+            if half is False or (half is True and i % 2 == 0):
                 multilines.append([[center[0], center[1]], [x, y]])
+
             lines.append(prev)
             prev = [x, y]
-            if (half == False and i < numbers[0] + 1) or (half == True and i < 3):
+            if (half is False and i < numbers[0] + 1) or (half is True and i < 3):
                 points.append(prev)
+
         points.append(center)
         pygame.draw.polygon(canvas, color, points, 0)
 
         lines.append([x, y])
-        pygame.draw.aalines(canvas, self.color2, True, lines)
+        # pygame.draw.aalines(canvas, self.color2, True, lines, True)
+        pygame.draw.lines(canvas, self.color2, True, lines, 1)
         for each in multilines:
-            pygame.draw.aaline(canvas, self.color2, each[0], each[1])
+            # for i in range(1, len(multilines)):
+            # pygame.draw.aaline(canvas, self.color2, each[0], each[1], True)
+            pygame.draw.line(canvas, self.color2, each[0], each[1], 1)
+            #pygame.draw.line(canvas, self.color2, multilines[i][0], multilines[i][1], 1)
 
     def draw_rectangles(self, numbers, canvas, size, center, color):
         points = []
@@ -344,7 +359,8 @@ class Board(gd.BoardGame):
             # Draw the line from the center to the calculated end point
             multilines.extend(points)
 
-        pygame.draw.aalines(canvas, self.color2, True, multilines)
+        # pygame.draw.aalines(canvas, self.color2, True, multilines, True)
+        pygame.draw.lines(canvas, self.color2, True, multilines, 1)
 
     def draw_fractions(self, numbers, canvas, size, center, color):
         lh = max(int(size * 0.04), 2)
@@ -363,6 +379,10 @@ class Board(gd.BoardGame):
 
     def handle(self, event):
         gd.BoardGame.handle(self, event)  # send event handling up
+        if event.type == pygame.MOUSEBUTTONUP:
+            for each in self.board.units:
+                if each.is_door is True:
+                    self.board.all_sprites_list.move_to_front(each)
 
     def update(self, game):
         game.fill((255, 255, 255))

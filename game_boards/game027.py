@@ -73,6 +73,7 @@ class Board(gd.BoardGame):
                 img_bg_col = (0, 0, 0)
         img_src = os.path.join("schemes", scheme, "basket.png")
         self.board.add_door(data[0] - 6, data[1] - 6, 6, 5, classes.board.Door, "", img_bg_col, img_src)
+        self.board.units[-1].is_door = False
 
         self.board.add_unit(data[0] - 7, 0, 7, 1, classes.board.Label, self.d["Shopping List"], white, "", data[4] + 1)
         f_end = ".png"
@@ -146,7 +147,8 @@ class Board(gd.BoardGame):
             image = os.path.join("schemes", scheme, items[i] + f_end)
 
             for j in range(0, shelf_len):
-                self.board.add_unit(j, i, 1, 1, classes.board.ImgShip, self.img_captions[i], white, image, data[4])
+                self.board.add_unit(j, i, 1, 1, classes.board.ImgShip, self.img_captions[i], white, image, data[4],
+                                    alpha=True)
                 self.board.ships[-1].audible = False
                 self.board.ships[-1].speaker_val = self.img_pcaptions[i]
                 self.board.ships[-1].speaker_val_update = False
@@ -161,6 +163,10 @@ class Board(gd.BoardGame):
 
     def handle(self, event):
         gd.BoardGame.handle(self, event)  # send event handling up
+        if event.type == pygame.MOUSEBUTTONUP:
+            for each in self.board.units:
+                if each.is_door is True:
+                    self.board.all_sprites_list.move_to_front(each)
 
     def update(self, game):
         game.fill((255, 255, 255))

@@ -13,7 +13,7 @@ import classes.extras as ex
 class Unit(pygame.sprite.Sprite):
     """basic class for all on-board objects"""
 
-    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", color=(0, 0, 0), **kwargs):
+    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", color=(0, 0, 0), alpha=False, **kwargs):
         pygame.sprite.Sprite.__init__(self)
         self.grid_x = grid_x
         self.grid_y = grid_y
@@ -21,6 +21,7 @@ class Unit(pygame.sprite.Sprite):
         self.grid_h = grid_h
         self.grid_last_x = grid_x
         self.grid_last_y = grid_y
+        self.alpha = alpha
         self.board = board
         self.initcolor = color
         self.color = color
@@ -48,7 +49,10 @@ class Unit(pygame.sprite.Sprite):
         self.valign = 0  # align: 0 - centered, 1 - top
         self.update_me = True
         # Set height, width, the -1 is to give it some space around for the margin
-        self.image = pygame.Surface([grid_w * board.scale - 1, grid_h * board.scale - 1])
+        if self.alpha:
+            self.image = pygame.Surface([grid_w * board.scale - 1, grid_h * board.scale - 1], flags=pygame.SRCALPHA)
+        else:
+            self.image = pygame.Surface([grid_w * board.scale - 1, grid_h * board.scale - 1])
         self.image.fill(self.color)
 
         # http://www.pygame.org/docs/ref/surface.html - surface.fill() comment
@@ -63,6 +67,7 @@ class Unit(pygame.sprite.Sprite):
         # scale font size:
         self.font = board.font_sizes[0]
         self.text_wrap = True
+        self.is_door = False
 
     def set_value(self, new_value):
         self.value = ex.unival(new_value)
@@ -261,7 +266,7 @@ class Unit(pygame.sprite.Sprite):
     def brighter(self):
         if self.highlight:
             color = [each / 255.0 for each in self.initcolor]
-            hsv = colorsys.rgb_to_hsv(*color)
+            hsv = colorsys.rgb_to_hsv(color[0], color[1], color[2])
             rgb = colorsys.hsv_to_rgb(hsv[0], 1, 1)
             return [int(each * 255) for each in rgb]
         else:
@@ -329,17 +334,18 @@ class Unit(pygame.sprite.Sprite):
 
 
 class Obstacle(Unit):
-    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(23, 157, 255), **kwargs):
+    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(23, 157, 255), alpha=False,
+                 **kwargs):
         self.initcolor = initcolor
-        Unit.__init__(self, board, grid_x, grid_y, grid_w, grid_h, "0", self.initcolor, **kwargs)
+        Unit.__init__(self, board, grid_x, grid_y, grid_w, grid_h, "0", self.initcolor, alpha, **kwargs)
         self.unit_id = len(board.units)
         self.value = value
 
 
 class Label(Obstacle):
     def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), font_size=0,
-                 **kwargs):
-        Obstacle.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+                 alpha=False, **kwargs):
+        Obstacle.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, alpha, **kwargs)
         self.font = board.font_sizes[font_size]
 
     def update(self, board, **kwargs):
@@ -347,10 +353,11 @@ class Label(Obstacle):
 
 
 class Ship(Unit):
-    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), **kwargs):
+    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), alpha=False,
+                 **kwargs):
         self.initcolor = initcolor
         self.allow_brightening = True
-        Unit.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, self.initcolor, **kwargs)
+        Unit.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, self.initcolor, alpha, **kwargs)
         self.unit_id = len(board.ships)
 
     def move(self, board, x, y):
@@ -386,9 +393,9 @@ class Ship(Unit):
 
 
 class Letter(Ship):
-    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), font_size=0,
-                 **kwargs):
-        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), alpha=False,
+                 font_size=0, **kwargs):
+        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, alpha, **kwargs)
         self.font = board.font_sizes[font_size]
 
     def update(self, board, **kwargs):
@@ -398,8 +405,9 @@ class Letter(Ship):
 class MultiColorLetters(Letter):
     """accepts string formatted in a way to allow multiple colours in one line, e.g. "<1>this is in colour one<2>this is in colour two". to initialize colours use the set_font_colours method """
 
-    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(0, 0, 0), **kwargs):
-        Letter.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(0, 0, 0), alpha=False,
+                 **kwargs):
+        Letter.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, alpha, **kwargs)
         self.set_font_colors((0, 0, 0), (0, 0, 0))
         self.set_value(value)
         # print(self.value)
@@ -483,7 +491,7 @@ class MultiColorLetters(Letter):
 
 
 class ImgSurf(pygame.sprite.Sprite):
-    def __init__(self, board, grid_w=1, grid_h=1, color=(255, 157, 23), img_src=''):
+    def __init__(self, board, grid_w=1, grid_h=1, color=(255, 157, 23), img_src='', alpha=False):
         pygame.sprite.Sprite.__init__(self)
         # Ship.__init__(self,board,grid_x,grid_y,grid_w,grid_h,value,initcolor,**kwargs)
         self.img_src = img_src
@@ -492,6 +500,7 @@ class ImgSurf(pygame.sprite.Sprite):
         self.grid_h = grid_h
         self.board = board
         self.color = color
+        self.alpha = alpha
         self.image = pygame.Surface([grid_w * board.scale - 1, grid_h * board.scale - 1])
         self.image.fill(self.color)
         self.rect = self.image.get_rect()
@@ -502,7 +511,10 @@ class ImgSurf(pygame.sprite.Sprite):
             self.img_pos = (0, 0)
             self.outline = True
             try:
-                self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert()
+                if self.alpha:
+                    self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert_alpha()
+                else:
+                    self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert()
                 self.img = self.img_org
                 self.img_rect = self.img.get_rect()
                 # resize the image
@@ -525,8 +537,8 @@ class ImgSurf(pygame.sprite.Sprite):
 
 class ImgShip(Ship):
     def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), img_src='',
-                 **kwargs):
-        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+                 alpha=False, **kwargs):
+        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, alpha, **kwargs)
         self.change_image(img_src)
 
     def change_image(self, img_src):
@@ -537,7 +549,10 @@ class ImgShip(Ship):
             self.img_pos = (0, 0)
             self.outline = True
             try:
-                self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert()
+                if self.alpha:
+                    self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert_alpha()
+                else:
+                    self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert()
                 self.img = self.img_org
                 self.img_rect = self.img.get_rect()
                 # resize the image
@@ -572,8 +587,8 @@ class ImgShip(Ship):
 
 class TwoImgsShip(Ship):
     def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), img_src='',
-                 img2_src='', row_data=(0, 0), **kwargs):
-        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+                 img2_src='', row_data=(0, 0), alpha=False, **kwargs):
+        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, alpha, **kwargs)
         self.img2_pos = row_data
         self.change_image(img_src, img2_src)
 
@@ -587,8 +602,12 @@ class TwoImgsShip(Ship):
             self.outline = True
             try:
                 # if True:
-                self.img_org = pygame.image.load(self.img_src).convert()
-                self.img2_org = pygame.image.load(self.img2_src).convert()
+                if self.alpha:
+                    self.img_org = pygame.image.load(self.img_src).convert_alpha()
+                    self.img2_org = pygame.image.load(self.img2_src).convert_alpha()
+                else:
+                    self.img_org = pygame.image.load(self.img_src).convert()
+                    self.img2_org = pygame.image.load(self.img2_src).convert()
                 self.img = self.img_org
                 self.img.blit(self.img2_org, self.img2_pos)
                 self.img_rect = self.img.get_rect()
@@ -620,8 +639,8 @@ class TwoImgsShip(Ship):
 
 class ImgAlphaShip(ImgShip):
     def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), img_src='',
-                 **kwargs):
-        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+                 alpha=True, **kwargs):
+        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, alpha, **kwargs)
         self.img_src = img_src
         if len(self.img_src) > 0:
             self.hasimg = True
@@ -647,8 +666,8 @@ class ImgAlphaShip(ImgShip):
 
 class ImgCenteredShip(Ship):
     def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), img_src='',
-                 **kwargs):
-        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+                 alpha=False, **kwargs):
+        Ship.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, alpha, **kwargs)
         self.img_src = img_src
         if len(self.img_src) > 0:
             self.hasimg = True
@@ -656,7 +675,10 @@ class ImgCenteredShip(Ship):
             self.img_pos = (0, 0)
             self.outline = True
             try:
-                self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert()
+                if self.alpha:
+                    self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert_alpha()
+                else:
+                    self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert()
                 self.img = self.img_org
                 self.img_rect = self.img.get_rect()
                 old_h = self.img_rect.h
@@ -694,8 +716,8 @@ class ImgCenteredShip(Ship):
 
 class MultiImgSprite(ImgShip):
     def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), img_src='',
-                 frame_flow=[0], frame_count=1, row_data=[1, 1], **kwargs):
-        ImgShip.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+                 alpha=False, frame_flow=[0], frame_count=1, row_data=[1, 1], **kwargs):
+        ImgShip.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, img_src, alpha, **kwargs)
         self.img_src = img_src
         if len(self.img_src) > 0:
             self.hasimg = True
@@ -713,7 +735,11 @@ class MultiImgSprite(ImgShip):
 
             self.frame = 0
             try:
-                self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert()
+                if self.alpha:
+                    self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert_alpha()
+                else:
+                    self.img_org = pygame.image.load(os.path.join('res', 'images', self.img_src)).convert()
+
                 self.img = self.img_org
                 self.img_rect = self.img.get_rect()
 
@@ -770,10 +796,17 @@ class MultiImgSprite(ImgShip):
 
 
 class Door(ImgShip):
-    def __init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, font_size, **kwargs):
-        ImgShip.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+    def __init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, font_size, door_alpha=True, **kwargs):
+        ImgShip.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, alpha=door_alpha, **kwargs)
+        # (self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), img_src='',
+        #         alpha=False, **kwargs)
         self.font = board.font_sizes[font_size]
-        self.image.set_colorkey(self.initcolor)
+        if door_alpha:
+            self.color = (initcolor[0], initcolor[1], initcolor[2], 0)
+        else:
+            self.color = initcolor
+        # self.image.set_colorkey(self.initcolor)
+        self.is_door = True
 
     def set_pos(self, pos):
         self.grid_x = pos[0]
@@ -790,8 +823,8 @@ class SlidingDoor(MultiImgSprite):
 
 class PickUp(ImgShip):
     def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 255, 255), img_src='',
-                 **kwargs):
-        ImgShip.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, **kwargs)
+                 alpha=False, **kwargs):
+        ImgShip.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, initcolor, img_src, alpha, **kwargs)
         door_outline = False
 
 
@@ -812,9 +845,11 @@ class ImgShipRota(ImgShip):
 
 
 class AIUnit(ImgShipRota):
-    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), **kwargs):
+    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 157, 23), img_src='',
+                 alpha=False, **kwargs):
         self.initcolor = initcolor
-        ImgShipRota.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, self.initcolor, **kwargs)
+        ImgShipRota.__init__(self, board, grid_x, grid_y, grid_w, grid_h, value, self.initcolor, img_src, alpha,
+                             **kwargs)
         self.unit_id = len(board.aiunits)
         self.prev_pos = [grid_x, grid_y]
         self.now_pos = [grid_x, grid_y]
@@ -827,9 +862,10 @@ class AIUnit(ImgShipRota):
 
 class BoardBg(Unit):
     # def update(self,screen,color,screen_w,screen_h,grid_line_w):
-    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 255, 255), **kwargs):
+    def __init__(self, board, grid_x=0, grid_y=0, grid_w=1, grid_h=1, value="", initcolor=(255, 255, 255), alpha=False,
+                 **kwargs):
         # self.initcolor = initcolor
-        Unit.__init__(self, board, grid_x, grid_y, grid_w, grid_h, "", initcolor, **kwargs)
+        Unit.__init__(self, board, grid_x, grid_y, grid_w, grid_h, "", initcolor, alpha, **kwargs)
         self.rect.topleft = [0, 0]
         # game,self.cl_grid_line,l.screen_w-l.menu_w,l.game_h,l.grid_line_w
         if self.board.mainloop.scheme is not None:
@@ -1023,12 +1059,12 @@ class Board:
         return False
 
     def add_unit(self, grid_x=0, grid_y=0, grid_w=1, grid_h=1, unit_class=Ship, value="A", color=(0, 0, 0), img_src='',
-                 font_size=0, frame_flow=[0], frame_count=1, row_data=[1, 1], img2_src=None):
+                 font_size=0, frame_flow=[0], frame_count=1, row_data=[1, 1], img2_src=None, alpha=False):
         'adds a new unit to the board'
         if self._isfree(grid_x, grid_y, grid_w, grid_h):
             unit = unit_class(self, grid_x, grid_y, grid_w, grid_h, value, initcolor=color, img_src=img_src,
                               font_size=font_size, frame_flow=frame_flow, frame_count=frame_count, row_data=row_data,
-                              img2_src=img2_src)
+                              img2_src=img2_src, alpha=alpha)
             if isinstance(unit, Ship):
                 if isinstance(unit, AIUnit):
                     self.aiunits.append(unit)

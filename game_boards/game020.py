@@ -173,7 +173,7 @@ class Board(gd.BoardGame):
             y = (r - 2) * sin(angle) + center[1]
             i += 1
             angle = angle_start + 0.02 * (i)
-            pygame.draw.line(canvas, color, center, [x, y], 5)
+            pygame.draw.line(canvas, color, center, [x, y], 8)
 
         for i in range(numbers[1]):
             # angle for line
@@ -212,6 +212,10 @@ class Board(gd.BoardGame):
 
     def handle(self, event):
         gd.BoardGame.handle(self, event)  # send event handling up
+        if event.type == pygame.MOUSEBUTTONUP:
+            for each in self.board.units:
+                if each.is_door is True:
+                    self.board.all_sprites_list.move_to_front(each)
 
     def update(self, game):
         game.fill(self.bg_col)

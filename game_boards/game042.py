@@ -15,6 +15,7 @@ class Board(gd.BoardGame):
 
     def create_game_objects(self, level=1):
         self.board.decolorable = False
+        self.board.draw_grid = False
         white = (255, 255, 255)
         self.font_col = (0, 0, 0)
         if self.mainloop.scheme is not None:
@@ -100,10 +101,10 @@ class Board(gd.BoardGame):
             self.init_font_color = [self.font_col for i in range(20)]
             self.points = 7
 
-        self.bg_col = (255, 255, 255)
+        self.bg_col = (255, 255, 255, 0)
         if self.mainloop.scheme is not None:
             if self.mainloop.scheme.dark:
-                self.bg_col = (0, 0, 0)
+                self.bg_col = (0, 0, 0, 0)
                 if self.level.lvl == 1:
                     self.init_font_color[1] = (30, 30, 30)
 
@@ -137,7 +138,7 @@ class Board(gd.BoardGame):
         for i in range(5):
             self.board.add_door(x + i, 0, 1, 1, classes.board.Door, self.color_choice[self.chosen[i]], self.bg_col)
             self.board.add_unit(x + i, 2, 1, 1, classes.board.Letter, self.color_choice[self.shuffled2[i]], self.bg_col,
-                                "", font_size)
+                                "", alpha=True, font_size=font_size)
 
             self.board.ships[-1].speaker_val = self.color_choicep[self.shuffled2[i]]
             self.board.ships[-1].speaker_val_update = False
@@ -153,8 +154,8 @@ class Board(gd.BoardGame):
         for each in self.board.ships:
             self.board.all_sprites_list.move_to_front(each)
             each.highlight = False
-            each.outline_highlight = True
-            each.set_outline([180, 180, 250], 1)
+            # each.outline_highlight = False
+            # each.set_outline([180, 180, 250], 1)
 
         for each in self.board.units:
             each.outline = False
@@ -221,17 +222,17 @@ class Board(gd.BoardGame):
     def swap_font_color(self):
         active_ship = self.board.ships[self.board.active_ship]
         if active_ship.grid_y == 0 and self.color_pos_offset <= active_ship.grid_x < 5 + self.color_pos_offset:
-            active_ship.initcolor = self.hue_choice[self.chosen[active_ship.grid_x - self.color_pos_offset]]
-            active_ship.color = active_ship.initcolor
+            # active_ship.initcolor = (255, 255, 255, 0)  # self.hue_choice[self.chosen[active_ship.grid_x - self.color_pos_offset]]
+            #active_ship.color = active_ship.initcolor
             active_ship.font_color = self.font_color[self.chosen[active_ship.grid_x - self.color_pos_offset]]
         else:
-            active_ship.initcolor = self.bg_col
-            active_ship.color = active_ship.initcolor
+            # active_ship.initcolor = self.bg_col
+            #active_ship.color = active_ship.initcolor
             if self.level.lvl == 1:
                 active_ship.font_color = self.init_font_color[self.shuffled2[self.board.active_ship]]
             else:
                 active_ship.font_color = self.font_col  # (0,0,0,0)
-        active_ship.image.set_colorkey(active_ship.initcolor)
+        #active_ship.image.set_colorkey(active_ship.initcolor)
         active_ship.update_me = True
 
     def update(self, game):

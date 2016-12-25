@@ -2,6 +2,7 @@
 
 import os
 import random
+import pygame
 
 import classes.board
 import classes.extras as ex
@@ -181,10 +182,12 @@ class Board(gd.BoardGame):
         # frame around image
         self.board.add_door(img_left - 1, 1, img_size + 2, img_size + 3, classes.board.Door, "", white, "", font_size=2)
         self.board.units[-1].image.set_colorkey(None)
+        self.board.units[-1].is_door = False
         # self.board.units[-1].set_outline(color = border_color, width = 1)
 
         self.board.add_door(1, img_size + 3, base_len, 3, classes.board.Door, "", clx, "", font_size=2)
         self.board.units[-1].image.set_colorkey(None)
+        self.board.units[-1].is_door = False
         # self.board.units[-1].set_outline(color = border_color, width = 1)
 
         # temp frame around word
@@ -195,11 +198,13 @@ class Board(gd.BoardGame):
         self.board.add_door(img_left - 1, img_size + img_top + 1, img_size + 2, 1, classes.board.Door, "", clx, "",
                             font_size=2)
         self.board.units[-1].image.set_colorkey(None)
+        self.board.units[-1].is_door = False
 
         self.board.add_unit(img_left, img_top, img_size, img_size, classes.board.ImgShip, self.wordp, color,
                             os.path.join('art4apps', category, img_src))
         self.board.ships[-1].immobilize()
         self.board.ships[-1].animable = False
+        self.board.units[-1].is_door = False
 
         choice_list = self.word[:]
         index_list = [x for x in range(w_len)]
@@ -263,6 +268,10 @@ class Board(gd.BoardGame):
 
     def handle(self, event):
         gd.BoardGame.handle(self, event)  # send event handling up
+        if event.type == pygame.MOUSEBUTTONUP:
+            for each in self.board.units:
+                if each.is_door is True:
+                    self.board.all_sprites_list.move_to_front(each)
 
     def update(self, game):
         game.fill(self.color)

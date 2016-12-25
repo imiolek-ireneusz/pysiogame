@@ -161,7 +161,7 @@ class Board(gd.BoardGame):
         while angle < angle_e:  # maximum of 158 lines per pi
             x = (r - 2) * cos(angle) + center[0]
             y = (r - 2) * sin(angle) + center[1]
-            pygame.draw.line(canvas, color, [center[0], center[1]], [x, y], 5)
+            pygame.draw.line(canvas, color, [center[0], center[1]], [x, y], 8)
             i += 1
             angle = angle_start + 0.02 * i
             points = []
@@ -193,6 +193,10 @@ class Board(gd.BoardGame):
 
     def handle(self, event):
         gd.BoardGame.handle(self, event)  # send event handling up
+        if event.type == pygame.MOUSEBUTTONUP:
+            for each in self.board.units:
+                if each.is_door is True:
+                    self.board.all_sprites_list.move_to_front(each)
 
     def update(self, game):
         game.fill(self.bg_col)

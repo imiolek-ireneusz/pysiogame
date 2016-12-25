@@ -33,7 +33,7 @@ def hsv_to_rgb(h, s, v):
     return [int(each * 255) for each in rgb]
 
 
-def rgb_to_hsv(r, g, b):
+def rgb_to_hsv(r, g, b, a=255):
     hsv = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
     hsv255 = [int(each * 255) for each in hsv]
     return hsv255
@@ -54,7 +54,7 @@ def hsl_to_rgb(h, s, l):
     return [int(each * 255) for each in rgb]
 
 
-def rgb_to_hsl(r, g, b):
+def rgb_to_hsl(r, g, b, a=255):
     hsl = colorsys.rgb_to_hls(r / 255.0, g / 255.0, b / 255.0)
     hsl255 = [int(each * 255) for each in hsl]
     hsl255 = [hsl255[0], hsl255[2], hsl255[1]]

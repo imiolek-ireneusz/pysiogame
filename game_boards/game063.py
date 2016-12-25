@@ -52,57 +52,57 @@ class Board(gd.BoardGame):
 
         if self.level.lvl == 1:
             data = [19, 10, True, True, False, False, True, False, False, True, True, 15]
-            h_pool = range(1, 13)
+            h_pool = [i for i in range(1, 13)]
             m_pool = [0]
         elif self.level.lvl == 2:
             data = [19, 10, True, True, False, False, True, False, False, True, True, 15]
-            h_pool = range(1, 13)
-            m_pool = range(0, 60, 15)
+            h_pool = [i for i in range(1, 13)]
+            m_pool = [i for i in range(0, 60, 15)]
         elif self.level.lvl == 3:
             data = [19, 10, True, True, False, False, False, True, False, True, True, 15]
-            h_pool = range(1, 13)
-            m_pool = range(0, 60, 5)
+            h_pool = [i for i in range(1, 13)]
+            m_pool = [i for i in range(0, 60, 5)]
         elif self.level.lvl == 4:
             data = [19, 10, True, True, False, False, False, True, False, True, True, 15]
-            h_pool = range(1, 13)
-            m_pool = range(0, 60, 5)
+            h_pool = [i for i in range(1, 13)]
+            m_pool = [i for i in range(0, 60, 5)]
         elif self.level.lvl == 5:
             data = [19, 10, True, True, False, False, False, False, False, True, True, 25]
-            h_pool = range(1, 13)
-            m_pool = range(0, 60)
+            h_pool = [i for i in range(1, 13)]
+            m_pool = [i for i in range(0, 60)]
         elif self.level.lvl == 6:
             data = [19, 10, True, True, True, False, True, False, False, True, True, 15]
-            h_pool = range(13, 24)
+            h_pool = [i for i in range(13, 24)]
             m_pool = [0]
         elif self.level.lvl == 7:
             data = [19, 10, True, True, True, False, False, True, False, True, True, 15]
-            h_pool = range(13, 24)
+            h_pool = [i for i in range(13, 24)]
             h_pool.append(0)
-            m_pool = range(0, 60, 5)
+            m_pool = [i for i in range(0, 60, 5)]
         elif self.level.lvl == 8:
             data = [19, 10, True, True, True, False, False, False, False, True, True, 25]
-            h_pool = range(0, 24)
-            m_pool = range(0, 60)
+            h_pool = [i for i in range(0, 24)]
+            m_pool = [i for i in range(0, 60)]
         elif self.level.lvl == 9:
             data = [19, 10, True, True, False, False, False, False, False, False, True, 25]
-            h_pool = range(1, 13)
-            m_pool = range(0, 60)
+            h_pool = [i for i in range(1, 13)]
+            m_pool = [i for i in range(0, 60)]
         elif self.level.lvl == 10:
             data = [19, 10, True, True, False, False, False, True, False, False, True, 25]
-            h_pool = range(1, 13)
-            m_pool = range(0, 60)
+            h_pool = [i for i in range(1, 13)]
+            m_pool = [i for i in range(0, 60)]
         elif self.level.lvl == 11:
             data = [19, 10, True, True, False, False, True, False, False, False, True, 25]
-            h_pool = range(1, 13)
-            m_pool = range(0, 60)
+            h_pool = [i for i in range(1, 13)]
+            m_pool = [i for i in range(0, 60)]
         elif self.level.lvl == 12:
             data = [19, 10, True, False, False, False, False, False, False, False, True, 25]
-            h_pool = range(1, 13)
-            m_pool = range(0, 60)
+            h_pool = [i for i in range(1, 13)]
+            m_pool = [i for i in range(0, 60)]
         elif self.level.lvl == 13:
             data = [19, 10, True, False, False, True, False, False, False, False, True, 25]
-            h_pool = range(1, 13)
-            m_pool = range(0, 60)
+            h_pool = [i for i in range(1, 13)]
+            m_pool = [i for i in range(0, 60)]
         self.points = self.level.lvl // 2 + 1
 
         # visual display properties

@@ -24,7 +24,7 @@ class Board(gd.BoardGame):
         color = ex.hsv_to_rgb(h, s, v)
         outline_color = ex.hsv_to_rgb(h, 255, 140)
         self.font_color = outline_color
-        apple_bg = [255, 255, 255]
+        apple_bg = [255, 255, 255, 0]
         scheme = "white"
         if self.mainloop.scheme is not None:
             if self.mainloop.scheme.dark:
@@ -123,8 +123,9 @@ class Board(gd.BoardGame):
             if y >= data[1]:
                 y = 0
                 x -= 1
-            self.board.add_unit(x, y, 1, 1, classes.board.ImgShip, "", apple_bg, data[6])
+            self.board.add_unit(x, y, 1, 1, classes.board.ImgShip, "", apple_bg, data[6], alpha=True)
             self.board.ships[-1].audible = False
+            self.board.ships[-1].outline = False
             y += 1
 
     def handle(self, event):

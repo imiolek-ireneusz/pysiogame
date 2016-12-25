@@ -146,6 +146,10 @@ class Board(gd.BoardGame):
                 if self.board.grid[4][16]:
                     self.home_square.value = ""
                     self.home_square.update_me = True
+            elif event.type == pygame.MOUSEBUTTONUP:
+                for each in self.board.units:
+                    if each.is_door is True:
+                        self.board.all_sprites_list.move_to_front(each)
 
     def update(self, game):
         game.fill((255, 255, 255))

@@ -76,7 +76,7 @@ class Board(gd.BoardGame):
         self.col_b = (2, 71, 254)
         self.col_k = (0, 0, 0)
         self.col_e = (255, 255, 255)
-        self.col_e2 = (245, 245, 245)
+        self.col_e2 = (240, 240, 240)
         self.col_e3 = (235, 235, 235)
         colorkey = (2, 2, 2)
         self.col_bg = (255, 255, 255)
@@ -143,11 +143,11 @@ class Board(gd.BoardGame):
         self.board.units[-1].set_outline(self.col_e3, 1)
 
         # adding colour strips
-        self.board.add_door(1, data[1] - 1, 2, 1, classes.board.Door, "", self.col_r, "", 0)
-        self.board.add_door(4, data[1] - 1, 2, 1, classes.board.Door, "", self.col_y, "", 0)
-        self.board.add_door(7, data[1] - 1, 2, 1, classes.board.Door, "", self.col_b, "", 0)
-        self.board.add_door(10, data[1] - 1, 2, 1, classes.board.Door, "", self.col_k, "", 0)
-        self.board.add_door(13, data[1] - 1, 2, 1, classes.board.Door, "", self.col_e2, "", 0)
+        self.board.add_door(1, data[1] - 1, 2, 1, classes.board.Door, "", self.col_r, "", 0, door_alpha=False)
+        self.board.add_door(4, data[1] - 1, 2, 1, classes.board.Door, "", self.col_y, "", 0, door_alpha=False)
+        self.board.add_door(7, data[1] - 1, 2, 1, classes.board.Door, "", self.col_b, "", 0, door_alpha=False)
+        self.board.add_door(10, data[1] - 1, 2, 1, classes.board.Door, "", self.col_k, "", 0, door_alpha=False)
+        self.board.add_door(13, data[1] - 1, 2, 1, classes.board.Door, "", self.col_e2, "", 0, door_alpha=False)
 
         # white background
         self.board.add_door(1, 0, 2, data[1], classes.board.Door, "", self.col_bg, "", 0)
