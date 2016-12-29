@@ -34,11 +34,13 @@ class Board(gd.BoardGame):
         self.layout.update_layout(data[0], data[1])
         scale = self.layout.scale
         self.board.level_start(data[0], data[1], scale)
+
+        images = [os.path.join('match_animals', "m_img%da.png" % (i)) for i in range(1, 20)]
         if self.mainloop.scheme is None or not self.mainloop.scheme.dark:
-            images = [os.path.join('memory', "m_img%da.png" % (i)) for i in range(1, 20)]
+            # images = [os.path.join('memory', "m_img%da.png" % (i)) for i in range(1, 20)]
             masks = [os.path.join('memory', "m_img%db.png" % (i)) for i in range(1, 20)]
         else:
-            images = [os.path.join('schemes', "black", "match_animals", "m_img%da.png" % (i)) for i in range(1, 20)]
+            #images = [os.path.join('schemes', "black", "match_animals", "m_img%da.png" % (i)) for i in range(1, 20)]
             masks = [os.path.join('schemes', "black", "match_animals", "m_img%db.png" % (i)) for i in range(1, 20)]
         choice = [x for x in range(0, 19)]
         shuffled = choice[:]
@@ -51,8 +53,8 @@ class Board(gd.BoardGame):
         for i in range(5):
             self.board.add_door(x + i, 0, 1, 1, classes.board.Door, str(self.chosen[i]), mask_color,
                                 masks[self.chosen[i]])
-            self.board.add_unit(x + i, 2, 1, 1, classes.board.ImgShip, str(self.shuffled2[i]), color,
-                                images[self.shuffled2[i]])
+            self.board.add_unit(x + i, 2, 1, 1, classes.board.ImgShip, str(self.shuffled2[i]), (0, 0, 0, 0),
+                                images[self.shuffled2[i]], alpha=True)
 
         for each in self.board.ships:
             self.board.all_sprites_list.move_to_front(each)

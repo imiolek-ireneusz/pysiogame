@@ -17,7 +17,7 @@ class Board(gd.BoardGame):
     def create_game_objects(self, level=1):
         self.allow_unit_animations = False
         self.ai_enabled = True
-        self.board.draw_grid = True
+        self.board.draw_grid = False
         white = [255, 255, 255]
 
         scheme = "white"

@@ -79,7 +79,8 @@ class Board(gd.BoardGame):
         self.col_e2 = (240, 240, 240)
         self.col_e3 = (235, 235, 235)
         colorkey = (2, 2, 2)
-        self.col_bg = (255, 255, 255)
+        # self.col_bg = (255, 255, 255, 0)
+        self.col_bg = (0, 0, 0, 0)
         data = [30, 23]
         x_count = self.get_x_count(data[1], even=True)
         if x_count > 30:
@@ -94,8 +95,8 @@ class Board(gd.BoardGame):
         scale = self.layout.scale
         self.board.level_start(data[0], data[1], scale)
 
-        self.board.board_bg.initcolor = self.col_bg
-        self.board.board_bg.color = self.col_bg
+        self.board.board_bg.initcolor = self.col_e
+        self.board.board_bg.color = self.col_e
         self.board.board_bg.update_me = True
 
         self.board.moved = self.moved
@@ -105,11 +106,11 @@ class Board(gd.BoardGame):
         self.rybke_g = [y, y, y, y, y]
         self.rybke = [0, 0, 0, 0, 0]
 
-        self.board.add_unit(1, y, 2, 3, classes.board.ImgAlphaShip, "", self.col_bg, "tube_r.png")
-        self.board.add_unit(4, y, 2, 3, classes.board.ImgAlphaShip, "", self.col_bg, "tube_y.png")
-        self.board.add_unit(7, y, 2, 3, classes.board.ImgAlphaShip, "", self.col_bg, "tube_b.png")
-        self.board.add_unit(10, y, 2, 3, classes.board.ImgAlphaShip, "", self.col_bg, "tube_k.png")
-        self.board.add_unit(13, y, 2, 3, classes.board.ImgAlphaShip, "", self.col_bg, "tube_e.png")
+        self.board.add_unit(1, y, 2, 3, classes.board.ImgShip, "", self.col_bg, "tube_r.png", alpha=True)
+        self.board.add_unit(4, y, 2, 3, classes.board.ImgShip, "", self.col_bg, "tube_y.png", alpha=True)
+        self.board.add_unit(7, y, 2, 3, classes.board.ImgShip, "", self.col_bg, "tube_b.png", alpha=True)
+        self.board.add_unit(10, y, 2, 3, classes.board.ImgShip, "", self.col_bg, "tube_k.png", alpha=True)
+        self.board.add_unit(13, y, 2, 3, classes.board.ImgShip, "", self.col_bg, "tube_e.png", alpha=True)
 
         for each in self.board.ships:
             each.outline = False
@@ -123,12 +124,12 @@ class Board(gd.BoardGame):
                               (self.canvas.grid_h * self.board.scale) // 2]
 
         # adding borders between the colour tubes
-        self.board.add_unit(0, 0, 1, data[1], classes.board.Label, "", self.col_bg, "", 0)
-        self.board.add_unit(3, 0, 1, data[1], classes.board.Label, "", self.col_bg, "", 0)
-        self.board.add_unit(6, 0, 1, data[1], classes.board.Label, "", self.col_bg, "", 0)
-        self.board.add_unit(9, 0, 1, data[1], classes.board.Label, "", self.col_bg, "", 0)
-        self.board.add_unit(12, 0, 1, data[1], classes.board.Label, "", self.col_bg, "", 0)
-        self.board.add_unit(15, 0, 1, data[1], classes.board.Label, "", self.col_bg, "", 0)
+        self.board.add_unit(0, 0, 1, data[1], classes.board.Label, "", self.col_e, "", 0)
+        self.board.add_unit(3, 0, 1, data[1], classes.board.Label, "", self.col_e, "", 0)
+        self.board.add_unit(6, 0, 1, data[1], classes.board.Label, "", self.col_e, "", 0)
+        self.board.add_unit(9, 0, 1, data[1], classes.board.Label, "", self.col_e, "", 0)
+        self.board.add_unit(12, 0, 1, data[1], classes.board.Label, "", self.col_e, "", 0)
+        self.board.add_unit(15, 0, 1, data[1], classes.board.Label, "", self.col_e, "", 0)
 
         # adding colour guides
         self.board.add_door(1, 0, 2, data[1], classes.board.Door, "", color, "", 0)
@@ -150,15 +151,15 @@ class Board(gd.BoardGame):
         self.board.add_door(13, data[1] - 1, 2, 1, classes.board.Door, "", self.col_e2, "", 0, door_alpha=False)
 
         # white background
-        self.board.add_door(1, 0, 2, data[1], classes.board.Door, "", self.col_bg, "", 0)
+        self.board.add_door(1, 0, 2, data[1], classes.board.Door, "", self.col_e, "", 0, door_alpha=False)
         self.board.units[-1].image.set_colorkey(None)
-        self.board.add_door(4, 0, 2, data[1], classes.board.Door, "", self.col_bg, "", 0)
+        self.board.add_door(4, 0, 2, data[1], classes.board.Door, "", self.col_e, "", 0, door_alpha=False)
         self.board.units[-1].image.set_colorkey(None)
-        self.board.add_door(7, 0, 2, data[1], classes.board.Door, "", self.col_bg, "", 0)
+        self.board.add_door(7, 0, 2, data[1], classes.board.Door, "", self.col_e, "", 0, door_alpha=False)
         self.board.units[-1].image.set_colorkey(None)
-        self.board.add_door(10, 0, 2, data[1], classes.board.Door, "", self.col_bg, "", 0)
+        self.board.add_door(10, 0, 2, data[1], classes.board.Door, "", self.col_e, "", 0, door_alpha=False)
         self.board.units[-1].image.set_colorkey(None)
-        self.board.add_door(13, 0, 2, data[1], classes.board.Door, "", self.col_bg, "", 0)
+        self.board.add_door(13, 0, 2, data[1], classes.board.Door, "", self.col_e, "", 0, door_alpha=False)
         self.board.units[-1].image.set_colorkey(None)
 
         for i in range(8, 24 - 2):

@@ -15,6 +15,7 @@ class Board(gd.BoardGame):
         gd.BoardGame.__init__(self, mainloop, speaker, config, screen_w, screen_h, 11, 8)
 
     def create_game_objects(self, level=1):
+        self.board.draw_grid = False
         self.vis_buttons = [1, 1, 1, 1, 1, 1, 1, 0, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
         s = random.randrange(100, 121, 5)
@@ -25,47 +26,43 @@ class Board(gd.BoardGame):
         outline_color = ex.hsv_to_rgb(h, 255, 140)
         self.font_color = outline_color
         apple_bg = [255, 255, 255, 0]
-        scheme = "white"
-        if self.mainloop.scheme is not None:
-            if self.mainloop.scheme.dark:
-                scheme = "black"
 
         # data = [x_count, y_count, range_from, range_to, max_sum_range, image, sign]
         if self.mainloop.m.game_variant == 0:
             if self.level.lvl == 1:
-                data = [11, 8, 1, 5, 5, 3, os.path.join("schemes", scheme, "fr_apple2.png"), "n", 0]
+                data = [11, 8, 1, 5, 5, 3, os.path.join("fr", "fr_apple2.png"), "n", 0]
             elif self.level.lvl == 2:
-                data = [11, 8, 1, 6, 6, 2, os.path.join("schemes", scheme, "fr_apple1.png"), "n", 0]
+                data = [11, 8, 1, 6, 6, 2, os.path.join("fr", "fr_apple1.png"), "n", 0]
             elif self.level.lvl == 3:
-                data = [11, 8, 2, 6, 6, 3, os.path.join("schemes", scheme, "fr_pear.png"), "n", 0]
+                data = [11, 8, 2, 6, 6, 3, os.path.join("fr", "fr_pear.png"), "n", 0]
             elif self.level.lvl == 4:
-                data = [11, 8, 3, 7, 7, 3, os.path.join("schemes", scheme, "fr_orange.png"), "n", 0]
+                data = [11, 8, 3, 7, 7, 3, os.path.join("fr", "fr_orange.png"), "n", 0]
             elif self.level.lvl == 5:
-                data = [11, 8, 3, 8, 8, 2, os.path.join("schemes", scheme, "fr_plum.png"), "n", 0]
+                data = [11, 8, 3, 8, 8, 2, os.path.join("fr", "fr_plum.png"), "n", 0]
             self.points = self.level.lvl // 2 + 1
         elif self.mainloop.m.game_variant == 1:
             if self.level.lvl == 1:
-                data = [11, 8, 1, 6, 6, 2, os.path.join("schemes", scheme, "fr_cherry.png"), "+", 2]
+                data = [11, 8, 1, 6, 6, 2, os.path.join("fr", "fr_cherry.png"), "+", 2]
             elif self.level.lvl == 2:
-                data = [11, 8, 1, 7, 7, 2, os.path.join("schemes", scheme, "fr_wmelon.png"), "+", 2]
+                data = [11, 8, 1, 7, 7, 2, os.path.join("fr", "fr_wmelon.png"), "+", 2]
             elif self.level.lvl == 3:
-                data = [11, 8, 1, 8, 8, 2, os.path.join("schemes", scheme, "fr_lemon.png"), "+", 2]
+                data = [11, 8, 1, 8, 8, 2, os.path.join("fr", "fr_lemon.png"), "+", 2]
             elif self.level.lvl == 4:
-                data = [11, 8, 1, 9, 9, 2, os.path.join("schemes", scheme, "fr_banana.png"), "+", 2]
+                data = [11, 8, 1, 9, 9, 2, os.path.join("fr", "fr_banana.png"), "+", 2]
             elif self.level.lvl == 5:
-                data = [11, 8, 1, 10, 10, 2, os.path.join("schemes", scheme, "fr_strawberry.png"), "+", 2]
+                data = [11, 8, 1, 10, 10, 2, os.path.join("fr", "fr_strawberry.png"), "+", 2]
             self.points = self.level.lvl
         elif self.mainloop.m.game_variant == 2:
             if self.level.lvl == 1:
-                data = [11, 8, 2, 6, 6, 2, os.path.join("schemes", scheme, "fr_tomato.png"), "-", 2]
+                data = [11, 8, 2, 6, 6, 2, os.path.join("fr", "fr_tomato.png"), "-", 2]
             elif self.level.lvl == 2:
-                data = [11, 8, 2, 7, 7, 2, os.path.join("schemes", scheme, "fr_pepper.png"), "-", 2]
+                data = [11, 8, 2, 7, 7, 2, os.path.join("fr", "fr_pepper.png"), "-", 2]
             elif self.level.lvl == 3:
-                data = [11, 8, 2, 8, 8, 2, os.path.join("schemes", scheme, "fr_carrot.png"), "-", 2]
+                data = [11, 8, 2, 8, 8, 2, os.path.join("fr", "fr_carrot.png"), "-", 2]
             elif self.level.lvl == 4:
-                data = [11, 8, 2, 9, 9, 2, os.path.join("schemes", scheme, "fr_onion.png"), "-", 2]
+                data = [11, 8, 2, 9, 9, 2, os.path.join("fr", "fr_onion.png"), "-", 2]
             elif self.level.lvl == 5:
-                data = [11, 8, 2, 10, 10, 2, os.path.join("schemes", scheme, "fr_broccoli.png"), "-", 2]
+                data = [11, 8, 2, 10, 10, 2, os.path.join("fr", "fr_broccoli.png"), "-", 2]
             self.points = self.level.lvl
         # rescale the number of squares horizontally to better match the screen width
         x_count = self.get_x_count(data[1], even=None)

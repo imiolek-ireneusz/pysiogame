@@ -129,8 +129,8 @@ class Board(gd.BoardGame):
                 caption = ""
             self.board.add_unit(l[0], i + 1, 1, 1, classes.board.Label, str(self.chosen_items[1][i]) + " ", white, "",
                                 data[4])
-            self.board.add_unit(l[1], i + 1, 1, 1, classes.board.ImgShip, "", white,
-                                os.path.join("schemes", scheme, items[ind] + f_end), data[4])
+            self.board.add_unit(l[1], i + 1, 1, 1, classes.board.ImgShip, "", (0, 0, 0, 0),
+                                os.path.join("fr", items[ind] + f_end), data[4], alpha=True)
             self.board.add_unit(l[2], i + 1, 5, 1, classes.board.Label, caption, white, "", data[4])
             self.board.ships[i].immobilize()
             self.board.ships[i].outline = False
@@ -144,14 +144,15 @@ class Board(gd.BoardGame):
 
         # put stuff on shelves:
         for i in range(len(items)):
-            image = os.path.join("schemes", scheme, items[i] + f_end)
+            image = os.path.join("fr", items[i] + f_end)
 
             for j in range(0, shelf_len):
-                self.board.add_unit(j, i, 1, 1, classes.board.ImgShip, self.img_captions[i], white, image, data[4],
-                                    alpha=True)
+                self.board.add_unit(j, i, 1, 1, classes.board.ImgShip, self.img_captions[i], (0, 0, 0, 0), image,
+                                    data[4], alpha=True)
                 self.board.ships[-1].audible = False
                 self.board.ships[-1].speaker_val = self.img_pcaptions[i]
                 self.board.ships[-1].speaker_val_update = False
+                self.board.ships[-1].outline = False
         self.board.all_sprites_list.move_to_front(self.board.units[0])
         instruction = self.d["Check the shopping list"]
         self.board.add_unit(0, data[1] - 1, data[0], 1, classes.board.Letter, instruction, color0, "", 3)

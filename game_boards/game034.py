@@ -15,6 +15,7 @@ class Board(gd.BoardGame):
         gd.BoardGame.__init__(self, mainloop, speaker, config, screen_w, screen_h, 23, 9)
 
     def create_game_objects(self, level=1):
+        self.board.draw_grid = False
         self.board.decolorable = False
         self.vis_buttons = [1, 1, 1, 1, 1, 1, 1, 0, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)

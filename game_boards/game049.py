@@ -15,6 +15,7 @@ class Board(gd.BoardGame):
         gd.BoardGame.__init__(self, mainloop, speaker, config, screen_w, screen_h, 26, 9)
 
     def create_game_objects(self, level=1):
+        self.board.draw_grid = False
         if not self.lang.has_uc:
             self.level.lvl_count = 8
 

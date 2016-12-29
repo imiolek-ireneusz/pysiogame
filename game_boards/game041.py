@@ -17,6 +17,7 @@ class Board(gd.BoardGame):
         gd.BoardGame.__init__(self, mainloop, speaker, config, screen_w, screen_h, 11, 9)
 
     def create_game_objects(self, level=1):
+        self.board.draw_grid = False
         self.vis_buttons = [1, 1, 1, 1, 1, 1, 1, 1, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
         # data = [x_count, y_count, square_num, canvas_height, non_vertical, color_difference, games_per_level, mess_drawing_function]
@@ -72,14 +73,12 @@ class Board(gd.BoardGame):
         v = random.randrange(240, 250)
         h = random.randrange(0, 255)
         self.line_col = (0, 0, 0)
-        scheme = "white"
         if self.mainloop.scheme is None:
             color = ex.hsv_to_rgb(h, s, v)
         else:
             color = self.mainloop.scheme.u_color
             if self.mainloop.scheme.dark:
                 self.line_col = self.mainloop.scheme.u_font_color
-                scheme = "black"
         self.board.add_unit(0, 1, data[0], data[3], classes.board.Obstacle, "", color)
         self.board.units[0].set_outline(0, 1)
         self.top_colors = []
@@ -91,12 +90,12 @@ class Board(gd.BoardGame):
         for i in range(start_from, end_at):
             s = random.randrange(180, 250, 5)
             v = random.randrange(180, 250, 5)
-            color = ex.hsv_to_rgb(h + (i - start_from) * data[5], s, v)
+            color = (0, 0, 0, 0)  # ex.hsv_to_rgb(h + (i - start_from) * data[5], s, v)
             self.colors.append(self.all_colors[j - 1])
             self.board.add_door(i, 0, 1, 1, classes.board.Door, "", color,
-                                os.path.join("schemes", scheme, "b" + str(j) + ".png"))
+                                os.path.join("connect", "b" + str(j) + ".png"))
             self.board.add_unit(i, data[1] - 1, 1, 1, classes.board.ImgShip, "", color,
-                                os.path.join("schemes", scheme, "t" + str(j) + ".png"))
+                                os.path.join("connect", "t" + str(j) + ".png"), alpha=True)
             self.board.ships[-1].outline = False
             self.board.units[-1].outline = False
             j += data[8]
