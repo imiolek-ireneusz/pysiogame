@@ -1,91 +1,92 @@
 # -*- coding: utf-8 -*-
 
-import classes.level_controller as lc
-import classes.game_driver as gd
-import classes.extras as ex
+import pygame
+import random
 
 import classes.board
-import random
-import pygame
+import classes.extras as ex
+import classes.game_driver as gd
+import classes.level_controller as lc
+
 
 class Board(gd.BoardGame):
-    def __init__(self, mainloop, speaker, config,  screen_w, screen_h):
-        self.level = lc.Level(self,mainloop,99,6)
-        gd.BoardGame.__init__(self,mainloop,speaker,config,screen_w,screen_h,13,11)
+    def __init__(self, mainloop, speaker, config, screen_w, screen_h):
+        self.level = lc.Level(self, mainloop, 99, 6)
+        gd.BoardGame.__init__(self, mainloop, speaker, config, screen_w, screen_h, 13, 11)
 
-    def create_game_objects(self, level = 1):
+    def create_game_objects(self, level=1):
         self.board.decolorable = False
         self.board.draw_grid = False
 
-        color = (234,218,225)
+        color = (234, 218, 225)
         self.color = color
-        self.grey = (200,200,200)
-        self.greyoutline = (190,190,190)
-        self.font_hl = (100,0,250)
-        self.font_hl2 = (250,0,200)
-        self.font_hl3 = (200,0,250)
-        self.hint1_fcol = (100,0,250)
-        self.hint2_fcol = (200,0,0)
-        self.hint3_fcol = (250,0,200)
+        self.grey = (200, 200, 200)
+        self.greyoutline = (190, 190, 190)
+        self.font_hl = (100, 0, 250)
+        self.font_hl2 = (250, 0, 200)
+        self.font_hl3 = (200, 0, 250)
+        self.hint1_fcol = (100, 0, 250)
+        self.hint2_fcol = (200, 0, 0)
+        self.hint3_fcol = (250, 0, 200)
 
-        self.task_str_color = ex.hsv_to_rgb(200,200,230)
+        self.task_str_color = ex.hsv_to_rgb(200, 200, 230)
         self.activated_col = self.font_hl
-        white = (255,255,255)
+        white = (255, 255, 255)
         self.white = white
         self.bg_col = white
         if self.mainloop.scheme is not None:
             if self.mainloop.scheme.dark:
-                self.bg_col = (0,0,0)
+                self.bg_col = (0, 0, 0)
         if self.level.lvl == 1:
-            rngs = [3,9,20,50]
+            rngs = [3, 9, 20, 50]
         elif self.level.lvl == 2:
-            rngs = [3,9,50,99]
+            rngs = [3, 9, 50, 99]
         elif self.level.lvl == 3:
-            rngs = [3,9,100,150]
+            rngs = [3, 9, 100, 150]
         elif self.level.lvl == 4:
-            rngs = [3,9,200,500]
+            rngs = [3, 9, 200, 500]
         elif self.level.lvl == 5:
-            rngs = [3,9,500,999]
+            rngs = [3, 9, 500, 999]
         elif self.level.lvl == 6:
-            rngs = [20,50,21,99]
+            rngs = [20, 50, 21, 99]
 
         if self.lang.lang == 'pl':
             self.divisor_pos = 1
         else:
             self.divisor_pos = 0
 
-        data = [39,25]
-        #stretch width to fit the screen size
-        x_count = self.get_x_count(data[1],even=None)
+        data = [39, 25]
+        # stretch width to fit the screen size
+        x_count = self.get_x_count(data[1], even=None)
         if x_count > 39:
             data[0] = x_count
 
         self.data = data
 
-        self.vis_buttons = [0,1,1,1,1,0,1,0,0]
+        self.vis_buttons = [0, 1, 1, 1, 1, 0, 1, 0, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
 
-        self.layout.update_layout(data[0],data[1])
+        self.layout.update_layout(data[0], data[1])
         scale = self.layout.scale
-        self.board.level_start(data[0],data[1],scale)
-        
-        self.top_line = self.board.scale//2
-        
+        self.board.level_start(data[0], data[1], scale)
+
+        self.top_line = self.board.scale // 2
+
         if self.lang.ltr_text:
             self.div_sign = "÷"
         else:
             self.div_sign = "/"
-        nr1 = random.randrange(rngs[0],rngs[1])
-        nr2 = random.randrange(rngs[2],rngs[3])
+        nr1 = random.randrange(rngs[0], rngs[1])
+        nr2 = random.randrange(rngs[2], rngs[3])
         self.n1 = nr1 * nr2
         self.n2 = nr1
-        self.sumn1n2 = nr2 #self.n1+self.n2
+        self.sumn1n2 = nr2  # self.n1+self.n2
         self.n1s = str(self.n1)
         self.n2s = str(self.n2)
         self.sumn1n2s = str(self.sumn1n2)
         self.n1sl = len(self.n1s)
         self.n2sl = len(self.n2s)
-        self.sumn1n2sl =len(self.sumn1n2s)
+        self.sumn1n2sl = len(self.sumn1n2s)
         self.cursor_pos = 0
         self.correct = False
         self.carryl = []
@@ -94,7 +95,7 @@ class Board(gd.BoardGame):
         self.nums2l = []
         self.ship_id = 0
         self.up_count = 0
-        self.digits = ["0","1","2","3","4","5","6","7","8","9"]
+        self.digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
         if self.divisor_pos == 0:
             r_offset = 0
@@ -106,8 +107,8 @@ class Board(gd.BoardGame):
 
         else:
             r_offset = 4
-            d_offset = self.n1sl*2+1
-            ds_offset = self.n1sl*2-3
+            d_offset = self.n1sl * 2 + 1
+            ds_offset = self.n1sl * 2 - 3
             d_str = self.div_sign
             d_h = 4
             num2_align = 1
@@ -118,64 +119,68 @@ class Board(gd.BoardGame):
             qm = "?"
 
         question = self.n1s + " " + self.div_sign + " " + self.n2s + " = " + qm
-        #question
-        self.board.add_unit(1,0,data[0]-1-self.sumn1n2sl*2-1-self.n1sl*2 ,2,classes.board.Label,question,self.bg_col,"",21)
+        # question
+        self.board.add_unit(1, 0, data[0] - 1 - self.sumn1n2sl * 2 - 1 - self.n1sl * 2, 2, classes.board.Label,
+                            question, self.bg_col, "", 21)
         self.board.units[-1].align = 1
         self.question = self.board.units[-1]
         j = 0
-        xs = self.data[0]-self.n1sl*2
-        #first number
+        xs = self.data[0] - self.n1sl * 2
+        # first number
         for i in range(self.n1sl):
-            self.board.add_unit(xs+i*2-r_offset,3,2,2,classes.board.Label,self.n1s[i],self.bg_col,"",21)
+            self.board.add_unit(xs + i * 2 - r_offset, 3, 2, 2, classes.board.Label, self.n1s[i], self.bg_col, "", 21)
             self.nums1l.append(self.board.units[-1])
             self.nums1l[-1].font_color = self.grey
             self.nums1l[-1].pos_id = i
             j += 1
 
-       #second number
+            # second number
 
-        self.board.add_unit(data[0]-4-j*2+d_offset,3,3,2,classes.board.Label,self.n2s,self.bg_col,"",21)
+        self.board.add_unit(data[0] - 4 - j * 2 + d_offset, 3, 3, 2, classes.board.Label, self.n2s, self.bg_col, "", 21)
         self.num2 = self.board.units[-1]
         self.num2.align = num2_align
 
+        # line = "―" * (self.n1sl*2)
 
-        #line = "―" * (self.n1sl*2)
-        
-        self.board.add_unit(data[0]-self.n1sl*2-r_offset,2,self.n1sl*2,1,classes.board.Label,"",self.bg_col,"",21)
+        self.board.add_unit(data[0] - self.n1sl * 2 - r_offset, 2, self.n1sl * 2, 1, classes.board.Label, "",
+                            self.bg_col, "", 21)
         self.line_unit = self.board.units[-1]
         self.draw_hori_line(self.line_unit)
-        
-        #self.board.units[-1].text_wrap = False
+
+        # self.board.units[-1].text_wrap = False
         if self.divisor_pos == 0:
-            self.board.add_unit(data[0]-self.n1sl*2-1+ds_offset,2,1,d_h,classes.board.Label,"",self.bg_col,"",21)
+            self.board.add_unit(data[0] - self.n1sl * 2 - 1 + ds_offset, 2, 1, d_h, classes.board.Label, "",
+                                self.bg_col, "", 21)
             self.vert_line = self.board.units[-1]
             self.draw_vert_line(self.vert_line)
         else:
-            self.board.add_unit(data[0]-self.n1sl*2-1+ds_offset,2,1,d_h,classes.board.Label,d_str,self.bg_col,"",21)
-        
+            self.board.add_unit(data[0] - self.n1sl * 2 - 1 + ds_offset, 2, 1, d_h, classes.board.Label, d_str,
+                                self.bg_col, "", 21)
+
         self.division_sign = self.board.units[-1]
 
         self.resl = []
         self.nbel = []
         self.mpll = []
         self.subl = []
-        self.minl = [] # to store minus signs
+        self.minl = []  # to store minus signs
 
         res = [0 for i in range(self.n1sl)]
         nbr = [0 for i in range(self.n1sl)]
         nbe = [0 for i in range(self.n1sl)]
         mpl = [0 for i in range(self.n1sl)]
         sub = [0 for i in range(self.n1sl)]
-        #[res,nbr,mpl,sub,line]
-        yp = [0,3,5,8,7]
+        # [res,nbr,mpl,sub,line]
+        yp = [0, 3, 5, 8, 7]
 
-        xp = [xs,xs,xs+2,xs+2,xs]
+        xp = [xs, xs, xs + 2, xs + 2, xs]
         self.activables = 0
         for i in range(self.n1sl):
             if i > 0:
-                nbr[i] = sub[i-1] * 10 + int(self.n1s[i])
+                nbr[i] = sub[i - 1] * 10 + int(self.n1s[i])
                 nbe[i] = int(self.n1s[i])
-                self.board.add_unit(xp[1]-r_offset,yp[1],2,2,classes.board.Letter,"",self.bg_col,"",21)#str(nbe[i])
+                self.board.add_unit(xp[1] - r_offset, yp[1], 2, 2, classes.board.Letter, "", self.bg_col, "",
+                                    21)  # str(nbe[i])
                 self.nbel.append(self.board.ships[-1])
                 self.nbel[-1].pos_id = i
                 self.activables += 1
@@ -183,7 +188,8 @@ class Board(gd.BoardGame):
                 nbr[i] = int(self.n1s[i])
                 nbe[i] = int(self.n1s[i])
             res[i] = nbr[i] / self.n2
-            self.board.add_unit(xp[0]-r_offset,yp[0],2,2,classes.board.Letter,"",self.bg_col,"",21)#str(res[i])
+            self.board.add_unit(xp[0] - r_offset, yp[0], 2, 2, classes.board.Letter, "", self.bg_col, "",
+                                21)  # str(res[i])
             self.resl.append(self.board.ships[-1])
             self.resl[-1].pos_id = i
             self.activables += 1
@@ -191,11 +197,13 @@ class Board(gd.BoardGame):
             mpl[i] = self.n2 * res[i]
             mpls = str(mpl[i])
             mplsl = len(mpls)
-            self.board.add_unit(xp[2]-mplsl*2 - 2-r_offset,yp[2],2,2,classes.board.Label,"-",self.bg_col,"",21)
+            self.board.add_unit(xp[2] - mplsl * 2 - 2 - r_offset, yp[2], 2, 2, classes.board.Label, "-", self.bg_col,
+                                "", 21)
             self.minl.append(self.board.units[-1])
             self.mpll.append([])
             for j in range(mplsl):
-                self.board.add_unit(xp[2]-mplsl*2 + j*2-r_offset,yp[2],2,2,classes.board.Letter,"",self.bg_col,"",21)#mpls[j]
+                self.board.add_unit(xp[2] - mplsl * 2 + j * 2 - r_offset, yp[2], 2, 2, classes.board.Letter, "",
+                                    self.bg_col, "", 21)  # mpls[j]
                 self.mpll[i].append(self.board.ships[-1])
                 self.mpll[i][-1].pos_id = i
                 self.mpll[i][-1].posy_id = j
@@ -205,37 +213,40 @@ class Board(gd.BoardGame):
             subsl = len(subs)
             self.subl.append([])
             for j in range(subsl):
-                self.board.add_unit(xp[3]-subsl*2 + j*2-r_offset,yp[3],2,2,classes.board.Letter,"",self.bg_col,"",21)#subs[j]
+                self.board.add_unit(xp[3] - subsl * 2 + j * 2 - r_offset, yp[3], 2, 2, classes.board.Letter, "",
+                                    self.bg_col, "", 21)  # subs[j]
                 self.subl[i].append(self.board.ships[-1])
                 self.subl[i][-1].pos_id = i
                 self.subl[i][-1].posy_id = j
                 self.activables += 1
 
-            self.board.add_unit(xp[4]+(2-len(str(nbr[i]))*2)-r_offset,yp[4],len(str(nbr[i]))*2,1,classes.board.Label,"",self.bg_col,"",21)
+            self.board.add_unit(xp[4] + (2 - len(str(nbr[i])) * 2) - r_offset, yp[4], len(str(nbr[i])) * 2, 1,
+                                classes.board.Label, "", self.bg_col, "", 21)
             self.draw_hori_line(self.board.units[-1])
-            #self.board.units[-1].text_wrap = False
+            # self.board.units[-1].text_wrap = False
             for i in range(5):
                 xp[i] += 2
                 if i > 0:
                     yp[i] += 5
 
-        hint_offset = len(self.resl)*2 + 6
-        self.board.add_unit(0,5,data[0]-hint_offset,2,classes.board.Label,"",self.bg_col,"",22)
+        hint_offset = len(self.resl) * 2 + 6
+        self.board.add_unit(0, 5, data[0] - hint_offset, 2, classes.board.Label, "", self.bg_col, "", 22)
         self.hint1 = self.board.units[-1]
         self.hint1.align = 1
 
-        self.board.add_unit(0,7,data[0]-hint_offset,2,classes.board.Label,"",self.bg_col,"",22)
+        self.board.add_unit(0, 7, data[0] - hint_offset, 2, classes.board.Label, "", self.bg_col, "", 22)
         self.hint2 = self.board.units[-1]
         self.hint2.align = 1
 
-        self.board.add_unit(0,9,data[0]-hint_offset,2,classes.board.Label,"",self.bg_col,"",22)
+        self.board.add_unit(0, 9, data[0] - hint_offset, 2, classes.board.Label, "", self.bg_col, "", 22)
         self.hint3 = self.board.units[-1]
         self.hint3.align = 1
 
-        self.board.add_unit(0,15,data[0]-hint_offset,2,classes.board.Letter,self.lang.d["demo start"] ,self.bg_col,"",22)
+        self.board.add_unit(0, 15, data[0] - hint_offset, 2, classes.board.Letter, self.lang.d["demo start"],
+                            self.bg_col, "", 22)
         self.next_step_btn = self.board.ships[-1]
         self.next_step_btn.readable = False
-        self.all_a_count = len(self.board.ships)-1
+        self.all_a_count = len(self.board.ships) - 1
 
         self.home_square = self.board.ships[0]
         self.board.active_ship = self.home_square.unit_id
@@ -252,39 +263,39 @@ class Board(gd.BoardGame):
         self.sub_len = len(sub)
         self.deactivate_colors()
         self.board.units[0].font_color = self.task_str_color
-        self.next_step_btn.font_color = (0,200,0)
+        self.next_step_btn.font_color = (0, 200, 0)
         self.next_step_btn.set_outline(self.bg_col, 1)
 
     def draw_vert_line(self, unit):
-        w = unit.grid_w*self.board.scale
-        h = unit.grid_h*self.board.scale
-        center = [w//2,h//2]
-        
-        canv = pygame.Surface([w, h-1])
+        w = unit.grid_w * self.board.scale
+        h = unit.grid_h * self.board.scale
+        center = [w // 2, h // 2]
+
+        canv = pygame.Surface([w, h - 1])
         canv.fill(self.bg_col)
-        
-        pygame.draw.line(canv,self.grey,(center[0],self.top_line),(center[0],h-self.top_line),3)
-        pygame.draw.line(canv,self.grey,(center[0]-1,self.top_line),(w,self.top_line),3)
-        
-        unit.painting = canv.copy()        
+
+        pygame.draw.line(canv, self.grey, (center[0], self.top_line), (center[0], h - self.top_line), 3)
+        pygame.draw.line(canv, self.grey, (center[0] - 1, self.top_line), (w, self.top_line), 3)
+
+        unit.painting = canv.copy()
         unit.update_me = True
-        
-    def draw_hori_line(self,unit):
-        w = unit.grid_w*self.board.scale
-        h = unit.grid_h*self.board.scale
-        center = [w//2,h//2]
-        
-        canv = pygame.Surface([w, h-1])
+
+    def draw_hori_line(self, unit):
+        w = unit.grid_w * self.board.scale
+        h = unit.grid_h * self.board.scale
+        center = [w // 2, h // 2]
+
+        canv = pygame.Surface([w, h - 1])
         canv.fill(self.bg_col)
-        
-        pygame.draw.line(canv,self.grey,(0,self.top_line),(w,self.top_line),3)
-        unit.painting = canv.copy()        
+
+        pygame.draw.line(canv, self.grey, (0, self.top_line), (w, self.top_line), 3)
+        unit.painting = canv.copy()
         unit.update_me = True
-        
-    def handle(self,event):
-        gd.BoardGame.handle(self, event) #send event handling up
+
+    def handle(self, event):
+        gd.BoardGame.handle(self, event)  # send event handling up
         if self.show_msg == False:
-            if event.type == pygame.KEYDOWN and (event.key == pygame.K_RIGHT or  event.key == pygame.K_LEFT):
+            if event.type == pygame.KEYDOWN and (event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT):
                 self.next_step()
             elif event.type == pygame.MOUSEBUTTONUP:
                 if self.board.active_ship == self.next_step_btn.unit_id:
@@ -297,14 +308,14 @@ class Board(gd.BoardGame):
         self.next_step_btn.value = self.lang.d["demo next step"]
         self.home_sqare_switch(self.current_pos)
         self.current_pos += 1
-        if self.current_pos+1 > self.all_a_count:
+        if self.current_pos + 1 > self.all_a_count:
             self.next_step_btn.value = self.lang.d["demo next eg"]
 
         self.next_step_btn.update_me = True
 
     def home_sqare_switch(self, activate):
 
-        if activate >= 0 and activate < self.activables: #self.sumn1n2sl * 2 - 1:
+        if activate >= 0 and activate < self.activables:  # self.sumn1n2sl * 2 - 1:
             self.board.active_ship = activate
             self.home_square.update_me = True
             if self.board.active_ship >= 0:
@@ -332,11 +343,11 @@ class Board(gd.BoardGame):
             if self.home_square.pos_id == 0:
                 self.nums1l[0].font_color = self.font_hl3
             else:
-                for each in self.subl[self.home_square.pos_id-1]:
+                for each in self.subl[self.home_square.pos_id - 1]:
                     each.font_color = self.font_hl3
                     each.set_outline(self.font_hl3, 1)
-                self.nbel[self.home_square.pos_id-1].font_color = self.font_hl3
-                self.nbel[self.home_square.pos_id-1].set_outline(self.font_hl3, 1)
+                self.nbel[self.home_square.pos_id - 1].font_color = self.font_hl3
+                self.nbel[self.home_square.pos_id - 1].set_outline(self.font_hl3, 1)
             self.num2.font_color = self.font_hl2
             if self.divisor_pos == 1:
                 self.division_sign.font_color = self.font_hl2
@@ -348,11 +359,11 @@ class Board(gd.BoardGame):
                 for e in each:
                     if self.home_square == e:
                         f = True
-                        #it's in this sublist - now highlight entire sublist
+                        # it's in this sublist - now highlight entire sublist
                         for e2 in each:
                             e2.font_color = self.font_hl
                             e2.set_outline(self.font_hl2, 1)
-                        #highlight multiplied numbers
+                        # highlight multiplied numbers
                         self.num2.font_color = self.font_hl2
                         self.resl[self.home_square.pos_id].font_color = self.font_hl3
                         self.resl[self.home_square.pos_id].set_outline(self.font_hl3, 1)
@@ -369,13 +380,13 @@ class Board(gd.BoardGame):
                                 self.mpll[0][0].font_color = self.font_hl2
                                 self.mpll[0][0].set_outline(self.font_hl2, 1)
                             else:
-                                #highlight all previous subtract + dropped number
-                                for e2 in self.subl[self.home_square.pos_id-1]:
+                                # highlight all previous subtract + dropped number
+                                for e2 in self.subl[self.home_square.pos_id - 1]:
                                     e2.font_color = self.font_hl3
                                     e2.set_outline(self.font_hl3, 1)
-                                self.nbel[self.home_square.pos_id-1].font_color = self.font_hl3
-                                self.nbel[self.home_square.pos_id-1].set_outline(self.font_hl3, 1)
-                                #highlight previous multiplication result
+                                self.nbel[self.home_square.pos_id - 1].font_color = self.font_hl3
+                                self.nbel[self.home_square.pos_id - 1].set_outline(self.font_hl3, 1)
+                                # highlight previous multiplication result
                                 for e2 in self.mpll[self.home_square.pos_id]:
                                     e2.font_color = self.font_hl2
                                     e2.set_outline(self.font_hl2, 1)
@@ -405,24 +416,27 @@ class Board(gd.BoardGame):
                 rem = ""
                 if self.sub[self.home_square.pos_id] > 0:
                     if self.lang.ltr_text:
-                        rem =  "(%s %d)" %  (self.lang.d["remainder"], self.sub[self.home_square.pos_id])
+                        rem = "(%s %d)" % (self.lang.d["remainder"], self.sub[self.home_square.pos_id])
                     else:
-                        rem =  "(%d %s)" %  (self.sub[self.home_square.pos_id],self.lang.d["remainder"])
-                self.hint1.value = "%s %s %s = %s %s" % (self.nums1l[0].value, self.div_sign, self.num2.value, str(self.res[0]),rem)
+                        rem = "(%d %s)" % (self.sub[self.home_square.pos_id], self.lang.d["remainder"])
+                self.hint1.value = "%s %s %s = %s %s" % (
+                self.nums1l[0].value, self.div_sign, self.num2.value, str(self.res[0]), rem)
 
             else:
                 rem = ""
-                if self.home_square.pos_id < self.sub_len-1:
+                if self.home_square.pos_id < self.sub_len - 1:
                     if self.sub[self.home_square.pos_id] > 0:
                         if self.lang.ltr_text:
-                            rem =  "(%s %d)" %  (self.lang.d["remainder"], self.sub[self.home_square.pos_id])
+                            rem = "(%s %d)" % (self.lang.d["remainder"], self.sub[self.home_square.pos_id])
                         else:
-                            rem =  "(%d %s)" %  (self.sub[self.home_square.pos_id], self.lang.d["remainder"])
-                self.hint1.value = "%d %s %s = %d %s" % (self.nbr[self.home_square.pos_id], self.div_sign, self.num2.value, self.res[self.home_square.pos_id], rem)
+                            rem = "(%d %s)" % (self.sub[self.home_square.pos_id], self.lang.d["remainder"])
+                self.hint1.value = "%d %s %s = %d %s" % (
+                self.nbr[self.home_square.pos_id], self.div_sign, self.num2.value, self.res[self.home_square.pos_id],
+                rem)
             if self.lang.ltr_text:
                 self.hint2.value = "%s %s" % (self.lang.d["demo write"], self.res[self.home_square.pos_id])
             else:
-                self.hint2.value = "%s %s" % (self.res[self.home_square.pos_id],self.lang.d["demo write"])
+                self.hint2.value = "%s %s" % (self.res[self.home_square.pos_id], self.lang.d["demo write"])
             self.resl[self.home_square.pos_id].value = str(self.res[self.home_square.pos_id])
         elif self.home_square in self.nbel:
             if self.lang.ltr_text:
@@ -430,7 +444,7 @@ class Board(gd.BoardGame):
             else:
                 self.hint2.value = "%s %s" % (self.nums1l[self.home_square.pos_id].value, self.lang.d["demo rewrite"],)
 
-            self.nbel[self.home_square.pos_id-1].value = str(self.nbe[self.home_square.pos_id])
+            self.nbel[self.home_square.pos_id - 1].value = str(self.nbe[self.home_square.pos_id])
         else:
             f = False
             for each in self.mpll:
@@ -438,28 +452,29 @@ class Board(gd.BoardGame):
                     if self.home_square == e:
                         f = True
                         break
-            if not f: #sub
-                self.hint1.value = "%d - %d = %d" % (self.nbr[self.home_square.pos_id], self.mpl[self.home_square.pos_id], self.sub[self.home_square.pos_id])
+            if not f:  # sub
+                self.hint1.value = "%d - %d = %d" % (
+                self.nbr[self.home_square.pos_id], self.mpl[self.home_square.pos_id], self.sub[self.home_square.pos_id])
                 n = str(self.sub[self.home_square.pos_id])[self.home_square.posy_id]
                 self.subl[self.home_square.pos_id][self.home_square.posy_id].value = n
                 if self.lang.ltr_text:
                     self.hint2.value = "%s %s" % (self.lang.d["demo write"], n)
                 else:
-                    self.hint2.value = "%s %s" % (n,self.lang.d["demo write"])
-                if self.home_square.pos_id == self.sub_len-1:
+                    self.hint2.value = "%s %s" % (n, self.lang.d["demo write"])
+                if self.home_square.pos_id == self.sub_len - 1:
                     if self.lang.ltr_text:
                         self.hint3.value = "%s: %d" % (self.lang.d["demo_result"], self.sumn1n2)
                     else:
                         self.hint3.value = "%d :%s" % (self.sumn1n2, self.lang.d["demo_result"])
-
 
                     self.question.value = "%s %s %s = %d" % (self.n1s, self.div_sign, self.n2s, self.sumn1n2)
                     for each in self.resl:
                         each.set_outline(self.bg_col, 1)
                         each.font_color = self.hint3_fcol
 
-            else: #multi
-                self.hint1.value = "%d %s %s = %d" % (self.res[self.home_square.pos_id], "×", self.num2.value, self.mpl[self.home_square.pos_id])
+            else:  # multi
+                self.hint1.value = "%d %s %s = %d" % (
+                self.res[self.home_square.pos_id], "×", self.num2.value, self.mpl[self.home_square.pos_id])
                 n = str(self.mpl[self.home_square.pos_id])[self.home_square.posy_id]
                 self.mpll[self.home_square.pos_id][self.home_square.posy_id].value = n
                 if self.lang.ltr_text:
@@ -467,9 +482,9 @@ class Board(gd.BoardGame):
                 else:
                     self.hint2.value = "%s %s" % (n, self.lang.d["demo write"])
 
-    def update(self,game):
+    def update(self, game):
         game.fill(self.color)
-        gd.BoardGame.update(self, game) #rest of painting done by parent
+        gd.BoardGame.update(self, game)  # rest of painting done by parent
 
     def check_result(self):
         pass

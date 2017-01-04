@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 
-import gettext
 
-#FAO Translators:
-#First of all thank you for your interest in translating this game,
-#I will be grateful if you could share it with the community -
-#if possible please send it back to my email, and I'll add it to the next version.
+# FAO Translators:
+# First of all thank you for your interest in translating this game,
+# I will be grateful if you could share it with the community -
+# if possible please send it back to my email, and I'll add it to the next version.
 
-#The translation does not have to be exact as long as it makes sense and fits in its location
-#(if it doesn't I'll try to either make the font smaller or make the area wider - where possible).
-#The colour names in other languages than English are already in smaller font.
+# The translation does not have to be exact as long as it makes sense and fits in its location
+# (if it doesn't I'll try to either make the font smaller or make the area wider - where possible).
+# The colour names in other languages than English are already in smaller font.
 
-#when translating the "d" dictionary please translate the values
-#and leave keys as they are (the keys are sometimes shortened to save on space)
+# when translating the "d" dictionary please translate the values
+# and leave keys as they are (the keys are sometimes shortened to save on space)
 
 class I18n():
     def __init__(self):
         self.translate()
 
-
     def translate(self):
+        # the following line is added to force the xgettext to add these entries
+        # self.fruit = [gettext.ngettext("green apple","green apples",1), gettext.ngettext("red apple","red apples",1), gettext.ngettext("strawberry","strawberries",1), gettext.ngettext("pear","pears",1), gettext.ngettext("orange","oranges",1), gettext.ngettext("onion","onions",1), gettext.ngettext("tomato","tomatoes",1), gettext.ngettext("lemon","lemons",1), gettext.ngettext("cherry","cherries",1), gettext.ngettext("pepper","peppers",1), gettext.ngettext("carrot","carrots",1), gettext.ngettext("banana","bananas",1), gettext.ngettext("watermelon","watermelons",1)]
 
-        #the following line is added to force the xgettext to add these entries
-        #self.fruit = [gettext.ngettext("green apple","green apples",1), gettext.ngettext("red apple","red apples",1), gettext.ngettext("strawberry","strawberries",1), gettext.ngettext("pear","pears",1), gettext.ngettext("orange","oranges",1), gettext.ngettext("onion","onions",1), gettext.ngettext("tomato","tomatoes",1), gettext.ngettext("lemon","lemons",1), gettext.ngettext("cherry","cherries",1), gettext.ngettext("pepper","peppers",1), gettext.ngettext("carrot","carrots",1), gettext.ngettext("banana","bananas",1), gettext.ngettext("watermelon","watermelons",1)]
-
-        self.shape_names = [_("Equilateral Triangle"), _("Isosceles Triangle"), _("Obtuse Triangle"), _("Right Triangle"), _("Acute Triangle"), _("Square"), _("Rectangle"), _("Right Trapezium"), _("Isosceles Trapezium"), _("Rhombus"), _("Parallelogram"), _("Pentagon"), _("Hexagon"), _("Circle"), _("Ellipse")]
-        self.solid_names = [_("Cube"), _("Square Prism"), _("Triangular Prism"), _("Square Pyramid"), _("Triangular Pyramid"), _("Sphere"), _("Cylinder"), _("Cone"), _("Torus")]
+        self.shape_names = [_("Equilateral Triangle"), _("Isosceles Triangle"), _("Obtuse Triangle"),
+                            _("Right Triangle"), _("Acute Triangle"), _("Square"), _("Rectangle"), _("Right Trapezium"),
+                            _("Isosceles Trapezium"), _("Rhombus"), _("Parallelogram"), _("Pentagon"), _("Hexagon"),
+                            _("Circle"), _("Ellipse")]
+        self.solid_names = [_("Cube"), _("Square Prism"), _("Triangular Prism"), _("Square Pyramid"),
+                            _("Triangular Pyramid"), _("Sphere"), _("Cylinder"), _("Cone"), _("Torus")]
 
         self.d = dict()
         self.dp = dict()
@@ -50,7 +51,6 @@ class I18n():
         self.b["user deleted"] = _("%s deleted from database.")
         self.b["Failed to delete"] = _("Failed to delete the user.")
 
-
         self.b["Preferences"] = _("Preferences")
         self.b["switch to full screen after login"] = _("switch to full screen after login")
         self.b["display languages with uncompleted translations"] = _("display languages with uncompleted translations")
@@ -66,20 +66,28 @@ class I18n():
         self.b["confirm admin's password:"] = _("confirm admin's password:")
         self.b["Save"] = _("Save")
 
-        self.b["Please enter user name (at least 3 characters long)"] = _("Please enter user name (at least 3 characters long)")
-        self.b["Please enter password (at least 4 characters long)"] = _("Please enter password (at least 4 characters long)")
-        self.b["This username and password combination doesn't exist."] = _("This username and password combination doesn't exist.")
+        self.b["Please enter user name (at least 3 characters long)"] = _(
+            "Please enter user name (at least 3 characters long)")
+        self.b["Please enter password (at least 4 characters long)"] = _(
+            "Please enter password (at least 4 characters long)")
+        self.b["This username and password combination doesn't exist."] = _(
+            "This username and password combination doesn't exist.")
         self.b["This username doesn't exist."] = _("This username doesn't exist.")
 
         self.b["Passwords don't match"] = _("Passwords don't match")
         self.b["%s added"] = _("%s added")
-        self.b["This user name already exists, please choose a different one"] = _("This user name already exists, please choose a different one")
+        self.b["This user name already exists, please choose a different one"] = _(
+            "This user name already exists, please choose a different one")
 
         self.b["Admin's password has been updated"] = _("Admin's password has been updated")
-        self.b["ERROR: This operation is not allowed at this point"] = _("ERROR: This operation is not allowed at this point")
-        self.b["Please enter previous password (at least 4 characters long)"] = _("Please enter previous password (at least 4 characters long)")
-        self.b["Please enter new password (at least 4 characters long)"] = _("Please enter new password (at least 4 characters long)")
-        self.b["Previous password doesn't seem to be in the database"] = _("Previous password doesn't seem to be in the database")
+        self.b["ERROR: This operation is not allowed at this point"] = _(
+            "ERROR: This operation is not allowed at this point")
+        self.b["Please enter previous password (at least 4 characters long)"] = _(
+            "Please enter previous password (at least 4 characters long)")
+        self.b["Please enter new password (at least 4 characters long)"] = _(
+            "Please enter new password (at least 4 characters long)")
+        self.b["Previous password doesn't seem to be in the database"] = _(
+            "Previous password doesn't seem to be in the database")
 
         self.b["registered:"] = _("Registered:")
         self.b["last login:"] = _("Last login:")
@@ -99,28 +107,30 @@ class I18n():
         self.b["all groups"] = _("show all")
         self.b["show activities for:"] = _("show activities for:")
 
-        #self.d["Educational Activity Pack for Kids"] = _("Educational Activity Pack for Kids")
-        self.d["Credits_long"] = _("Laby, 2010 by Mehdi Cherti (mehdidc) \n Sounds by various authors who contributed their works to freesound.org. \n Images by various authors who contributed their works to openclipart.org (Public Domain) and http://www.art4apps.org/ - Art4Apps by Smart4Kids - under a Creative Commons License (CC BY-SA). \n Please view credits.txt for more info about authors of media files used in this project")
+        # self.d["Educational Activity Pack for Kids"] = _("Educational Activity Pack for Kids")
+        self.d["Credits_long"] = _(
+            "Laby, 2010 by Mehdi Cherti (mehdidc) \n Sounds by various authors who contributed their works to freesound.org. \n Images by various authors who contributed their works to openclipart.org (Public Domain) and http://www.art4apps.org/ - Art4Apps by Smart4Kids - under a Creative Commons License (CC BY-SA). \n Please view credits.txt for more info about authors of media files used in this project")
         self.d["Lic_title"] = _("Licence")
-        self.d["Lic_desc"] = _("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.")
+        self.d["Lic_desc"] = _(
+            "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.")
         self.d["A little set of educational apps for kids"] = _("A little set of educational apps for kids")
 
         self.d["Logged in as: "] = _("Logged in as: ")
         self.d["(Log out)"] = _("(Log out)")
         self.d["Addition Table"] = _("Addition Table")
 
-        #game start
+        # game start
         self.d["Hello"] = _("Hello")
         self.d["Welcome back."] = _("Welcome back in the game.")
 
-        #settings
-        #self.d["Preferences"] = _("Preferences")
+        # settings
+        # self.d["Preferences"] = _("Preferences")
         self.d["Language"] = _("Language")
         self.d["Translations"] = _("Translations")
-        #self.d["Reader"] = _("eSpeak")
-        #self.d["Read Instructions"] = _("Read Instructions at the start of games")
+        # self.d["Reader"] = _("eSpeak")
+        # self.d["Read Instructions"] = _("Read Instructions at the start of games")
 
-        #menu categories
+        # menu categories
         self.d["Info Category"] = _("Info & Settings")
         self.d["Keyboard & Mouse"] = _("Keyboard & Mouse")
         self.d["Discover Letters"] = _("Discover Letters")
@@ -135,7 +145,7 @@ class I18n():
         self.d["Games & Mazes"] = _("Games & Mazes")
         self.d["Multiplayer"] = _("Multiplayer Games")
 
-        #games
+        # games
         self.d["About."] = _("About.")
         self.d["Game info..."] = _("Game info...")
         self.d["Credits"] = _("Copyright & Credits")
@@ -146,7 +156,7 @@ class I18n():
         self.d["Trace Letters"] = _("Trace Letters and Numbers")
         self.d["Complete the ABC"] = _("Complete the ABC")
         self.d["English"] = _("English")
-        self.d["in your language"] = _("Your language") #_("English 2") #in your Language
+        self.d["in your language"] = _("Your language")  # _("English 2") #in your Language
         self.d["Sorting Letters"] = _("Sorting Letters")
         self.d["Lowercase Letters"] = _("Lowercase Letters")
         self.d["Uppercase Letters"] = _("Uppercase Letters")
@@ -197,7 +207,7 @@ class I18n():
         self.d["Fifteen"] = _("Fifteen")
         self.d["With a Twist"] = _("With a Twist")
 
-        #game instructions
+        # game instructions
         self.d["Drag the slider"] = _("Drag the slider up or down so that the right sign is in the red square.")
         self.d["Take your sheep"] = _("Take your sheep to the rest of the herd.")
         self.d["Check the shopping list"] = _("Check the shopping list and drag all needed items into the basket.")
@@ -210,19 +220,19 @@ class I18n():
         self.d["Re-arrange alphabetical"] = _("Re-arrange the above letters so they are in the alphabetical order.")
         self.d["Re-arrange ascending"] = _("Re-arrange the above numbers so they are in the ascending order.")
 
-        #game dialogs
+        # game dialogs
         self.d["Please try again."] = _("Please try again.")
         self.d["Sorry! It is wrong."] = _("Sorry! It is wrong.")
         self.d["Perfect! Task solved!"] = _("Perfect! Task solved!")
         self.d["work harder"] = _("You need to work a little bit harder next time.")
 
-        #level_controller
+        # level_controller
         self.d["Game Over!"] = _("Game Over!")
         self.d["Congratulations! Game Completed."] = _("Congratulations! You have completed all tasks in this game.")
-        self.d["Great job!"] = [_("Great job!"),_("Perfect!!!"),_("Awesome!"),_("Fantastic job!"),_("Well done!")]
+        self.d["Great job!"] = [_("Great job!"), _("Perfect!!!"), _("Awesome!"), _("Fantastic job!"), _("Well done!")]
         self.d["Perfect! Level completed!"] = _("Perfect! Level completed!")
 
-        #game specific labels:
+        # game specific labels:
         self.d["area:"] = _("area:")
         self.d["perimeter:"] = _("perimeter:")
         self.d["circumference:"] = _("circumference:")
@@ -257,14 +267,14 @@ class I18n():
         self.d["aqua"] = _("aqua")
         self.d["lime"] = _("lime")
 
-        #new
+        # new
         self.d["Keyboard Skills"] = _("Rainbow Keyboard")
         self.d["Touch Typing"] = _("Touch Typing Tutor")
         self.d["Translators"] = _("Translators")
         self.d["English Alphabet"] = _("English Alphabet")
         self.d["Your Alphabet"] = _("Your Alphabet")
 
-        #new in 0.3.0
+        # new in 0.3.0
         self.d["Paint Mixer"] = _("Mixing Colours for Painting")
         self.d["Mixing RYB"] = _("Mix red, yellow, blue, black and white paint")
 
@@ -278,21 +288,20 @@ class I18n():
         self.d["Adjust CMY"] = _("Adjust the amount of cyan, magenta and yellow paint")
         self.d["Adjust RGB"] = _("Adjust the intensity of red, green and blue light")
 
-        #the following is used by colour matching games in spoken hints
-        #ie. "more red, less green, blue is ok")
-        #self.d["more color"] = "more"
-        #self.d["less color"] = "less"
-        #self.d["color is ok"] = "is ok"
+        # the following is used by colour matching games in spoken hints
+        # ie. "more red, less green, blue is ok")
+        # self.d["more color"] = "more"
+        # self.d["less color"] = "less"
+        # self.d["color is ok"] = "is ok"
 
-        #new in 0.3.1
+        # new in 0.3.1
         self.d["brush size"] = _("brush size")
 
-        #new in 0.3.2
+        # new in 0.3.2
         self.d["TicTacToe2"] = _("Noughts and Crosses 2")
         self.d["TicTacToe3"] = _("Noughts and Crosses 3")
 
         self.d["multiline-tictactoe"] = _("Get as many lines of 3 as possible to win")
-
 
         self.d["Player"] = _("Player")
         self.d["Won"] = _("Won")
@@ -313,10 +322,13 @@ class I18n():
         self.d["Percentages"] = _("Percentages")
         self.d["Ratios"] = _("Ratios")
         self.d["Fract instr0"] = _("Match fraction charts on the right to the ones on the left")
-        self.d["Fract instr1"] = _("Match fraction charts and fractions on the right to the fraction charts on the left")
+        self.d["Fract instr1"] = _(
+            "Match fraction charts and fractions on the right to the fraction charts on the left")
         self.d["Fract instr2"] = _("Match fraction charts to the fractions on the left")
-        self.d["Fract instr3"] = _("Match fraction charts, fractions and decimal fractions on the right to their percentage representations")
-        self.d["Fract instr4"] = _("Match charts to the ratios on the left. Ratios are expressed as ratio of coloured pieces to white pieces")
+        self.d["Fract instr3"] = _(
+            "Match fraction charts, fractions and decimal fractions on the right to their percentage representations")
+        self.d["Fract instr4"] = _(
+            "Match charts to the ratios on the left. Ratios are expressed as ratio of coloured pieces to white pieces")
 
         self.d["Maths Matching Game"] = _("Maths Matching Game")
         self.d["Addition"] = _("Addition")
@@ -324,7 +336,8 @@ class I18n():
         self.d["Multiplication"] = _("Multiplication")
         self.d["Division"] = _("Division")
 
-        self.d["Check for newer version..."] = _("Check for newer version, report bugs, discuss, translate or review this project at:")
+        self.d["Check for newer version..."] = _(
+            "Check for newer version, report bugs, discuss, translate or review this project at:")
         self.d["Match numbers to their spelling"] = _("Match numbers to their spelling")
         self.d["Number Spelling"] = _("Number Spelling")
         self.d["Match Animals"] = _("Match Animals")
@@ -334,17 +347,23 @@ class I18n():
         self.d["ShapeMaker"] = _("Shape Maker")
 
         self.d["draw_instr1"] = _("Shape to draw: %s")
-        self.d["draw_instr2"] = _("Shape to draw: %s") #if the following size_instr turn out to be too long the beginning can be moved here, ie. d["draw_instr2"] = _("Shape to draw: %s, such that"
-        self.d["size_instr_0"] = _("such that lengths of its bases are equal to %d and %d and height to %d") #for trapeziums
-        self.d["size_instr_1"] = _("such that lengths of its sides are equal to %d") #square
-        self.d["size_instr_2"] = _("such that lengths of its sides are equal to %d and %d") #rectangle
-        self.d["size_instr_3"] = _("such that lengths of its 2 parallel bases are equal to %d and height to %d") #for parallelogram
-        self.d["size_instr_4"] = _("such that length of its base is equal to %d and height to %d") #for triangles incl. isosceles triangles
-        self.d["size_instr_5"] = _("such that lengths of its catheti are equal to %d and %d") #for right triangles
-        self.d["size_instr_6"] = _("such that lengths of both of its catheti are equal to %d") #for right isosceles triangles
-        self.d["size_instr_7"] = _("such that length of its hypotenuse is equal to %d") #for right isosceles triangles
-        self.d["size_instr_8"] = _("such that length of one of its sides is equal to %d and height to %d") #for obtuse triangles
-        self.d["size_instr_9"] = _("such that length of its radius is equal to %d") #for circles
+        self.d["draw_instr2"] = _(
+            "Shape to draw: %s")  # if the following size_instr turn out to be too long the beginning can be moved here, ie. d["draw_instr2"] = _("Shape to draw: %s, such that"
+        self.d["size_instr_0"] = _(
+            "such that lengths of its bases are equal to %d and %d and height to %d")  # for trapeziums
+        self.d["size_instr_1"] = _("such that lengths of its sides are equal to %d")  # square
+        self.d["size_instr_2"] = _("such that lengths of its sides are equal to %d and %d")  # rectangle
+        self.d["size_instr_3"] = _(
+            "such that lengths of its 2 parallel bases are equal to %d and height to %d")  # for parallelogram
+        self.d["size_instr_4"] = _(
+            "such that length of its base is equal to %d and height to %d")  # for triangles incl. isosceles triangles
+        self.d["size_instr_5"] = _("such that lengths of its catheti are equal to %d and %d")  # for right triangles
+        self.d["size_instr_6"] = _(
+            "such that lengths of both of its catheti are equal to %d")  # for right isosceles triangles
+        self.d["size_instr_7"] = _("such that length of its hypotenuse is equal to %d")  # for right isosceles triangles
+        self.d["size_instr_8"] = _(
+            "such that length of one of its sides is equal to %d and height to %d")  # for obtuse triangles
+        self.d["size_instr_9"] = _("such that length of its radius is equal to %d")  # for circles
 
         """
         self.d["hypotenuse"] = "hypotenuse" #przeciwprostokątna
@@ -362,7 +381,8 @@ class I18n():
         self.d["trapezium"] = _("Trapezium")
         self.d["u_trapezium"] = _("Trapezium ")
         self.d["triangle"] = _("Triangle")
-        self.d["squished_quadi"] = _("Ouch... squished quadrilateral") #used to label a drawn "quadrilateral" with angles: 0º, 180º, 0º, 180º - all points on one line
+        self.d["squished_quadi"] = _(
+            "Ouch... squished quadrilateral")  # used to label a drawn "quadrilateral" with angles: 0º, 180º, 0º, 180º - all points on one line
 
         self.d["equi_tria"] = _("Equilateral Triangle")
         self.d["iso_tria"] = _("Isosceles Triangle")
@@ -372,9 +392,11 @@ class I18n():
         self.d["right_iso_tria"] = _("Right isosceles triangle")
         self.d["obtuse_iso_tria"] = _("Obtuse isosceles triangle")
         self.d["acute_iso_tria"] = _("Acute isosceles triangle")
-        self.d["squished_tria"] = _("Ouch... squished triangle") #used to label a drawn "triangle" with angles: 0º, 180º, 0º - all points on one line
+        self.d["squished_tria"] = _(
+            "Ouch... squished triangle")  # used to label a drawn "triangle" with angles: 0º, 180º, 0º - all points on one line
         self.d["circle"] = _("Circle")
-        self.d["triangle_not_really"] = _("Triangle? Well, not really...") #used to label a drawn "quadrilateral" with one of its angles equal to 180º - in effect making it look like triangle
+        self.d["triangle_not_really"] = _(
+            "Triangle? Well, not really...")  # used to label a drawn "quadrilateral" with one of its angles equal to 180º - in effect making it look like triangle
 
         self.d["test_yourself"] = _("Test yourself")
         self.d["Clock1"] = _("Clock")
@@ -387,8 +409,8 @@ class I18n():
         self.d["close_confirm"] = _("Click again to exit")
         self.d["answer_enter"] = _("Type your answer and hit enter")
 
-        #self.d["enable_untranslated"] = _("FAO: Translators - enable this to show untranslated languages (for testing):")
-        #self.d["Fullscreen:"] = _("Fullscreen:")
+        # self.d["enable_untranslated"] = _("FAO: Translators - enable this to show untranslated languages (for testing):")
+        # self.d["Fullscreen:"] = _("Fullscreen:")
 
         self.d["Time"] = _("Time")
         self.d["Play_w_clock"] = _("Turn the clock hands and see what happens.")
@@ -401,11 +423,13 @@ class I18n():
         self.d["Long multiplication"] = _("Long multiplication")
         self.d["Long division"] = _("Long division")
         self.d["borrow 10"] = _("borrow 10")
-        self.d["carry"] = _("carry") #in columnar addition, ie. in case of 4 + 8 you write 2 under the column and carry 1
+        self.d["carry"] = _(
+            "carry")  # in columnar addition, ie. in case of 4 + 8 you write 2 under the column and carry 1
         self.d["demo start"] = _("Start >>")
         self.d["demo next eg"] = _("Next example >>")
         self.d["demo next step"] = _("Next step >>")
-        self.d["demo write"] = _("write ") #used to show which digit of the result should be entered in a box, ie. "enter 5")
+        self.d["demo write"] = _(
+            "write ")  # used to show which digit of the result should be entered in a box, ie. "enter 5")
         self.d["Demonstration"] = _("Demonstration")
         self.d["DIY"] = _("Do it yourself")
         self.d["Ratio"] = _("Ratio")
@@ -423,14 +447,12 @@ class I18n():
         self.d["more magenta"] = _("Add some magenta")
         self.d["more yellow"] = _("Add some yellow")
 
-
         self.d["less red"] = _("Too much red")
         self.d["less green"] = _("Too much green")
         self.d["less blue"] = _("Too much blue")
         self.d["less cyan"] = _("Too much cyan")
         self.d["less magenta"] = _("Too much magenta")
         self.d["less yellow"] = _("Too much yellow")
-
 
         self.d["red is ok"] = _("red is spot on")
         self.d["green is ok"] = _("green is spot on")
@@ -439,7 +461,8 @@ class I18n():
         self.d["magenta is ok"] = _("magenta is spot on")
         self.d["yellow is ok"] = _("yellow is spot on")
 
-        self.d["art4apps"] = _("Images from: http://www.art4apps.org/ - Art4Apps by Smart4Kids - Creative Commons License (CC BY-SA)")
+        self.d["art4apps"] = _(
+            "Images from: http://www.art4apps.org/ - Art4Apps by Smart4Kids - Creative Commons License (CC BY-SA)")
         self.d["Word Builder - Animals"] = _("Word Builder - Animals")
         self.d["Word Builder - Sports"] = _("Word Builder - Sports")
         self.d["Word Builder - Body"] = _("Word Builder - Body")
@@ -458,10 +481,10 @@ class I18n():
         self.d["Do you want to log out of the game?"] = _("Do you want to log out of the game?")
         self.d["Ready to go to the next level?"] = _("Ready to go to the next level?")
 
-        #New as of pysiogame3
+        # New as of pysiogame3
         self.d["Clock_cat"] = _("Clock")
-        #self.d["Units of Time"] = _("Units of Time")
-        #self.d["Time Calculations"] = _("Time Calculations")
+        # self.d["Units of Time"] = _("Units of Time")
+        # self.d["Time Calculations"] = _("Time Calculations")
 
         self.d["Achievements"] = _("Achievements")
         self.d["Learn to count"] = _("Learn to count")
@@ -477,14 +500,15 @@ class I18n():
         self.d["Nothing here yet..."] = _("Nothing here yet...")
         self.d["Translation Credits"] = _("Translation Credits")
         self.d["Level"] = _("Level")
-        self.d["Build the following word using the letters below."] = _("Build the following word using the letters below.")
+        self.d["Build the following word using the letters below."] = _(
+            "Build the following word using the letters below.")
         self.d["Find solution"] = _("Find solution")
         self.d["Find missing number"] = _("Find missing number")
         self.d["Language arts"] = _("Language arts")
         self.d["Other"] = _("Other")
 
-        self.d["please install espeak"] = _("You may like to install espeak to use its text to speech functionality, however this is not required to successfully use the game: \nhttp://espeak.sourceforge.net/")
-
+        self.d["please install espeak"] = _(
+            "You may like to install espeak to use its text to speech functionality, however this is not required to successfully use the game: \nhttp://espeak.sourceforge.net/")
 
         """
         self.d["a4a_animals"] = [_("cow"), _("turkey"), _("shrimp"), _("wolf"), _("panther"), _("panda"), _("magpie"), _("clam"), _("pony"), _("mouse"), _("pug"), _("koala"), _("frog"), _("ladybug"), _("gorilla"), _("llama"), _("vulture"), _("hamster"), _("bird"), _("starfish"), _("crow"), _("parakeet"), _("caterpillar"), _("tiger"), _("hummingbird"), _("piranha"), _("pig"), _("scorpion"), _("fox"), _("leopard"), _("iguana"), _("dolphin"), _("bat"), _("chick"), _("crab"), _("hen"), _("wasp"), _("chameleon"), _("whale"), _("hedgehog"), _("fawn"), _("moose"), _("bee"), _("viper"), _("shrike"), _("donkey"), _("guinea pig"), _("sloth"), _("horse"), _("penguin"), _("otter"), _("bear"), _("zebra"), _("ostrich"), _("camel"), _("antelope"), _("lemur"), _("pigeon"), _("lama"), _("mole"), _("ray"), _("ram"), _("skunk"), _("jellyfish"), _("sheep"), _("shark"), _("kitten"), _("deer"), _("snail"), _("flamingo"), _("rabbit"), _("oyster"), _("beaver"), _("sparrow"), _("dove"), _("eagle"), _("beetle"), _("hippopotamus"), _("owl"), _("cobra"), _("salamander"), _("goose"), _("kangaroo"), _("dragonfly"), _("toad"), _("pelican"), _("squid"), _("lion cub"), _("jaguar"), _("duck"), _("lizard"), _("rhinoceros"), _("hyena"), _("ox"), _("peacock"), _("parrot"), _("elk"), _("alligator"), _("ant"), _("goat"), _("baby rabbit"), _("lion"), _("squirrel"), _("opossum"), _("chimp"), _("doe"), _("gopher"), _("elephant"), _("giraffe"), _("spider"), _("puppy"), _("jay"), _("seal"), _("rooster"), _("turtle"), _("bull"), _("cat"), _("lamb"), _("rat"), _("slug"), _("buffalo"), _("blackbird"), _("swan"), _("lobster"), _("dog"), _("mosquito"), _("snake"), _("chicken"), _("anteater")]

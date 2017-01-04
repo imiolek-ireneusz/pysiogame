@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import os
+import platform
+import signal
+import subprocess
 import sys
 import threading
-import os, platform
-import subprocess
-import signal
+
 import classes.extras as ex
+
 
 class Speaker(threading.Thread):
     def __init__(self, lang, configo):
@@ -23,11 +26,11 @@ class Speaker(threading.Thread):
 
     def start_server(self):
         if self.enabled and self.lang.voice is not None:
-            #voices = ["-s 190 -a 100 -p 75 -ven+m1 ", "-s 170 -a 100 -p 80 -ven+m2 ","-s 175 -a 100 -p 80 -ven+m3 ","-s 190 -a 100 -p 60 -ven+f1 ","-s 170 -a 100 -p 75 -ven+f2 ","-s 170 -a 100 -p 80 -ven+m2 "]
+            # voices = ["-s 190 -a 100 -p 75 -ven+m1 ", "-s 170 -a 100 -p 80 -ven+m2 ","-s 175 -a 100 -p 80 -ven+m3 ","-s 190 -a 100 -p 60 -ven+f1 ","-s 170 -a 100 -p 75 -ven+f2 ","-s 170 -a 100 -p 80 -ven+m2 "]
             cmd = ['espeak']
             cmd.extend(self.lang.voice)
             try:
-                #IS_WIN32 = 'win32' in str(sys.platform).lower() #maybe sys.platform is more secure
+                # IS_WIN32 = 'win32' in str(sys.platform).lower() #maybe sys.platform is more secure
                 is_win = platform.system() == "Windows"
                 if is_win:
                     startupinfo = subprocess.STARTUPINFO()
@@ -35,19 +38,22 @@ class Speaker(threading.Thread):
                     startupinfo.wShowWindow = subprocess.SW_HIDE
                     kwargs = {}
                     kwargs['startupinfo'] = startupinfo
-                    #self.process = subprocess.Popen(cmd, shell=True, bufsize=0, close_fds=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, **kwargs)
-                    self.process = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, startupinfo=startupinfo)
+                    # self.process = subprocess.Popen(cmd, shell=True, bufsize=0, close_fds=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, **kwargs)
+                    self.process = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                                    stderr=subprocess.PIPE, startupinfo=startupinfo)
                 else:
-                    self.process = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    self.process = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                                    stderr=subprocess.PIPE)
 
-                #self.process = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                # self.process = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 self.started = True
 
             except:
                 self.enabled = False
                 self.started = False
-                print("pySioGame: You may like to install espeak to get some extra functionality, however this is not required to successfully use the game.")
-            #stdout and stderr only used to hide the messages from terminal
+                print(
+                "pySioGame: You may like to install espeak to get some extra functionality, however this is not required to successfully use the game.")
+                # stdout and stderr only used to hide the messages from terminal
         else:
             self.process = None
 
@@ -55,10 +61,10 @@ class Speaker(threading.Thread):
         if self.started:
             self.stop_server()
         self.start_server()
-        
+
     def run(self):
         pass
-        
+
     def stop_server(self):
         if self.enabled and self.started and self.process is not None:
             self.process.stdin.close()
@@ -69,7 +75,7 @@ class Speaker(threading.Thread):
             except OSError:
                 print("Error killing the espeak process")
 
-    def say(self,text,voice=1):
+    def say(self, text, voice=1):
         if self.enabled and self.talkative and self.lang.voice is not None:
             text = self.check_letter_name(text)
             text = text + "\n"
@@ -77,14 +83,14 @@ class Speaker(threading.Thread):
                 text = text.encode("utf-8")
             except:
                 pass
-                
+
             try:
                 self.process.stdin.write(text)
                 self.process.stdin.flush()
             except:
                 pass
-            
-    def check_letter_name(self,text):
+
+    def check_letter_name(self, text):
         if sys.version_info < (3, 0):
             try:
                 val = ex.unival(text)
@@ -97,7 +103,7 @@ class Speaker(threading.Thread):
                         text = self.lang.letter_names[i]
                         break
         else:
-            if len(text) == 1 and len(self.lang.letter_names)>0:
+            if len(text) == 1 and len(self.lang.letter_names) > 0:
                 t = text.lower()
                 for i in range(len(self.lang.alphabet_lc)):
                     if t == self.lang.alphabet_lc[i]:
