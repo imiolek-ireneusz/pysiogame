@@ -60,8 +60,8 @@ class Board(gd.BoardGame):
         self.layout.update_layout(data[0], data[1])
         self.board.level_start(data[0], data[1], self.layout.scale)
 
-        s = random.randrange(5, 20)
-        v = random.randrange(240, 250)
+        s = 20
+        v = 255
         h = random.randrange(0, 255)
         self.line_col = (0, 0, 0)
         if self.mainloop.scheme is None:
@@ -79,12 +79,16 @@ class Board(gd.BoardGame):
         end_at = start_from + data[2]
         j = 1
         for i in range(start_from, end_at):
-            s = random.randrange(180, 250, 5)
-            v = random.randrange(180, 250, 5)
-            color = ex.hsv_to_rgb(h + (i - start_from) * data[5], s, v)
-            self.colors.append(color)
+            s = 100
+            v = 255
+            hx = h + (i - start_from) * data[5]
+            color = ex.hsv_to_rgb(hx, s, v)
+            color2 = ex.hsv_to_rgb(hx, 255, 200)
+            self.colors.append(color2)
             self.board.add_unit(0, i, 1, 1, classes.board.Label, str(j), color, "", 3)
+            self.board.units[-1].font_color = ex.hsv_to_rgb(hx, 255, 140)
             self.board.add_unit(data[0] - 1, i, 1, 1, classes.board.Letter, str(j), color, "", 3)
+            self.board.ships[-1].font_color = ex.hsv_to_rgb(hx, 255, 140)
             self.board.ships[-1].highlight = False
             self.board.ships[-1].outline_highlight = True
 

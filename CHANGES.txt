@@ -3,6 +3,7 @@ pySioGame - 3.70.1xx:
     - changed the way the objects can be dragged around in most games where movement constrained to the grid was not beneficial, now items can be dragged freely around the play area and only snap to grid on button release - this will contribute to decreasing of frustration especially for new users.
     - the previous change forced another feature - the images and objects that support the new style of movement and can be dragged over other items had to be changed to images with transparent backgrounds that are taking up more space - in effect causing an increase of the size of the package.
     - Spanish translation fixed
+    - a number of cosmetic changes to the colours of objects in order to unify the colour scheme of the games
 pySioGame - 3.61.120:
     - updated Greek translation by Alexandros Moskofidis
     - minor bug fixes

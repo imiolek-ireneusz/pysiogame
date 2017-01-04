@@ -76,6 +76,7 @@ class Board(gd.BoardGame):
         self.board.units[-1].is_door = False
 
         self.board.add_unit(data[0] - 7, 0, 7, 1, classes.board.Label, self.d["Shopping List"], white, "", data[4] + 1)
+        self.board.units[-1].font_color = font_color
         f_end = ".png"
         items = ["fr_apple1", "fr_apple2", "fr_strawberry", "fr_pear", "fr_orange", "fr_onion", "fr_tomato", "fr_lemon",
                  "fr_cherry", "fr_pepper", "fr_carrot", "fr_banana", "fr_wmelon"]
@@ -129,9 +130,11 @@ class Board(gd.BoardGame):
                 caption = ""
             self.board.add_unit(l[0], i + 1, 1, 1, classes.board.Label, str(self.chosen_items[1][i]) + " ", white, "",
                                 data[4])
+            self.board.units[-1].font_color = font_color
             self.board.add_unit(l[1], i + 1, 1, 1, classes.board.ImgShip, "", (0, 0, 0, 0),
                                 os.path.join("fr", items[ind] + f_end), data[4], alpha=True)
             self.board.add_unit(l[2], i + 1, 5, 1, classes.board.Label, caption, white, "", data[4])
+            self.board.units[-1].font_color = font_color
             self.board.ships[i].immobilize()
             self.board.ships[i].outline = False
             if self.lang.ltr_text:

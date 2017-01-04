@@ -27,7 +27,7 @@ class Board(gd.BoardGame):
         v = random.randrange(150, 205, 5)
         h = random.randrange(0, 255, 5)
         letter_bg = (255, 255, 255)
-        letter_font_color = (0, 0, 0)
+        letter_font_color = ex.hsv_to_rgb(h, 255, 140)
         bug_img = "bug_32.png"
         bug2_img = "bug2_32.png"
         if self.mainloop.scheme is not None:
@@ -43,7 +43,9 @@ class Board(gd.BoardGame):
         color = ex.hsv_to_rgb(h, s, v)
         color1 = ex.hsv_to_rgb(h, 40, 230)  # label
         color2 = ex.hsv_to_rgb(h, 150, 230)  # completed
-        color3 = ex.hsv_to_rgb(h, 255, 230)  # current
+        color3 = ex.hsv_to_rgb(h, 255, 150)  # current
+        self.font_color = ex.hsv_to_rgb(h, 255, 140)
+        self.font_color_current = ex.hsv_to_rgb(h, 155, 255)
         self.clr = [color1, color2, color3]
 
         if self.level.lvl == 1:  # img_ 32x32
@@ -98,10 +100,13 @@ class Board(gd.BoardGame):
         for i in range(self.word_len):
             if i == 0:
                 colr = color3
+                fc = self.font_color_current
             else:
                 colr = color1
+                fc = self.font_color
             self.board.add_unit(x + i, midscreen, 1, 1, classes.board.Label, self.word[i], colr, "", 1)
             self.board.units[i].set_outline(0, 3)
+            self.board.units[i].font_color = fc
         avail = [[[], []], [[], []]]
         for j in range(data[1]):
             for i in range(data[0]):
@@ -189,6 +194,8 @@ class Board(gd.BoardGame):
                         self.board.units[rem - 1].color = self.clr[1]
                         self.board.units[rem].set_outline(0, 3)
                         self.board.units[rem - 1].set_outline(0, 1)
+                        self.board.units[rem].font_color = self.font_color_current
+                        self.board.units[rem - 1].font_color = self.font_color
                         self.board.units[rem].update_me = True
                         self.board.units[rem - 1].update_me = True
 

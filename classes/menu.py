@@ -1017,7 +1017,7 @@ class Menu:
         # if self.mainloop.lang.lang in ['en_gb','en_us','el','ru']:
         self.add_game(5, c_id, 0, 1, game017.Board, self.lang.d["Your Alphabet"], self.lang.d["Letter Flashcards"],
                       "ico_g_0100%s.png" % self.lang.ico_suffix)
-        if self.mainloop.lang.lang == "en":
+        if self.mainloop.lang.lang[0:2] == "en":
             self.add_game(4, c_id, 0, 1, game037.Board, self.lang.d["English Alphabet"],
                           self.lang.d["Letter Flashcards"], "ico_g_0101.png")
 

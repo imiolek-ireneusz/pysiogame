@@ -18,8 +18,8 @@ class Board(gd.BoardGame):
         self.board.draw_grid = False
         self.vis_buttons = [1, 1, 1, 1, 1, 1, 1, 0, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
-        s = random.randrange(30, 80)
-        v = random.randrange(200, 255)
+        s = 100
+        v = 255
         h = random.randrange(0, 255)
         color1 = ex.hsv_to_rgb(h, s, v)
         color2 = ex.hsv_to_rgb(h, 150, v)

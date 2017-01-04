@@ -24,7 +24,7 @@ class Board(gd.BoardGame):
         self.vis_buttons = [1, 1, 1, 1, 1, 1, 1, 1, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
         s = random.randrange(190, 225)
-        v = random.randrange(230, 255)
+        v = 255  # random.randrange(230, 255)
         h = random.randrange(0, 255)
         color0 = ex.hsv_to_rgb(h, 40, 230)  # highlight 1
         font_color = ex.hsv_to_rgb(h, 255, 140)
@@ -140,7 +140,7 @@ class Board(gd.BoardGame):
         y2 = 2
         j = 0
         h_step = 255 // self.alphabet_len
-
+        s = 100
         for i in range(self.alphabet_len):
             picked = False
             if i in lowered:
@@ -172,12 +172,14 @@ class Board(gd.BoardGame):
                 self.board.add_unit(xj, y2, 1, 1, classes.board.Letter, caption, number_color, "", 0)
                 self.board.add_door(x, y, 1, 1, classes.board.Door, "", color, "")
                 self.board.units[j].door_outline = True
-                self.board.ships[i].highlight = False
+                #self.board.ships[i].highlight = False
                 self.board.ships[i].outline_highlight = True
+                self.board.ships[i].font_color = ex.hsv_to_rgb(h, 255, 140)
                 j += 1
             else:
                 caption = self.word[i]
                 self.board.add_unit(x, y, 1, 1, classes.board.Letter, caption, number_color, "", 0)
+                self.board.ships[i].font_color = ex.hsv_to_rgb(h, 255, 140)
                 self.board.ships[i].immobilize()
             x += 1
             if x >= data[0]:

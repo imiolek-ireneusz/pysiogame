@@ -19,8 +19,8 @@ class Board(gd.BoardGame):
         self.allow_teleport = False
         self.vis_buttons = [1, 1, 1, 1, 1, 1, 1, 1, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
-        s = random.randrange(150, 190, 5)
-        v = random.randrange(230, 255, 5)
+        s = 100  # random.randrange(150, 190, 5)
+        v = 255  # random.randrange(230, 255, 5)
         h = random.randrange(0, 255, 5)
         color0 = ex.hsv_to_rgb(h, 40, 230)
         font_color = ex.hsv_to_rgb(h, 255, 140)
@@ -93,6 +93,7 @@ class Board(gd.BoardGame):
             x2 = xd + i * 2 - 1
             caption = str(self.num_list[i])
             self.board.add_unit(x2, 1, 1, 1, classes.board.Label, caption, number_color, "", data[5])
+            self.board.units[i].font_color = ex.hsv_to_rgb(h, 255, 140)
             self.solution_grid[x2] = 1
             self.expression[x2] = str(self.num_list[i])
             if i < data[4] - 1:
@@ -100,16 +101,22 @@ class Board(gd.BoardGame):
                 self.expression[x2 + 1] = self.sign_list[i]
 
         self.board.add_unit(x2 + 1, 1, 1, 1, classes.board.Label, "=", number_color, "", data[5])
+        self.board.units[-1].font_color = ex.hsv_to_rgb(h, 255, 140)
         self.board.add_unit(x2 + 2, 1, 1, 1, classes.board.Label, str(self.total), number_color, "", data[5])
+        self.board.units[-1].font_color = ex.hsv_to_rgb(h, 255, 140)
         # signs = ["<","=",">"]*(data[4]-1)
 
-        h = random.randrange(0, 255, 5)
+        if h > 125:
+            h = random.randrange(0, h - 25, 5)
+        else:
+            h = random.randrange(h + 25, 255, 5)
         number_color = ex.hsv_to_rgb(h, s, v)  # highlight 1
 
         indu = len(self.board.units)
         inds = len(self.board.ships)
         for i in range(0, data[4] - 1):
             self.board.add_unit(xd + i * 2 + 1 - 1, 0, 1, 2, classes.board.Letter, signs, number_color, "", data[5])
+            self.board.ships[i].font_color = ex.hsv_to_rgb(h, 255, 140)
             self.board.add_door(xd + i * 2 + 1 - 1, 1, 1, 1, classes.board.Door, "", color, "")
             self.board.units[indu + i].door_outline = True
             self.board.ships[inds + i].readable = False

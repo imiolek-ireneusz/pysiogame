@@ -21,12 +21,13 @@ class Board(gd.BoardGame):
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
 
         self.board.draw_grid = False
-        s = random.randrange(150, 190, 5)
-        v = random.randrange(230, 255, 5)
+        s = 100
+        v = 255
         h = random.randrange(0, 255, 5)
         white = (255, 255, 255)
         if self.mainloop.scheme is None:
             color0 = ex.hsv_to_rgb(h, 40, 230)  # highlight 1
+            instr_font_col = ex.hsv_to_rgb(h, 255, 140)
             font_col = (0, 0, 0)
         else:
             font_col = self.mainloop.scheme.u_font_color
@@ -35,6 +36,7 @@ class Board(gd.BoardGame):
                 color0 = (0, 0, 10)
             else:
                 color0 = (254, 254, 255)
+            instr_font_col = font_col
         # setting level variable
         # data = [x_count, y_count, number_count, top_limit, ordered]
         if self.level.lvl == 1:
@@ -117,8 +119,13 @@ class Board(gd.BoardGame):
                 number_color = color0
             caption = str(self.shuffled[i])
             self.board.add_unit(x, y, 1, 1, classes.board.Letter, caption, number_color, "", 2)
+
             self.board.ships[-1].readable = False
-            self.board.ships[-1].font_color = font_col
+            if self.mainloop.scheme is None:
+                self.board.ships[-1].font_color = ex.hsv_to_rgb(h, 255, 140)
+            else:
+                self.board.ships[-1].font_color = font_col
+
             line.append(i)
             x += 1
             if x >= w2 + data[3] or i == data[2] - 1:
@@ -130,9 +137,10 @@ class Board(gd.BoardGame):
             self.outline_all(font_col, 1)
         instruction = self.d["Re-arrange right"]
         self.board.add_unit(0, data[1] - 1, data[0], 1, classes.board.Letter, instruction, color0, "", 5)  # bottom 2
+        self.board.ships[-1].font_color = instr_font_col
         self.board.ships[-1].immobilize()
-        if self.mainloop.scheme is not None:
-            self.board.ships[-1].font_color = self.mainloop.scheme.u_font_color
+        # if self.mainloop.scheme is not None:
+        #    self.board.ships[-1].font_color = self.mainloop.scheme.u_font_color
 
         self.board.ships[-1].speaker_val = self.dp["Re-arrange right"]
         self.board.ships[-1].speaker_val_update = False

@@ -31,6 +31,7 @@ class Board(gd.BoardGame):
         v = random.randrange(200, 255)
         h = random.randrange(0, 255)
         letter_color = ex.hsv_to_rgb(h, s, v)
+        font_color = ex.hsv_to_rgb(h, 255, 140)
         if self.mainloop.scheme is not None:
             self.bg_color = self.mainloop.scheme.u_color
             color = self.mainloop.scheme.u_color
@@ -151,6 +152,7 @@ class Board(gd.BoardGame):
 
         for each in self.board.ships:
             each.outline = False
+            each.font_color = font_color
             each.immobilize()
 
         self.canvas = pygame.Surface(

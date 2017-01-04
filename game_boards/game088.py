@@ -14,7 +14,7 @@ import classes.level_controller as lc
 # this would be much simpler with python3 only, but not everything in this world is simple...
 
 class Key(pygame.sprite.Sprite):
-    def __init__(self, kbrd, data_list, init_color, highlight_color):
+    def __init__(self, kbrd, data_list, init_color, highlight_color, font_color, font_highlight_color):
         # data_list = [x, y, w, h, top_left, bottom_left, middle, letter, right_top, right_bottom,color_group]
         pygame.sprite.Sprite.__init__(self)
         self.kbrd = kbrd
@@ -29,6 +29,8 @@ class Key(pygame.sprite.Sprite):
         self.color = init_color
         self.init_color = init_color
         self.highlight_color = highlight_color
+        self.font_color = font_color
+        self.font_highlight_color = font_highlight_color
         hsv = ex.rgb_to_hsv(highlight_color[0], highlight_color[1], highlight_color[2])
         self.outline_color = ex.hsv_to_rgb(hsv[0], hsv[1], hsv[2] - 50)
         self.font_1 = self.kbrd.kbrd_font[0]
@@ -70,11 +72,11 @@ class Key(pygame.sprite.Sprite):
             if len(val[i]) > 0:
                 if self.id < 64:
                     if i == 3:
-                        text = self.font_1.render("%s" % (val[i]), 1, ((0, 0, 0)))
+                        text = self.font_1.render("%s" % (val[i]), 1, self.font_color)
                         font_x = 4
                         font_y = 0
                     elif i < 3:
-                        text = self.font_2.render("%s" % (val[i]), 1, ((0, 0, 0)))
+                        text = self.font_2.render("%s" % (val[i]), 1, self.font_color)
                         if i == 0:
                             font_x = 4
                             font_y = 0
@@ -94,7 +96,7 @@ class Key(pygame.sprite.Sprite):
                             font_x = self.w - self.font_2.size(val[i])[0] - 4
                             font_y = self.h - self.font_2.size(val[i])[1] - 2
                 else:
-                    text = self.font_2.render("%s" % (val[i]), 1, ((0, 0, 0)))
+                    text = self.font_2.render("%s" % (val[i]), 1, self.font_color)
                     font_x = ((self.w - self.font_2.size(val[i])[0]) // 2)
                     font_y = ((self.h - self.font_2.size(val[i])[1]) // 2)
 
@@ -266,21 +268,35 @@ class KeyBoard:
 
         self.highlighted = hl_ids[:]
 
-    def add_key(self, data_list, init_color, highlight_color):
-        new_key = Key(self, data_list, init_color, highlight_color)
+    def add_key(self, data_list, init_color, highlight_color, font_color, font_highlight_color):
+        new_key = Key(self, data_list, init_color, highlight_color, font_color, font_highlight_color)
         self.keys.append(new_key)
         self.keys_list.add(new_key)
 
     def add_keys(self):
-        # colors = [[249,91,91],[249,210,91],[169,249,91],[91,249,132],[91,249,249],[91,113,249],[188,91,249],[249,91,147],[249,219,180],[186,186,186]]
-        colors = [[255, 150, 150], [255, 229, 150], [202, 255, 150], [150, 255, 185], [150, 255, 255], [150, 165, 255],
-                  [214, 150, 255], [255, 150, 187], [249, 219, 180], [186, 186, 186]]
-        highlight_colors = [[255, 0, 0], [255, 192, 0], [127, 255, 0], [0, 255, 67], [0, 255, 255], [0, 37, 255],
-                            [156, 0, 255], [255, 0, 85], [255, 157, 29], [206, 206, 206]]
+        colors = [ex.hsv_to_rgb(0, 100, 255), ex.hsv_to_rgb(35, 100, 255), ex.hsv_to_rgb(35 * 2, 100, 255),
+                  ex.hsv_to_rgb(35 * 3, 100, 255), ex.hsv_to_rgb(35 * 4, 100, 255), ex.hsv_to_rgb(35 * 5, 100, 255),
+                  ex.hsv_to_rgb(35 * 6, 100, 255), ex.hsv_to_rgb(35 * 7, 100, 255), ex.hsv_to_rgb(25, 100, 255),
+                  [186, 186, 186]]
+        highlight_colors = [ex.hsv_to_rgb(0, 170, 255), ex.hsv_to_rgb(35, 170, 255), ex.hsv_to_rgb(35 * 2, 170, 255),
+                            ex.hsv_to_rgb(35 * 3, 170, 255), ex.hsv_to_rgb(35 * 4, 170, 255),
+                            ex.hsv_to_rgb(35 * 5, 170, 255), ex.hsv_to_rgb(35 * 6, 170, 255),
+                            ex.hsv_to_rgb(35 * 7, 170, 255), ex.hsv_to_rgb(25, 170, 255), [106, 106, 106]]
+        font_colors = [ex.hsv_to_rgb(0, 255, 140), ex.hsv_to_rgb(35, 255, 140), ex.hsv_to_rgb(35 * 2, 255, 140),
+                       ex.hsv_to_rgb(35 * 3, 255, 140), ex.hsv_to_rgb(35 * 4, 255, 140),
+                       ex.hsv_to_rgb(35 * 5, 255, 140), ex.hsv_to_rgb(35 * 6, 255, 140),
+                       ex.hsv_to_rgb(35 * 7, 255, 140), ex.hsv_to_rgb(25, 255, 140), [16, 16, 16]]
+        font_highlight_colors = [ex.hsv_to_rgb(0, 255, 140), ex.hsv_to_rgb(35, 255, 140),
+                                 ex.hsv_to_rgb(35 * 2, 255, 140), ex.hsv_to_rgb(35 * 3, 255, 140),
+                                 ex.hsv_to_rgb(35 * 4, 255, 140), ex.hsv_to_rgb(35 * 5, 255, 140),
+                                 ex.hsv_to_rgb(35 * 6, 255, 140), ex.hsv_to_rgb(35 * 7, 255, 140),
+                                 ex.hsv_to_rgb(25, 255, 140), [0, 0, 0]]
+
         keys = self.game_board.lang.kbrd.kbrd_keys
         for each in keys:
             # self.add_key(x, y, w, h, top_left, bottom_left, middle, letter, init_color, highlight_color)
-            self.add_key(each, colors[each[10]], highlight_colors[each[10]])
+            self.add_key(each, colors[each[10]], highlight_colors[each[10]], font_colors[each[10]],
+                         font_highlight_colors[each[10]])
         self.kbrd_h = self.keys[61].y + self.keys[61].h
 
     def scale_img(self, img, new_w, new_h):

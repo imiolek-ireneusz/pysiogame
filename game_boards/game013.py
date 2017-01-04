@@ -20,9 +20,11 @@ class Board(gd.BoardGame):
         self.vis_buttons = [1, 1, 1, 1, 1, 1, 1, 0, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
         # create non-movable objects
-        s = random.randrange(190, 225)
-        v = random.randrange(230, 255)
-        h = random.randrange(0, 255)
+        s = 100
+        v = 255
+        h = random.randrange(0, 225)
+
+        font_color = ex.hsv_to_rgb(h, 255, 140)
         if self.mainloop.scheme is not None:
             color0 = self.mainloop.scheme.u_color
         else:
@@ -100,6 +102,7 @@ class Board(gd.BoardGame):
                 number_color = ex.hsv_to_rgb(h, s, v)  # highlight 1
             caption = shuffled[i]
             self.board.add_unit(x, y, 1, 1, classes.board.Letter, caption, number_color, "", 1)
+            self.board.ships[-1].font_color = ex.hsv_to_rgb(h, 255, 140)
             x += 1
             if x >= data[0]:
                 x = 0

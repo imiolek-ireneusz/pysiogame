@@ -99,6 +99,7 @@ class Level:
             self.game_board.say(tts, 6)
         self.dialog_type = 1
         self.game_step -= 1
+        self.completed_time = time.time()
         self.game_board.show_msg = True
         self.game_board.mainloop.redraw_needed[0] = True
 

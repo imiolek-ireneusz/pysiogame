@@ -267,7 +267,7 @@ class Unit(pygame.sprite.Sprite):
         if self.highlight:
             color = [each / 255.0 for each in self.initcolor]
             hsv = colorsys.rgb_to_hsv(color[0], color[1], color[2])
-            rgb = colorsys.hsv_to_rgb(hsv[0], 1, 1)
+            rgb = colorsys.hsv_to_rgb(hsv[0], 0.2, 1)
             return [int(each * 255) for each in rgb]
         else:
             return self.initcolor

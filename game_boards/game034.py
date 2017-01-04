@@ -20,25 +20,27 @@ class Board(gd.BoardGame):
         self.vis_buttons = [1, 1, 1, 1, 1, 1, 1, 0, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
         if self.mainloop.scheme is None:
-            s = random.randrange(150, 225, 5)
-            v = random.randrange(190, 225, 5)
+            s = 100
+            v = 255
             h = random.randrange(0, 255, 5)
-            color0 = ex.hsv_to_rgb(h, 40, 230)  # highlight 1
+            color0 = ex.hsv_to_rgb(h, 40, 255)  # highlight 1
             color1 = ex.hsv_to_rgb(h, 70, v)  # highlight 2
             color2 = ex.hsv_to_rgb(h, s, v)  # normal color
             color3 = ex.hsv_to_rgb(h, 230, 100)
             task_bg_color = (255, 255, 255)
+            font_color = ex.hsv_to_rgb(h, 255, 140)
             task_font_color = (0, 0, 0)
         else:
             s = 150
             v = 225
             h = 170
-            color0 = ex.hsv_to_rgb(h, 40, 230)  # highlight 1
+            color0 = ex.hsv_to_rgb(h, 40, 255)  # highlight 1
             color1 = ex.hsv_to_rgb(h, 70, v)  # highlight 2
             color2 = ex.hsv_to_rgb(h, s, v)  # normal color
             color3 = ex.hsv_to_rgb(h, 230, 100)
             task_bg_color = self.mainloop.scheme.u_color
             task_font_color = self.mainloop.scheme.u_font_color
+            font_color = self.mainloop.scheme.u_font_color
         white = (255, 255, 255)
 
         # data = [x_count, y_count, range_from, range_to, max_sum_range, image]
@@ -56,7 +58,7 @@ class Board(gd.BoardGame):
             color1 = color2 = color0
         elif self.level.lvl == 5:
             data = [23, 9]
-            color2 = color1 = color0 = (0, 0, 0)
+            color2 = color1 = color0 = font_color
             color3 = (40, 40, 40)
             self.points = 2
         self.data = data
@@ -84,15 +86,16 @@ class Board(gd.BoardGame):
                 unique.add(mul)
                 caption = str(mul)
                 self.board.add_unit(i - 1, j - 1, 1, 1, classes.board.Label, caption, color, "", 2)
+                self.board.units[-1].font_color = font_color
         self.board.add_unit(9, 0, 1, 9, classes.board.Obstacle, "", color3)
         unique = sorted(unique)
         # draw outline with selectable numbers
         self.multi = dict()
         if self.mainloop.scheme is None:
-            s = 180
+            s = 140
         else:
             s = 80
-        v = 240
+        v = 255
         h = 7
 
         x = 11
@@ -103,6 +106,7 @@ class Board(gd.BoardGame):
             self.multi[str(unique[i])] = i
             caption = str(unique[i])
             self.board.add_unit(x, y, 1, 1, classes.board.Letter, caption, color, "", 2)
+            self.board.ships[-1].font_color = ex.hsv_to_rgb(h * i, 255, 140)
             self.board.ships[-1].audible = False
             if self.lang.lang == "he":
                 sv = self.lang.n2spk(unique[i])
@@ -119,13 +123,18 @@ class Board(gd.BoardGame):
             if i == 2:
                 x += 1
             self.board.add_unit(x + i, y, 1, 1, classes.board.Label, captions[i], color, "", 2)
+            if self.level.lvl < 4:
+                self.board.units[-1].font_color = self.board.ships[self.solution[1] - 1].font_color
 
         self.outline_all(0, 1)
 
         self.board.add_door(16, y, 1, 1, classes.board.Door, "", task_bg_color, "", font_size=2)
         self.home_square = self.board.units[86]
         self.home_square.door_outline = True
-        self.home_square.font_color = task_font_color
+        if self.level.lvl < 4:
+            self.home_square.font_color = self.board.ships[self.solution[1] - 1].font_color
+        else:
+            self.home_square.font_color = task_font_color
         self.board.all_sprites_list.move_to_front(self.home_square)
 
     def handle(self, event):

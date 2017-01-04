@@ -20,11 +20,14 @@ class Board(gd.BoardGame):
     def create_game_objects(self, level=1):
         self.allow_unit_animations = False
         self.board.draw_grid = False
-        s = random.randrange(30, 80)
-        v = random.randrange(200, 255)
+        s = 100  # random.randrange(30, 80)
+        v = 255  # random.randrange(200, 255)
         h = random.randrange(0, 225)
         self.letter_color = ex.hsv_to_rgb(h, s, v)
-        font_color = ex.hsv_to_rgb(h, s, 75)
+        # font_color = ex.hsv_to_rgb(h, s, 75)
+        # primary_font_color = ex.hsv_to_rgb(h, 255, 230)
+        font_color = ex.hsv_to_rgb(h, 255, 140)
+        font_color2 = ex.hsv_to_rgb(h, 255, 50)
         outline_color = ex.hsv_to_rgb(h, s + 50, v - 50)
 
         if self.mainloop.scheme is not None:
@@ -143,7 +146,7 @@ class Board(gd.BoardGame):
         self.board.ships[-1].speaker_val_update = False
 
         # TO DO adjust for color schemes
-        font_colors = ((200, 0, 0), (0, 0, 0))
+        font_colors = ((200, 0, 0), font_color2)
         if self.mainloop.scheme is not None:
             if self.mainloop.scheme.dark:
                 # font_colors = ((255,200,200), (255,255,255))

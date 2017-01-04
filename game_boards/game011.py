@@ -18,8 +18,8 @@ class Board(gd.BoardGame):
         self.board.draw_grid = False
         self.vis_buttons = [1, 1, 1, 1, 1, 1, 1, 1, 0]
         self.mainloop.info.hide_buttonsa(self.vis_buttons)
-        s = random.randrange(150, 190, 5)
-        v = random.randrange(230, 255, 5)
+        s = 100  # random.randrange(150, 190, 5)
+        v = 255  # random.randrange(230, 255, 5)
         h = random.randrange(0, 255, 5)
 
         color0 = ex.hsv_to_rgb(h, 40, 230)  # highlight 1
@@ -71,6 +71,7 @@ class Board(gd.BoardGame):
             caption = str(self.num_list[i])
             self.board.add_unit(x, y, 1, 1, classes.board.Letter, caption, number_color, "", data[4])
             self.board.ships[-1].readable = False
+            self.board.ships[-1].font_color = ex.hsv_to_rgb(h, 255, 140)
             x -= 1
             if x <= 3:
                 x = data[0] - 1

@@ -473,7 +473,7 @@ class GamePlay(threading.Thread):
                                 elif pos[0] > self.game_board.layout.menu_a_w and self.game_board.layout.top_margin < \
                                         pos[1] < self.game_board.layout.game_h + self.game_board.layout.top_margin:
                                     # clicked on game board
-                                    if event.type == pygame.MOUSEBUTTONDOWN and self.game_board.show_msg == True:
+                                    if event.type == pygame.MOUSEBUTTONDOWN and self.game_board.show_msg is True:
                                         # if dialog after completing the game is shown then hide it and load next game
                                         self.game_board.show_msg = False
                                         self.game_board.level.next_board_load()
@@ -503,7 +503,7 @@ class GamePlay(threading.Thread):
                                         self.mouse_over[0].on_mouse_out()
                                     self.mouse_over[0] = self.game_board
 
-                                    if event.type == pygame.MOUSEBUTTONDOWN and self.game_board.show_msg == True:
+                                    if event.type == pygame.MOUSEBUTTONDOWN and self.game_board.show_msg is True:
                                         # if dialog after completing the game is shown then hide it and load next game
                                         self.game_board.show_msg = False
                                         self.game_board.level.next_board_load()
@@ -530,11 +530,11 @@ class GamePlay(threading.Thread):
                                         pos[1] < self.game_board.layout.game_h + self.game_board.layout.top_margin:
                                     self.game_board.handle(event)
                                     gbh = True
-                                elif pos[0] > self.game_board.layout.menu_a_w and pos[
-                                    1] < self.game_board.layout.score_bar_h:
+                                elif pos[0] > self.game_board.layout.menu_a_w and pos[1] < \
+                                        self.game_board.layout.score_bar_h:
                                     self.sb.handle(event)
-                                elif pos[0] > self.game_board.layout.menu_a_w and pos[
-                                    1] < self.game_board.layout.top_margin:
+                                elif pos[0] > self.game_board.layout.menu_a_w and pos[1] < \
+                                        self.game_board.layout.top_margin:
                                     # make the game finish drag, etc.
                                     self.game_board.handle(event)
 
@@ -571,7 +571,6 @@ class GamePlay(threading.Thread):
 
                     # checking if any of the subsurfaces need updating and updating them if needed
                     # in reverse order so the menu is being drawn first
-
 
                     for i in range(2, -1, -1):
                         if self.redraw_needed[i]:

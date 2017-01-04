@@ -105,6 +105,9 @@ class Board(gd.BoardGame):
             number_color = ex.hsv_to_rgb(h, s, v)  # highlight 1
             caption = self.alphabet[shuffled[i]]
             self.board.add_unit(x + i, y, 1, 1, classes.board.Letter, caption, number_color, "", data[4])
+            self.board.ships[-1].font_color = font_color
+            # self.board.ships[i].highlight = False
+            self.board.ships[i].outline_highlight = True
             self.solution_grid[x + i] = 1
 
         for each in self.board.units:

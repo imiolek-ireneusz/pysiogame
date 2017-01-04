@@ -18,13 +18,13 @@ class Board(gd.BoardGame):
     def create_game_objects(self, level=1):
         self.allow_unit_animations = False
         self.board.draw_grid = False
-        s = random.randrange(30, 80)
-        v = random.randrange(200, 255)
+        s = 100  # random.randrange(30, 80)
+        v = 255  # random.randrange(200, 255)
         h = random.randrange(0, 225)
         # languages with standard letters in number names
         self.safe_langs = ["en_gb", "en_us", "it", "el", "ru"]
         self.letter_color = ex.hsv_to_rgb(h, s, v)  # [round(each*255) for each in rgb]
-        font_color = ex.hsv_to_rgb(h, s, 75)
+        font_color = ex.hsv_to_rgb(h, s, 140)
         outline_color = ex.hsv_to_rgb(h, s + 50, v - 50)
         frame_color = [255, 255, 255]
         card_color = ex.hsv_to_rgb(h + 10, s - 25, v)
@@ -76,6 +76,7 @@ class Board(gd.BoardGame):
         self.board.add_unit(x, y + 1, 6, 4, classes.board.MultiImgSprite, "1", frame_color, "flashcard_numbers.jpg",
                             row_data=[5, 4])
         self.board.add_unit(x, y + 5, 6, 1, classes.board.Letter, self.word_list[0], frame_color, "", 2)
+        self.board.ships[-1].font_color = font_color
         if self.lang.ltr_text:
             sv = "1"
         else:
@@ -93,12 +94,14 @@ class Board(gd.BoardGame):
         elif self.lang.lang == "ru":
             font_size = 15
         self.board.add_unit(x, y + 6, 6, 1, classes.board.Letter, handwritten, frame_color, "", font_size)
+        self.board.ships[-1].font_color = font_color
         if not self.lang.has_cursive:
             self.board.ships[-1].font_color = frame_color
         self.board.ships[-1].speaker_val = sv
         self.board.ships[-1].speaker_val_update = False
 
         self.board.add_unit(x - 2, y + 1, 2, 4, classes.board.Letter, "1", frame_color, "", 18)
+        self.board.ships[-1].font_color = font_color
         self.board.add_door(x - 2, y + 1, 8, 6, classes.board.Door, "", card_color, "")
         self.board.units[0].door_outline = True
         self.board.all_sprites_list.move_to_front(self.board.units[0])
