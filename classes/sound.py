@@ -1,15 +1,26 @@
 import os
 
-import pygame.mixer
+try:
+    import android
+except ImportError:
+    android = None
+
+try:
+    import pygame.mixer as mixer
+except ImportError:
+    if android is not None:
+        try:
+            import android.mixer as mixer
+        except ImportError:
+            mixer = None
 
 
 class SoundFX:
     def __init__(self, mainloop):
         self.mainloop = mainloop
         self.initialized = False
-
         try:
-            sounds = pygame.mixer
+            sounds = mixer
             sounds.init()
 
             # reload game

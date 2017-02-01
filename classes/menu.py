@@ -1069,7 +1069,7 @@ class Menu:
                           "ico_g_0201.png")
             self.add_game(19, c_id, 0, 7, game025.Board, self.lang.d["Word Maze + 4"], self.lang.d["Collect all"],
                           "ico_g_0202.png")
-            if self.mainloop.lang.lang[0:2] in ["en", "pl", "uk", "ru", "fr", "de", "el"]:
+            if self.mainloop.lang.lang[0:2] in ["en", "pl", "uk", "ru", "fr", "de", "el", "sr"]:
                 self.add_game(107, c_id, 0, 7, game082.Board, self.lang.d["Word Builder - Animals"],
                               self.lang.d["Complete the word"], "ico_g_0203.png", variant=0)
                 self.add_game(110, c_id, 0, 7, game082.Board, self.lang.d["Word Builder - People"],

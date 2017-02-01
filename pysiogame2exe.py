@@ -144,7 +144,7 @@ class BuildExe:
             self.icon_file = os.path.join(path, 'pygame.ico')
 
         # List all data files to add
-        extra_datas = ["__init__.py", "CHANGES.txt", "CREDITS.txt", "pysiogame.py", "LICENCE.txt", "README.txt"]
+        extra_datas = ["__init__.py", "CHANGES.txt", "CREDITS.txt", "pysiogame.py", "LICENSE", "README.txt"]
         for data in self.extra_datas:
             if os.path.isdir(data):
                 extra_datas.extend(self.find_data_files(data, '*'))

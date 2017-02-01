@@ -29,6 +29,19 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+"""
+try:
+    import pygame_sdl2 #install from https://github.com/renpy/pygame_sdl2
+    pygame_sdl2.import_as_pygame()
+except:
+    pass
+"""
+# Import the android module. If we can't import it, set it to None - this
+# lets us test it, and check to see if we want android-specific behavior.
+try:
+    import android
+except ImportError:
+    android = None
 
 import gc
 import os
@@ -36,9 +49,6 @@ import pygame
 import sys
 import threading
 import time
-
-# setting the working directory to the directory of this file
-os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))
 
 import classes.config
 import classes.sound
@@ -55,6 +65,10 @@ import classes.lang
 import classes.logoimg
 import classes.score_bar
 import classes.dialogwnd
+
+if android is None:
+    # setting the working directory to the directory of this file
+    os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))
 
 
 class GamePlay(threading.Thread):
@@ -87,6 +101,8 @@ class GamePlay(threading.Thread):
         self.done4good = False
 
         self.logged_out = False
+
+        self.android_screen_size = (1200, 800)  # todo try getting the correct screen size for the device
 
     def set_init_vals(self):
         self.redraw_needed = [True, True, True]
@@ -188,6 +204,8 @@ class GamePlay(threading.Thread):
         if size != self.fs_size:
             self.wn_size = size[:]
             self.size = size[:]
+        if android is not None:
+            self.size = self.fs_size
         self.config.settings["screenw"] = self.size[0]
         self.config.settings["screenh"] = self.size[1]
         self.screen = pygame.display.set_mode(self.size, pygame.RESIZABLE)
@@ -218,11 +236,12 @@ class GamePlay(threading.Thread):
 
         if sys.version_info < (3, 0):
             try:
-                self.welcome_msg = lang.dp["Hello"] + " " + uname.encode("utf-8") + "! " + lang.dp["Welcome back."]
+                self.welcome_msg = self.lang.dp["Hello"] + " " + uname.encode("utf-8") + "! " + self.lang.dp[
+                    "Welcome back."]
             except:
-                self.welcome_msg = lang.dp["Hello"]
+                self.welcome_msg = self.lang.dp["Hello"]
         else:
-            self.welcome_msg = lang.dp["Hello"] + " " + uname + "! " + lang.dp["Welcome back."]
+            self.welcome_msg = self.lang.dp["Hello"] + " " + uname + "! " + self.lang.dp["Welcome back."]
         self.speaker.say(self.welcome_msg)  # say welcome message
 
     def switch_scheme(self, scheme):
@@ -264,7 +283,8 @@ class GamePlay(threading.Thread):
 
     def run(self):
         # start of this Thread
-        self.speaker.join()  # join speaker Thread
+        if android is None:
+            self.speaker.join()  # join speaker Thread
         # self.speaker.start_server_en()
         # initialize pygame
         pygame.init()
@@ -283,13 +303,16 @@ class GamePlay(threading.Thread):
             if self.window_state == "LOG IN":
                 self.done = False
                 self.set_init_vals()
-                if self.config.platform != "windows":
+                if self.config.platform != "windows" and android is None:
                     os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (
                     self.config.window_pos[0], self.config.window_pos[1])
-                if not self.logged_out:
-                    self.size = [800, 480]
+                if android is None:
+                    if not self.logged_out:
+                        self.size = [800, 480]
+                    else:
+                        self.size = self.wn_size
                 else:
-                    self.size = self.wn_size
+                    self.size = self.android_screen_size
                 self.screen = pygame.display.set_mode(self.size)
 
                 pygame.display.set_caption(self.config.window_caption)
@@ -326,7 +349,9 @@ class GamePlay(threading.Thread):
                 # self.force_no_resize = True
                 self.set_init_vals()
                 # if self.config.platform != "windows":
-                os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (self.config.window_pos[0], self.config.window_pos[1])
+                if android is None:
+                    os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (
+                    self.config.window_pos[0], self.config.window_pos[1])
                 self.config.fs_width = self.display_info.current_w
                 self.config.fs_height = self.display_info.current_h
 
@@ -351,9 +376,15 @@ class GamePlay(threading.Thread):
                     flag = pygame.RESIZABLE
 
                 # restarting the display to solve a bug causing some of the game area unresponsive after resizing (this bug affected the game only when it was set to start in fullscreen)
-                pygame.display.quit()
-                pygame.display.init()
-                self.screen = pygame.display.set_mode(self.size, flag)
+                if android is None:
+                    pygame.display.quit()
+                    pygame.display.init()
+                    self.screen = pygame.display.set_mode(self.size, flag)
+                else:
+                    self.wn_size = self.android_screen_size
+                    self.fs_size = self.android_screen_size
+                    self.size = self.android_screen_size
+                    self.screen = pygame.display.set_mode(self.android_screen_size)
 
                 # Set title of the window
                 pygame.display.set_caption(self.config.window_caption)
@@ -391,223 +422,235 @@ class GamePlay(threading.Thread):
                 # self.video_resize_count = 0
                 # self.resize_func = 0
                 # -------- Main Program Loop ----------- #
+                wait = False
                 while self.done is False:
                     # start, switch or continue a game
                     # not really an implementation of a State Machine but does the job
+                    if android is not None:
+                        if android.check_pause():
+                            wait = True
+                            android.wait_for_resume()
+                        else:
+                            wait = False
 
-                    if m.active_game_id != m.game_started_id:  # or m.active_game_id == 0: #if game id changed since last frame or selected activity is the Language changing panel
-                        if self.game_board is not None:
-                            # if this is not the first start of a game - the self.game_board has been already 'created' at least once
-                            self.game_board.board.clean()  # empty sprite groups, delete lists
-                            del (self.game_board)  # delete all previous game objects
-                            self.game_board = None
-                        # recreate a new game and subsurfaces
-                        self.game_board = m.game_constructor(self, self.speaker, self.config, self.size[0],
-                                                             self.size[1])
-                        m.game_started_id = m.active_game_id
-                        m.l = self.game_board.layout
-                        self.create_subsurfaces(self.game_board)
-                        info.new_game(self.game_board, self.info_bar)
-                        self.set_up_scheme()
-                        # self.game_board.update_score(0)
-                        """
-                        if self.config.loaded_settings == False and self.init_resize:
-                            if self.config.fullscreen == False:
-                                self.on_resize(self.size, info)
-                                self.init_resize = False
-                        """
-                        # self.fs_rescale(info)
-                        gc.collect()  # force garbage collection to remove remaining variables to free memory
+                    if not wait:
+                        if m.active_game_id != m.game_started_id:  # or m.active_game_id == 0: #if game id changed since last frame or selected activity is the Language changing panel
+                            if self.game_board is not None:
+                                # if this is not the first start of a game - the self.game_board has been already 'created' at least once
+                                self.game_board.board.clean()  # empty sprite groups, delete lists
+                                del (self.game_board)  # delete all previous game objects
+                                self.game_board = None
+                            # recreate a new game and subsurfaces
+                            self.game_board = m.game_constructor(self, self.speaker, self.config, self.size[0],
+                                                                 self.size[1])
+                            m.game_started_id = m.active_game_id
+                            m.l = self.game_board.layout
+                            self.create_subsurfaces(self.game_board)
+                            info.new_game(self.game_board, self.info_bar)
+                            self.set_up_scheme()
+                            # self.game_board.update_score(0)
+                            """
+                            if self.config.loaded_settings == False and self.init_resize:
+                                if self.config.fullscreen == False:
+                                    self.on_resize(self.size, info)
+                                    self.init_resize = False
+                            """
+                            # self.fs_rescale(info)
+                            gc.collect()  # force garbage collection to remove remaining variables to free memory
 
-                    elif self.game_board.level.lvl != self.game_board.level.prev_lvl:
-                        # if game id is the same but the level changed load new level
-                        self.create_subsurfaces(self.game_board)
-                        info.new_game(self.game_board, self.info_bar)
-                        self.game_board.level.prev_lvl = self.game_board.level.lvl
-                        gc.collect()
+                        elif self.game_board.level.lvl != self.game_board.level.prev_lvl:
+                            # if game id is the same but the level changed load new level
+                            self.create_subsurfaces(self.game_board)
+                            info.new_game(self.game_board, self.info_bar)
+                            self.game_board.level.prev_lvl = self.game_board.level.lvl
+                            gc.collect()
 
-                    if not self.show_dialogwnd:
-                        if self.game_board.show_msg == True:
-                            # if dialog after completing the game is shown then hide it and load next game
-                            if time.time() - self.game_board.level.completed_time > 1.25:
-                                self.game_board.show_msg = False
-                                self.game_board.level.next_board_load()
+                        if not self.show_dialogwnd:
+                            if self.game_board.show_msg == True:
+                                # if dialog after completing the game is shown then hide it and load next game
+                                if time.time() - self.game_board.level.completed_time > 1.25:
+                                    self.game_board.show_msg = False
+                                    self.game_board.level.next_board_load()
 
-                    # Process or delegate events
-                    # mods = pygame.key.get_mods()
-                    for event in pygame.event.get():  # pygame.event.get(): # User did something
+                        # Process or delegate events
+                        # mods = pygame.key.get_mods()
+                        for event in pygame.event.get():  # pygame.event.get(): # User did something
 
-                        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
-                            self.dialog.show_dialog(0, self.lang.d["Do you want to exit the game?"])
-                            # self.done = True #mark to finish the loop and the game
-                            # self.done4good = True
-                        elif event.type == pygame.VIDEORESIZE:
-                            if self.config.fullscreen == False:
-                                self.on_resize(list(event.size), info)
-                        elif event.type == pygame.KEYDOWN and event.key == pygame.K_f and (
-                            event.mod & pygame.KMOD_LCTRL):
-                            # CTRL + F - pressed
-                            self.fullscreen_toggle(info)
-                        elif event.type == pygame.KEYDOWN and event.key == pygame.K_F5:  # refresh - reload level
-                            self.game_board.level.load_level()
-                        elif event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.MOUSEMOTION:
-                            pos = event.pos
-                            if self.show_dialogwnd:
-                                self.dialog.handle(event)
-                            else:
-                                if pos[0] > self.game_board.layout.menu_a_w and self.game_board.layout.score_bar_h > \
-                                        pos[1]:
-                                    if self.mouse_over[0] is not None and self.mouse_over[0] != self.sb:
-                                        self.mouse_over[0].on_mouse_out()
-                                    self.mouse_over[0] = self.sb
-
-                                    self.sb.handle(event)
-                                elif pos[0] > self.game_board.layout.menu_a_w and self.game_board.layout.top_margin > \
-                                        pos[1]:
-                                    if self.mouse_over[0] is not None and self.mouse_over[0] != info:
-                                        self.mouse_over[0].on_mouse_out()
-                                    self.mouse_over[0] = info
-
-                                    info.handle(event, self.game_board.layout, self)
-
-                                elif pos[0] > self.game_board.layout.menu_a_w and self.game_board.layout.top_margin < \
-                                        pos[1] < self.game_board.layout.game_h + self.game_board.layout.top_margin:
-                                    # clicked on game board
-                                    if event.type == pygame.MOUSEBUTTONDOWN and self.game_board.show_msg is True:
-                                        # if dialog after completing the game is shown then hide it and load next game
-                                        self.game_board.show_msg = False
-                                        self.game_board.level.next_board_load()
-                                    else:
-                                        self.game_board.handle(event)
-                                elif pos[0] < self.game_board.layout.menu_a_w and pos[1] < \
-                                        self.game_board.layout.misio_pos[3]:
-                                    self.front_img.handle(event)
-                                    if self.mouse_over[0] is not None and self.mouse_over[0] != self.front_img:
-                                        self.mouse_over[0].on_mouse_out()
-                                    self.mouse_over[0] = self.front_img
-                                elif pos[0] < self.game_board.layout.menu_a_w and pos[1] > \
-                                        self.game_board.layout.misio_pos[3]:
-                                    # clicked on menu panel
-                                    if self.mouse_over[0] is not None and self.mouse_over[0] != m:
-                                        self.mouse_over[0].on_mouse_out()
-                                    self.mouse_over[0] = m
-                                    if pos[0] < self.game_board.layout.menu_l_w:
-                                        # clicked on category menu
-                                        m.handle_menu_l(event)
-                                    else:
-                                        # clicked on game selection menu
-                                        m.handle_menu_r(event, self.game_board.layout.menu_l_w)
+                            if event.type == pygame.QUIT or (
+                                    event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+                                self.dialog.show_dialog(0, self.lang.d["Do you want to exit the game?"])
+                                # self.done = True #mark to finish the loop and the game
+                                # self.done4good = True
+                            elif event.type == pygame.VIDEORESIZE:
+                                if self.config.fullscreen == False:
+                                    self.on_resize(list(event.size), info)
+                            elif event.type == pygame.KEYDOWN and event.key == pygame.K_f and (
+                                        event.mod & pygame.KMOD_LCTRL):
+                                # CTRL + F - pressed
+                                self.fullscreen_toggle(info)
+                            elif event.type == pygame.KEYDOWN and event.key == pygame.K_F5:  # refresh - reload level
+                                self.game_board.level.load_level()
+                            elif event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.MOUSEMOTION:
+                                pos = event.pos
+                                if self.show_dialogwnd:
+                                    self.dialog.handle(event)
                                 else:
-                                    # clicked on info panel
-                                    if self.mouse_over[0] is not None and self.mouse_over[0] != self.game_board:
-                                        self.mouse_over[0].on_mouse_out()
-                                    self.mouse_over[0] = self.game_board
+                                    if pos[0] > self.game_board.layout.menu_a_w and self.game_board.layout.score_bar_h > \
+                                            pos[1]:
+                                        if self.mouse_over[0] is not None and self.mouse_over[0] != self.sb:
+                                            self.mouse_over[0].on_mouse_out()
+                                        self.mouse_over[0] = self.sb
 
-                                    if event.type == pygame.MOUSEBUTTONDOWN and self.game_board.show_msg is True:
-                                        # if dialog after completing the game is shown then hide it and load next game
-                                        self.game_board.show_msg = False
-                                        self.game_board.level.next_board_load()
-                                        # info.handle(event,self.game_board.layout,self)
-                        elif event.type == pygame.MOUSEBUTTONUP:
-                            pos = event.pos
-                            if self.show_dialogwnd:
-                                self.dialog.handle(event)
-                            else:
-                                gbh = False
-                                if pos[0] < self.game_board.layout.menu_a_w and pos[1] > \
-                                        self.game_board.layout.misio_pos[3]:
-                                    # clicked on menu panel
-                                    if pos[0] < self.game_board.layout.menu_l_w:
-                                        # clicked on category menu
-                                        m.handle_menu_l(event)
+                                        self.sb.handle(event)
+                                    elif pos[
+                                        0] > self.game_board.layout.menu_a_w and self.game_board.layout.top_margin > \
+                                            pos[1]:
+                                        if self.mouse_over[0] is not None and self.mouse_over[0] != info:
+                                            self.mouse_over[0].on_mouse_out()
+                                        self.mouse_over[0] = info
+
+                                        info.handle(event, self.game_board.layout, self)
+
+                                    elif pos[
+                                        0] > self.game_board.layout.menu_a_w and self.game_board.layout.top_margin < \
+                                            pos[1] < self.game_board.layout.game_h + self.game_board.layout.top_margin:
+                                        # clicked on game board
+                                        if event.type == pygame.MOUSEBUTTONDOWN and self.game_board.show_msg is True:
+                                            # if dialog after completing the game is shown then hide it and load next game
+                                            self.game_board.show_msg = False
+                                            self.game_board.level.next_board_load()
+                                        else:
+                                            self.game_board.handle(event)
+                                    elif pos[0] < self.game_board.layout.menu_a_w and pos[1] < \
+                                            self.game_board.layout.misio_pos[3]:
+                                        self.front_img.handle(event)
+                                        if self.mouse_over[0] is not None and self.mouse_over[0] != self.front_img:
+                                            self.mouse_over[0].on_mouse_out()
+                                        self.mouse_over[0] = self.front_img
+                                    elif pos[0] < self.game_board.layout.menu_a_w and pos[1] > \
+                                            self.game_board.layout.misio_pos[3]:
+                                        # clicked on menu panel
+                                        if self.mouse_over[0] is not None and self.mouse_over[0] != m:
+                                            self.mouse_over[0].on_mouse_out()
+                                        self.mouse_over[0] = m
+                                        if pos[0] < self.game_board.layout.menu_l_w:
+                                            # clicked on category menu
+                                            m.handle_menu_l(event)
+                                        else:
+                                            # clicked on game selection menu
+                                            m.handle_menu_r(event, self.game_board.layout.menu_l_w)
                                     else:
-                                        # clicked on game selection menu
-                                        m.handle_menu_r(event, self.game_board.layout.menu_l_w)
-                                elif pos[0] < self.game_board.layout.menu_a_w and pos[1] < \
-                                        self.game_board.layout.misio_pos[3]:
-                                    self.front_img.handle(event)
-                                elif pos[0] > self.game_board.layout.menu_a_w and self.game_board.layout.top_margin < \
-                                        pos[1] < self.game_board.layout.game_h + self.game_board.layout.top_margin:
-                                    self.game_board.handle(event)
-                                    gbh = True
-                                elif pos[0] > self.game_board.layout.menu_a_w and pos[1] < \
-                                        self.game_board.layout.score_bar_h:
-                                    self.sb.handle(event)
-                                elif pos[0] > self.game_board.layout.menu_a_w and pos[1] < \
-                                        self.game_board.layout.top_margin:
-                                    # make the game finish drag, etc.
-                                    self.game_board.handle(event)
+                                        # clicked on info panel
+                                        if self.mouse_over[0] is not None and self.mouse_over[0] != self.game_board:
+                                            self.mouse_over[0].on_mouse_out()
+                                        self.mouse_over[0] = self.game_board
 
-                                    # handle info button clicks
-                                    info.handle(event, self.game_board.layout, self)
+                                        if event.type == pygame.MOUSEBUTTONDOWN and self.game_board.show_msg is True:
+                                            # if dialog after completing the game is shown then hide it and load next game
+                                            self.game_board.show_msg = False
+                                            self.game_board.level.next_board_load()
+                                            # info.handle(event,self.game_board.layout,self)
+                            elif event.type == pygame.MOUSEBUTTONUP:
+                                pos = event.pos
+                                if self.show_dialogwnd:
+                                    self.dialog.handle(event)
+                                else:
+                                    gbh = False
+                                    if pos[0] < self.game_board.layout.menu_a_w and pos[1] > \
+                                            self.game_board.layout.misio_pos[3]:
+                                        # clicked on menu panel
+                                        if pos[0] < self.game_board.layout.menu_l_w:
+                                            # clicked on category menu
+                                            m.handle_menu_l(event)
+                                        else:
+                                            # clicked on game selection menu
+                                            m.handle_menu_r(event, self.game_board.layout.menu_l_w)
+                                    elif pos[0] < self.game_board.layout.menu_a_w and pos[1] < \
+                                            self.game_board.layout.misio_pos[3]:
+                                        self.front_img.handle(event)
+                                    elif pos[
+                                        0] > self.game_board.layout.menu_a_w and self.game_board.layout.top_margin < \
+                                            pos[1] < self.game_board.layout.game_h + self.game_board.layout.top_margin:
+                                        self.game_board.handle(event)
+                                        gbh = True
+                                    elif pos[0] > self.game_board.layout.menu_a_w and pos[1] < \
+                                            self.game_board.layout.score_bar_h:
+                                        self.sb.handle(event)
+                                    elif pos[0] > self.game_board.layout.menu_a_w and pos[1] < \
+                                            self.game_board.layout.top_margin:
+                                        # make the game finish drag, etc.
+                                        self.game_board.handle(event)
 
-                                if not gbh:
-                                    self.game_board.handle(event)
+                                        # handle info button clicks
+                                        info.handle(event, self.game_board.layout, self)
 
-                                pygame.mouse.set_cursor(*pygame.cursors.arrow)
-                                m.swipe_reset()
-                        else:
-                            if self.show_dialogwnd:
-                                self.dialog.handle(event)
+                                    if not gbh:
+                                        self.game_board.handle(event)
+
+                                    pygame.mouse.set_cursor(*pygame.cursors.arrow)
+                                    m.swipe_reset()
                             else:
-                                # let the game handle other events
-                                self.game_board.handle(event)
+                                if self.show_dialogwnd:
+                                    self.dialog.handle(event)
+                                else:
+                                    # let the game handle other events
+                                    self.game_board.handle(event)
 
-                    # trying to save the CPU - only update a subsurface entirely, (can't be bothered to play with dirty sprites)
-                    # if anything has changed on the subsurface or it's size has changed
+                        # trying to save the CPU - only update a subsurface entirely, (can't be bothered to play with dirty sprites)
+                        # if anything has changed on the subsurface or it's size has changed
 
-                    # creating list of drawing functions and arguments for each subsurface
-                    draw_func = [self.game_board.update, info.draw, m.draw_menu]
-                    draw_func_args = [[self.game], [self.info_bar],
-                                      [self.menu, self.menu_l, self.menu_r, self.game_board.layout]]
+                        # creating list of drawing functions and arguments for each subsurface
+                        draw_func = [self.game_board.update, info.draw, m.draw_menu]
+                        draw_func_args = [[self.game], [self.info_bar],
+                                          [self.menu, self.menu_l, self.menu_r, self.game_board.layout]]
 
-                    if self.m.scroll_direction != 0:
-                        if self.menu_speed == self.menu_tick:
-                            self.m.scroll_menu()
-                            self.menu_tick = 0
-                        else:
-                            self.menu_tick += 1
-                            # self.redraw_needed[2] = True
-
-                    # checking if any of the subsurfaces need updating and updating them if needed
-                    # in reverse order so the menu is being drawn first
-
-                    for i in range(2, -1, -1):
-                        if self.redraw_needed[i]:
-                            draw_func[i](*draw_func_args[i])
-                            if i > 0:
-                                self.redraw_needed[i] = False
-                                self.flip_needed = True
+                        if self.m.scroll_direction != 0:
+                            if self.menu_speed == self.menu_tick:
+                                self.m.scroll_menu()
+                                self.menu_tick = 0
                             else:
-                                if self.game_redraw_tick[i] == 2:
+                                self.menu_tick += 1
+                                # self.redraw_needed[2] = True
+
+                        # checking if any of the subsurfaces need updating and updating them if needed
+                        # in reverse order so the menu is being drawn first
+
+                        for i in range(2, -1, -1):
+                            if self.redraw_needed[i]:
+                                draw_func[i](*draw_func_args[i])
+                                if i > 0:
                                     self.redraw_needed[i] = False
                                     self.flip_needed = True
-                                    self.game_redraw_tick[i] = 0
                                 else:
-                                    self.game_redraw_tick[i] += 1
+                                    if self.game_redraw_tick[i] == 2:
+                                        self.redraw_needed[i] = False
+                                        self.flip_needed = True
+                                        self.game_redraw_tick[i] = 0
+                                    else:
+                                        self.game_redraw_tick[i] += 1
 
-                            # draw the logo over menu - top left corner
-                            self.front_img.update()
-                            self.sprites_list.draw(self.misio)
+                                # draw the logo over menu - top left corner
+                                self.front_img.update()
+                                self.sprites_list.draw(self.misio)
 
-                    if self.sb.update_me:
-                        self.sb.draw(self.score_bar)
-                        self.flip_needed = True
-                        # if self.show_dialogwnd:
-                        self.sb.update_me = False
-
-                    if self.flip_needed:
-                        # update the screen with what we've drawn.
-                        if self.show_dialogwnd:
+                        if self.sb.update_me:
                             self.sb.draw(self.score_bar)
-                            self.dialog.update()
-                        pygame.display.flip()
-                        self.flip_needed = False
+                            self.flip_needed = True
+                            # if self.show_dialogwnd:
+                            self.sb.update_me = False
 
-                    # Limit to 30 frames per second but most redraws are made when needed - less often
-                    # 30 frames per second used mainly for event handling
-                    self.game_board.process_ai()
-                    clock.tick(30)
+                        if self.flip_needed:
+                            # update the screen with what we've drawn.
+                            if self.show_dialogwnd:
+                                self.sb.draw(self.score_bar)
+                                self.dialog.update()
+                            pygame.display.flip()
+                            self.flip_needed = False
+
+                        # Limit to 30 frames per second but most redraws are made when needed - less often
+                        # 30 frames per second used mainly for event handling
+                        self.game_board.process_ai()
+                        clock.tick(30)
 
                 # close eSpeak process, quit pygame, collect garbage and exit the game.
                 if self.config.settings_changed:
@@ -620,24 +663,36 @@ class GamePlay(threading.Thread):
         # self.speaker.stop_server_en()
         pygame.quit()
         gc.collect()
-        os.sys.exit()
+        if android is None:
+            os.sys.exit()
 
 
-if __name__ == "__main__":
+def main():
     # create configuration object
-    if len(sys.argv) == 1:
-        configo = classes.config.Config()
+    if android is not None or len(sys.argv) == 1:
+        configo = classes.config.Config(android)
 
         # create the language object
         lang = classes.lang.Language(configo)
 
         # create the Thread objects and start the threads
-        speaker = classes.speaker.Speaker(lang, configo)
+        speaker = classes.speaker.Speaker(lang, configo, android)
+
+        # Map the back button to the escape key.
+        if android is not None:
+            android.init()
+            android.map_key(android.KEYCODE_BACK, pygame.K_ESCAPE)
         app = GamePlay(speaker, lang, configo)
-        speaker.start()
-        app.start()
+        if android is None:
+            speaker.start()
+            app.start()
+        else:
+            app.run()
     elif len(sys.argv) == 2:
         if sys.argv[1] == "v" or sys.argv[1] == "version":
             from classes.cversion import ver
-
             print("pysiogame-%s" % ver)
+
+
+if __name__ == "__main__":
+    main()

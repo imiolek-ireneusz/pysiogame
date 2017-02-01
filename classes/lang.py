@@ -105,6 +105,15 @@ class Language():
             self.di = i18n.custom.word_lists.sk_di.di
             self.lang_file = i18n.custom.sk
             self.lang_id = 4
+        elif self.lang == 'sr':
+            import i18n.custom.sr
+            import i18n.custom.word_lists.sr_di
+            # self.voice = ["-s 160","-a 100","-p 80","-vpl+m1"] #"-g 5",
+            self.voice = ["-vsr+m1"]
+            self.di = i18n.custom.word_lists.sr_di.di
+            self.lang_file = i18n.custom.sr
+            self.lang_id = 19
+            self.ico_suffix = "ru"
         elif self.lang == 'ca':
             import i18n.custom.ca
             import i18n.custom.word_lists.ca_di
