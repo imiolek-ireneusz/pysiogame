@@ -29,13 +29,6 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-"""
-try:
-    import pygame_sdl2 #install from https://github.com/renpy/pygame_sdl2
-    pygame_sdl2.import_as_pygame()
-except:
-    pass
-"""
 # Import the android module. If we can't import it, set it to None - this
 # lets us test it, and check to see if we want android-specific behavior.
 try:
@@ -70,7 +63,6 @@ if android is None:
     # setting the working directory to the directory of this file
     os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))
 
-
 class GamePlay(threading.Thread):
     """The top most class - subclasses the Thread to keep the game and speaker in two different processes
     holds main loop"""
@@ -102,7 +94,13 @@ class GamePlay(threading.Thread):
 
         self.logged_out = False
 
-        self.android_screen_size = (1200, 800)  # todo try getting the correct screen size for the device
+        if android is not None:
+            if android is not None:
+                infoObject = pygame.display.Info()
+                if infoObject.current_w < 900:
+                    self.android_screen_size = [900, int(infoObject.current_h * 900 / infoObject.current_w)]
+                else:
+                    self.android_screen_size = [infoObject.current_w, infoObject.current_h]
 
     def set_init_vals(self):
         self.redraw_needed = [True, True, True]
@@ -185,37 +183,40 @@ class GamePlay(threading.Thread):
             pygame.display.flip()
 
     def on_resize(self, size, info):
-        # pygame.event.set_blocked(pygame.VIDEORESIZE)
-        repost = False
-        if size[0] < self.config.size_limits[0]:
-            size[0] = self.config.size_limits[0]
-            repost = True
-        if size[0] > self.config.size_limits[2]:
-            size[0] = self.config.size_limits[2]
-            repost = True
+        if android is None:
+            # pygame.event.set_blocked(pygame.VIDEORESIZE)
+            repost = False
+            if size[0] < self.config.size_limits[0]:
+                size[0] = self.config.size_limits[0]
+                repost = True
+            if size[0] > self.config.size_limits[2]:
+                size[0] = self.config.size_limits[2]
+                repost = True
 
-        if size[1] < self.config.size_limits[1]:
-            size[1] = self.config.size_limits[1]
-            repost = True
-        if size[1] > self.config.size_limits[3]:
-            size[1] = self.config.size_limits[3]
-            repost = True
+            if size[1] < self.config.size_limits[1]:
+                size[1] = self.config.size_limits[1]
+                repost = True
+            if size[1] > self.config.size_limits[3]:
+                size[1] = self.config.size_limits[3]
+                repost = True
 
-        if size != self.fs_size:
-            self.wn_size = size[:]
-            self.size = size[:]
+            if size != self.fs_size:
+                self.wn_size = size[:]
+                self.size = size[:]
+            self.config.settings["screenw"] = self.size[0]
+            self.config.settings["screenh"] = self.size[1]
+            self.screen = pygame.display.set_mode(self.size, pygame.RESIZABLE)
+
+            self.fs_rescale(info)
+            self.config.settings_changed = True
+            self.config.save_settings(self.db)
+            # pygame.event.set_allowed(pygame.VIDEORESIZE)
+            if repost:
+                pygame.event.post(
+                    pygame.event.Event(pygame.VIDEORESIZE, size=self.size[:], w=self.size[0], h=self.size[1]))
+
         if android is not None:
-            self.size = self.fs_size
-        self.config.settings["screenw"] = self.size[0]
-        self.config.settings["screenh"] = self.size[1]
-        self.screen = pygame.display.set_mode(self.size, pygame.RESIZABLE)
-
-        self.fs_rescale(info)
-        self.config.settings_changed = True
-        self.config.save_settings(self.db)
-        # pygame.event.set_allowed(pygame.VIDEORESIZE)
-        if repost:
-            pygame.event.post(pygame.event.Event(pygame.VIDEORESIZE, size=self.size[:], w=self.size[0], h=self.size[1]))
+            self.size = self.android_screen_size[:]
         self.info.rescale_title_space()
 
     def set_up_user(self):
@@ -587,7 +588,8 @@ class GamePlay(threading.Thread):
                                     if not gbh:
                                         self.game_board.handle(event)
 
-                                    pygame.mouse.set_cursor(*pygame.cursors.arrow)
+                                    if android is None:
+                                        pygame.mouse.set_cursor(*pygame.cursors.arrow)
                                     m.swipe_reset()
                             else:
                                 if self.show_dialogwnd:
@@ -670,6 +672,10 @@ class GamePlay(threading.Thread):
 def main():
     # create configuration object
     if android is not None or len(sys.argv) == 1:
+        # Map the back button to the escape key.
+        if android is not None:
+            android.init()
+            android.map_key(android.KEYCODE_BACK, pygame.K_ESCAPE)
         configo = classes.config.Config(android)
 
         # create the language object
@@ -678,10 +684,6 @@ def main():
         # create the Thread objects and start the threads
         speaker = classes.speaker.Speaker(lang, configo, android)
 
-        # Map the back button to the escape key.
-        if android is not None:
-            android.init()
-            android.map_key(android.KEYCODE_BACK, pygame.K_ESCAPE)
         app = GamePlay(speaker, lang, configo)
         if android is None:
             speaker.start()
