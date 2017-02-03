@@ -316,27 +316,35 @@ class GamePlay(threading.Thread):
                 pygame.display.set_caption(self.config.window_caption)
                 self.loginscreen = classes.loginscreen.LoginScreen(self, self.screen, self.size)
                 # clock=pygame.time.Clock()
-
+                wait = False
                 while self.done is False and self.userid < 0:
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
-                            self.done = True  # mark to finish the loop and the game
-                            self.done4good = True
+                    if android is not None:
+                        if android.check_pause():
+                            wait = True
+                            android.wait_for_resume()
                         else:
-                            self.loginscreen.handle(event)
+                            wait = False
+                    if not wait:
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT or (
+                                    event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+                                self.done = True  # mark to finish the loop and the game
+                                self.done4good = True
+                            else:
+                                self.loginscreen.handle(event)
 
-                    if (self.redraw_needed[0] and self.game_redraw_tick[0] < 3) and self.loginscreen.update_me:
-                        self.loginscreen.update()
-                        self.game_redraw_tick[0] += 1
-                        if self.game_redraw_tick[0] == 2:
-                            self.redraw_needed[0] = False
-                            self.game_redraw_tick[0] = 0
-                        self.flip_needed = True
+                        if (self.redraw_needed[0] and self.game_redraw_tick[0] < 3) and self.loginscreen.update_me:
+                            self.loginscreen.update()
+                            self.game_redraw_tick[0] += 1
+                            if self.game_redraw_tick[0] == 2:
+                                self.redraw_needed[0] = False
+                                self.game_redraw_tick[0] = 0
+                            self.flip_needed = True
 
-                    if self.flip_needed:
-                        # update the screen with what we've drawn.
-                        pygame.display.flip()
-                        self.flip_needed = False
+                        if self.flip_needed:
+                            # update the screen with what we've drawn.
+                            pygame.display.flip()
+                            self.flip_needed = False
 
                     clock.tick(30)
 
@@ -649,7 +657,7 @@ class GamePlay(threading.Thread):
                         # Limit to 30 frames per second but most redraws are made when needed - less often
                         # 30 frames per second used mainly for event handling
                         self.game_board.process_ai()
-                        clock.tick(30)
+                    clock.tick(30)
 
                 # close eSpeak process, quit pygame, collect garbage and exit the game.
                 if self.config.settings_changed:
