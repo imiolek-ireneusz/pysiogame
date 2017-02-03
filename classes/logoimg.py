@@ -33,35 +33,38 @@ class LogoImg(pygame.sprite.Sprite):
 
     def handle(self, event):
         if event.type == pygame.MOUSEMOTION:
-            self.on_mouse_over()
+            # check if cursor is not in the top right corner as it would happen on mobile after finger up
+            if event.pos[0] + event.pos[1] > 0:
+                self.on_mouse_over()
 
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+            if not (self.mainloop.m.ldrag or self.mainloop.m.rdrag):
 
-            # for each in self.games_current:
-            #    each.state = 0
-            # self.games_current[row].state = 2
+                # for each in self.games_current:
+                #    each.state = 0
+                # self.games_current[row].state = 2
 
-            if self.mainloop.m.active_o is not None:
-                self.mainloop.m.active_o.state = 0
-                self.mainloop.m.active_o = None
-            if self.mainloop.m.active_cat_o is not None:
-                self.mainloop.m.active_cat_o.deactivate()
-                self.mainloop.m.active_cat_o = None
-            if self.state < 2:
-                self.mainloop.sfx.play(4)
+                if self.mainloop.m.active_o is not None:
+                    self.mainloop.m.active_o.state = 0
+                    self.mainloop.m.active_o = None
+                if self.mainloop.m.active_cat_o is not None:
+                    self.mainloop.m.active_cat_o.deactivate()
+                    self.mainloop.m.active_cat_o = None
+                if self.state < 2:
+                    self.mainloop.sfx.play(4)
 
-            self.state = 2
+                self.state = 2
 
-            self.mainloop.m.active_cat = 0
-            # self.tab_l_scroll = (self.scroll_l // self.scroll_step)
+                self.mainloop.m.active_cat = 0
+                # self.tab_l_scroll = (self.scroll_l // self.scroll_step)
 
-            self.mainloop.m.game_constructor = game000.Board  # self.games_current[row].game_constructor
-            self.mainloop.m.game_variant = 0  # self.games_current[row].variant
-            self.mainloop.m.active_game_id = 0
-            self.mainloop.m.game_started_id = -1
-            self.mainloop.m.tab_game_id = -5
-            self.mainloop.m.tab_r_scroll = 0
-            self.mainloop.redraw_needed = [True, True, True]
+                self.mainloop.m.game_constructor = game000.Board  # self.games_current[row].game_constructor
+                self.mainloop.m.game_variant = 0  # self.games_current[row].variant
+                self.mainloop.m.active_game_id = 0
+                self.mainloop.m.game_started_id = -1
+                self.mainloop.m.tab_game_id = -5
+                self.mainloop.m.tab_r_scroll = 0
+                self.mainloop.redraw_needed = [True, True, True]
 
     def on_mouse_over(self):
         if not self.mouse_over:

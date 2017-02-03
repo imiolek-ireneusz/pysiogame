@@ -95,12 +95,11 @@ class GamePlay(threading.Thread):
         self.logged_out = False
 
         if android is not None:
-            if android is not None:
-                infoObject = pygame.display.Info()
-                if infoObject.current_w < 900:
-                    self.android_screen_size = [900, int(infoObject.current_h * 900 / infoObject.current_w)]
-                else:
-                    self.android_screen_size = [infoObject.current_w, infoObject.current_h]
+            infoObject = pygame.display.Info()
+            if infoObject.current_w < 900:
+                self.android_screen_size = [900, int(infoObject.current_h * 900 / infoObject.current_w)]
+            else:
+                self.android_screen_size = [infoObject.current_w, infoObject.current_h]
 
     def set_init_vals(self):
         self.redraw_needed = [True, True, True]
@@ -287,8 +286,6 @@ class GamePlay(threading.Thread):
         if android is None:
             self.speaker.join()  # join speaker Thread
         # self.speaker.start_server_en()
-        # initialize pygame
-        pygame.init()
 
         self.db = classes.dbconn.DBConnection(self.config.file_db, self)
         self.scheme = None  # classes.colors.BYScheme() #BW, WB, BY
@@ -673,6 +670,8 @@ def main():
     # create configuration object
     if android is not None or len(sys.argv) == 1:
         # Map the back button to the escape key.
+        # initialize pygame
+        pygame.init()
         if android is not None:
             android.init()
             android.map_key(android.KEYCODE_BACK, pygame.K_ESCAPE)
@@ -694,6 +693,8 @@ def main():
         if sys.argv[1] == "v" or sys.argv[1] == "version":
             from classes.cversion import ver
             print("pysiogame-%s" % ver)
+    else:
+        print("Sorry arguments not recognized.")
 
 
 if __name__ == "__main__":

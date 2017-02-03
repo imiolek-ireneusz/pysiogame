@@ -173,15 +173,17 @@ class MenuCategoryGroup(pygame.sprite.Sprite):
         self.toggle_select()
 
     def toggle_select(self):
-        if self.selected == True:
-            self.hide_icons()
-            self.play_sound(6)
-            pygame.event.post(
-                pygame.event.Event(pygame.MOUSEMOTION, {"pos": pygame.mouse.get_pos(), "rel": None, "buttons": None}))
-        else:
-            self.show_icons()
-            self.play_sound(5)
-        self.menu.update_panel_height()
+        if not self.menu.ldrag:
+            if self.selected == True:
+                self.hide_icons()
+                self.play_sound(6)
+                pygame.event.post(
+                    pygame.event.Event(pygame.MOUSEMOTION,
+                                       {"pos": pygame.mouse.get_pos(), "rel": None, "buttons": None}))
+            else:
+                self.show_icons()
+                self.play_sound(5)
+            self.menu.update_panel_height()
 
     def hide_icons(self):
         self.selected = False
@@ -509,7 +511,7 @@ class ScrollArrowItem(pygame.sprite.Sprite):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             self.mouse_dn = True
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1 and self.mouse_dn:
-            pass
+            self.mouse_dn = False
 
         elif event.type == pygame.MOUSEMOTION:
             self.on_mouse_over()
@@ -598,7 +600,17 @@ class Menu:
         self.bookmarks_list = pygame.sprite.LayeredUpdates()
         self.larrows_list = pygame.sprite.LayeredUpdates()
         self.rarrows_list = pygame.sprite.LayeredUpdates()
-        self.swipe_reset()
+
+        self.lswipe_mouse_dn = None
+        self.lswipe_mouse_up = None
+        self.lswiped = False
+        self.rswipe_mouse_dn = None
+        self.rswipe_mouse_up = None
+        self.rswiped = False
+        self.lswipe_t = 0
+        self.rswipe_t = 0
+        self.ldrag = False
+        self.rdrag = False
         self.add_arrows()
         self.create_menu()
 
@@ -627,6 +639,8 @@ class Menu:
         self.rswipe_mouse_dn = None
         self.rswipe_mouse_up = None
         self.rswiped = False
+        self.lswipe_t = 0
+        self.rswipe_t = 0
 
     def load_levels(self):
         if self.mainloop.config.save_levels:
@@ -729,6 +743,23 @@ class Menu:
                         if self.mainloop.mouse_over[1] is not None:
                             self.mainloop.mouse_over[1].on_mouse_out()
                             self.mainloop.mouse_over[1] = None
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                self.lswipe_mouse_dn = True
+                self.lswipe_t = pos[1]
+            elif event.type == pygame.MOUSEBUTTONUP:
+                self.lswipe_mouse_dn = False
+                if self.ldrag:
+                    self.ldrag = False
+            elif event.type == pygame.MOUSEMOTION:
+                if self.lswipe_mouse_dn is True:
+                    if pos[1] > self.lswipe_t + self.cat_icon_size + self.y_margin:
+                        self.scroll_menu(-1, 0)
+                        self.lswipe_t = pos[1]
+                        self.ldrag = True
+                    elif pos[1] < self.lswipe_t - (self.cat_icon_size + self.y_margin):
+                        self.scroll_menu(1, 0)
+                        self.lswipe_t = pos[1]
+                        self.ldrag = True
         else:
             pass
 
@@ -755,12 +786,22 @@ class Menu:
                             self.mainloop.mouse_over[2].on_mouse_out()
 
                         self.mainloop.mouse_over[2] = None
+                    if self.rswipe_mouse_dn is True:
+                        if pos[1] > self.rswipe_t + self.icon_size + self.y_margin:
+                            self.scroll_menu(-1, 1)
+                            self.rswipe_t = pos[1]
+                            self.rdrag = True
+                        elif pos[1] < self.rswipe_t - (self.icon_size + self.y_margin):
+                            self.scroll_menu(1, 1)
+                            self.rswipe_t = pos[1]
+                            self.rdrag = True
                 else:
                     for each in self.rarrows_list:
                         if each.rect.topleft[0] + each.rect.width >= pos[0] >= each.rect.topleft[0] and \
                                                         each.rect.topleft[1] + each.rect.height >= pos[1] >= \
                                         each.rect.topleft[1]:
                             each.handle(event)
+
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = [event.pos[0] - self.mainloop.layout.menu_l_w, event.pos[1]]
                 if self.l.screen_h - self.arrow_h > pos[1] > self.l.misio_pos[3] + self.arrow_h:
@@ -777,11 +818,16 @@ class Menu:
                                             each.rect.topleft[1]:
                                 self.scroll_menu(direction=each.direction, pane=1)
                                 each.handle(event)
+                self.rswipe_mouse_dn = True
+                self.rswipe_t = pos[1]
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 pos = [event.pos[0] - self.mainloop.layout.menu_l_w, event.pos[1]]
                 if self.l.screen_h - self.arrow_h > pos[1] > self.l.misio_pos[3] + self.arrow_h:
                     self.on_mouse_up(pos, event)
                 self.swipe_reset()
+                self.rswipe_mouse_dn = False
+                if self.rdrag:
+                    self.rdrag = False
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 4:
                 self.scroll_menu(direction=-1, pane=1)
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 5:
