@@ -36,6 +36,8 @@ class LogoImg(pygame.sprite.Sprite):
             # check if cursor is not in the top right corner as it would happen on mobile after finger up
             if event.pos[0] + event.pos[1] > 0:
                 self.on_mouse_over()
+            else:
+                self.deselect_all()
 
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             if not (self.mainloop.m.ldrag or self.mainloop.m.rdrag):
@@ -70,7 +72,7 @@ class LogoImg(pygame.sprite.Sprite):
         if not self.mouse_over:
             self.on_mouse_enter()
 
-    def on_mouse_enter(self):
+    def deselect_all(self):
         if self.mainloop.mouse_over[0] is not None:
             self.mainloop.mouse_over[0].on_mouse_out()
         self.mainloop.mouse_over[0] = self
@@ -81,6 +83,8 @@ class LogoImg(pygame.sprite.Sprite):
             self.mainloop.mouse_over[2].on_mouse_out()
         self.mainloop.mouse_over[2] = None
 
+    def on_mouse_enter(self):
+        self.deselect_all()
         if self.state != 2:
             self.state = 1
 
