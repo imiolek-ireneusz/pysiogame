@@ -114,6 +114,7 @@ class Language():
             self.lang_file = i18n.custom.sr
             self.lang_id = 19
             self.ico_suffix = "ru"
+            self.has_cursive = False
         elif self.lang == 'ca':
             import i18n.custom.ca
             import i18n.custom.word_lists.ca_di
