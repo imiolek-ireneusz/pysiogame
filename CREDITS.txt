@@ -3,15 +3,21 @@ Translations:
     English UK - Ireneusz Imiolek (some corrections needed)
     English US - Ireneusz Imiolek (some corrections needed)
     Finnish - Aapo Rantalainen
-    French - Gino Ingras, edited by Johnny Jazeix
+    French - Gino Ingras
+           - edited by Johnny Jazeix
     German - Oliver van der Bürie
-    Greek - Στέλιος, versys650gr, sdim, lucinos and other members of the Official Greek Community of Linux Mint - http://linuxmint.gr, recently updated by Alexandros Moskofidis (Αλέξανδρος Μοσκοφίδης)
+    Greek - Στέλιος, versys650gr, sdim, lucinos and other members of the Official Greek Community of Linux Mint - http://linuxmint.gr
+          - recently updated by Alexandros Moskofidis (Αλέξανδρος Μοσκοφίδης)
     Hebrew - Ori Hoch
     Italian - Giuliano
-    Polish - Kamila Roszak-Imiolek, Ireneusz Imiolek
+    Polish - Kamila Roszak-Imiolek
+           - Ireneusz Imiolek
     Portuguese - Américo Monteiro
-    Russian - Anton Kayukov (Антон Каюков) & Alexey Loginov (Алексей Логинов)
+    Russian - Anton Kayukov (Антон Каюков)
+            - Alexey Loginov (Алексей Логинов)
+    Serbian - Miroslav Nikolic (Мирослав Николић)
     Spanish - Miriam Ruiz - http://www.miriamruiz.es
+            - updated by: Mario Izquierdo
     Ukrainian - Yuri Chornoivan (Юрій Чорноіван)
 
 Game Ideas:
@@ -346,6 +352,16 @@ New images for version 3:
     https://openclipart.org/detail/191524/clock-by-agomjo-191524
     https://openclipart.org/detail/5247/sack-by-jonata
     https://openclipart.org/detail/189958/rabbit-by-peterm-189958
+
+New images added to flashcard game for Serbian language:
+    https://openclipart.org/detail/195939/child-on-a-swing
+    https://openclipart.org/detail/166640/nail
+    https://openclipart.org/detail/225681/pacifier-brown
+    https://openclipart.org/detail/266220/cartoon-turkey
+    https://openclipart.org/detail/188192/turkey
+    https://openclipart.org/detail/227553/student-asking-question
+    https://openclipart.org/detail/154981/sack
+    https://openclipart.org/detail/3631/happy-pig
 
 Wikipedia images:
     http://de.wikipedia.org/wiki/Datei:Koala.svg
