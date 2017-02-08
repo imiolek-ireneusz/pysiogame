@@ -141,7 +141,8 @@ class Config:
                            "fi",
                            "uk"]
 
-        self.id2lng = {1: "English", 5: "Català", 18: "Српски", 12: "Deutsch", 8: "Español", 16: "Ελληνικά", 17: "תירבע",
+        self.id2lng = {1: "English", 5: "Català", 19: "Српски", 12: "Deutsch", 8: "Español", 16: "Ελληνικά",
+                       17: "תירבע",
                        11: "Italiano", 3: "Polski", 9: "Português", 13: "Русский", 15: "Suomalainen", 14: "Українська",
                        2: self.arabic, 6: "Dansk", 10: "Français", 7: "Nederlands", 4: "Slovenčina"}
         self.id2imgsuffix = {1: "", 5: "", 18: "ru", 12: "", 8: "", 16: "el", 17: "he", 11: "", 3: "", 9: "", 13: "ru",
