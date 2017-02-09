@@ -2,6 +2,7 @@ Changelog:
 pySioGame - 3.70.xxx:
     - Serbian language added by Miroslav Nikolic (Мирослав Николић)
     - minor changes to menu to enable scrolling on drag
+    - Catalan translation updated with a patch from Jordi Mallach and Guillem Jover
 pySioGame - 3.70.104:
     - changed the way the objects can be dragged around in most games where movement constrained to the grid was not beneficial, now items can be dragged freely around the play area and only snap to grid on button release - this will contribute to decreasing of frustration especially for new users.
     - the previous change forced another feature - the images and objects that support the new style of movement and can be dragged over other items had to be changed to images with transparent backgrounds that are taking up more space - in effect causing an increase of the size of the package.

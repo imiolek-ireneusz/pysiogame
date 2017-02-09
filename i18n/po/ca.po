@@ -133,7 +133,7 @@ msgid "Cube"
 msgstr "Cub"
 
 msgid "Square Prism"
-msgstr "Prisma Quadrat"
+msgstr "Prisma quadrat"
 
 msgid "Triangular Prism"
 msgstr "Prisma triangular"
@@ -163,7 +163,7 @@ msgid "Hi Stranger :) Would you like to log in so we know who you are?"
 msgstr "Hola foraster :) Vols iniciar la sessió per a saber qui ets?"
 
 msgid "Log in:"
-msgstr "Iniciar la sessió:"
+msgstr "Inici de sessió:"
 
 msgid "user name:"
 msgstr "nom d'usuari:"
@@ -172,7 +172,7 @@ msgid "password:"
 msgstr "paraula clau:"
 
 msgid "remember me"
-msgstr "recorda't de mi"
+msgstr "recorda-ho"
 
 msgid "Login"
 msgstr "Inici de sessió"
@@ -193,7 +193,7 @@ msgid "User Management"
 msgstr "Administració d'usuaris"
 
 msgid "Please select a user from the list."
-msgstr "Seleccion un usuari de la llista."
+msgstr "Selecciona un usuari de la llista."
 
 msgid "Delete user"
 msgstr "Esborra l'usuari"
@@ -221,22 +221,22 @@ msgid "allow adding new users on login screen"
 msgstr "permet afegir usuaris nous a la pantalla d'inici de sessió"
 
 msgid "display languages with uncompleted translations"
-msgstr "mostra idiomes amb traduccions incompletes"
+msgstr "mostra les llengües amb traduccions incompletes"
 
 msgid "require password to log in"
-msgstr "exigeix paraula clau per iniciar sessió"
+msgstr "exigeix contrasenya per iniciar sessió"
 
 msgid "require password to access admin area"
-msgstr "exigeix paraula clau per accedir a l'àrea d'administració"
+msgstr "exigeix contrasenya per accedir a l'àrea d'administració"
 
 msgid "Update admin's password:"
-msgstr "Modifica la paraula clau de l'administrador:"
+msgstr "Modifica la contrasenya de l'administrador:"
 
 msgid "previous password:"
-msgstr "paraula clau antiga:"
+msgstr "contrasenya antiga:"
 
 msgid "new password:"
-msgstr "paraula clau nova:"
+msgstr "contrasenya nova:"
 
 msgid "confirm new password:"
 msgstr "confirma contrasenya nova:"
@@ -263,13 +263,13 @@ msgid "Please enter password (at least 4 characters long)"
 msgstr "Introdueix la paraula clau (de com a mínim quatre caràcters)"
 
 msgid "This username and password combination doesn't exist."
-msgstr ""
+msgstr "Aquesta combinació d'usuari i contrasenya no existeix."
 
 msgid "This username doesn't exist."
-msgstr ""
+msgstr "Aquest usuari no existeix."
 
 msgid "Passwords don't match"
-msgstr ""
+msgstr "Les contrasenyes no concorden"
 
 #, python-format
 msgid "%s added"
@@ -279,19 +279,19 @@ msgid "This user name already exists, please choose a different one"
 msgstr "Aquest nom d'usuari ja existeix, tria'n un diferent"
 
 msgid "Admin's password has been updated"
-msgstr "La paraula clau de l'administrador s'ha modificat"
+msgstr "S'ha modificat la contrasenya de l'administrador"
 
 msgid "ERROR: This operation is not allowed at this point"
-msgstr ""
+msgstr "ERROR: Aquesta operació no és permesa en aquest punt"
 
 msgid "Please enter previous password (at least 4 characters long)"
-msgstr ""
+msgstr "Introdueix la contrasenya anterior (de com a mínim 4 caràcters)"
 
 msgid "Please enter new password (at least 4 characters long)"
-msgstr ""
+msgstr "Introdueix la contrasenya nova (de com a mínim 4 caràcters)"
 
 msgid "Previous password doesn't seem to be in the database"
-msgstr ""
+msgstr "La contrasenya anterior no sembla estar a la base de dades"
 
 msgid "Registered:"
 msgstr "Registrat/ada:"
@@ -309,7 +309,7 @@ msgid "Logged in as: "
 msgstr "Sessió iniciada com: "
 
 msgid "(Log out)"
-msgstr "(Finalitza sessió)"
+msgstr "(Finalitza la sessió)"
 
 msgid "Addition Table"
 msgstr "Taula de sumes"
@@ -318,10 +318,10 @@ msgid "Hello"
 msgstr "Hola"
 
 msgid "Welcome back in the game."
-msgstr "Benvingut un altre cop al joc."
+msgstr "Benvingut una altra vegada al joc."
 
 msgid "Language"
-msgstr "Idioma"
+msgstr "Llengua"
 
 msgid "Translations"
 msgstr "Traduccions"
@@ -369,10 +369,10 @@ msgid "About."
 msgstr "Sobre el joc."
 
 msgid "Game info..."
-msgstr "Informació del joc..."
+msgstr "Informació del joc…"
 
 msgid "Copyright & Credits"
-msgstr "Drets de copia i crèdits"
+msgstr "Drets de còpia i crèdits"
 
 msgid "Hit the Mole"
 msgstr ""
@@ -705,7 +705,7 @@ msgid "lime"
 msgstr "llima"
 
 msgid "Rainbow Keyboard"
-msgstr "Teclat d'arc de San Martí"
+msgstr "Teclat d'arc de Sant Martí"
 
 msgid "Touch Typing Tutor"
 msgstr ""
@@ -923,10 +923,10 @@ msgid "Acute isosceles triangle"
 msgstr "Triangle agut isòsceles"
 
 msgid "Ouch... squished triangle"
-msgstr "Ai... triangle aixafat"
+msgstr "Ai… quadrilàter aixafat"
 
 msgid "Triangle? Well, not really..."
-msgstr "Triangle? No ben bé..."
+msgstr "Triangle? No ben bé…"
 
 msgid "Test yourself"
 msgstr ""
@@ -953,7 +953,7 @@ msgid "Click again to exit"
 msgstr "Fes clic un altre cop per sortir"
 
 msgid "Type your answer and hit enter"
-msgstr "Escriu la teva resposta i prem Entrar"
+msgstr "Escriu la teva resposta i prem Intro"
 
 msgid "Time"
 msgstr "Temps"
@@ -1084,10 +1084,16 @@ msgid ""
 " Images by various authors who contributed their works to openclipart.org (Public Domain) and http://www.art4apps.org/ - Art4Apps by Smart4Kids - under a Creative "
 "Commons License (CC BY-SA). \n"
 " Please view credits.txt for more info about authors of media files used in this project"
+
 msgstr ""
+"Laby, 2010 per Mehdi Cherti (mehdidc) \n"
+" Sons per diversos autors qui van contribuir les seves obres a freesound.org. \n"
+" Imatges per diversos autors qui van contribuir les seves obres a openclipart.org (domini públic) i http://www.art4apps.org/ - Art4Apps by Smart4Kids - sota una llicència Creative Commons (CC BY-SA). \n"
+" Vegeu credits.txt per obtenir-ne més informació sobre els autors dels fitxers multimèdia emprats a aquest projecte"
+ 
 
 msgid "Licence"
-msgstr "Llicencia"
+msgstr "Llicència"
 
 msgid ""
 "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, "
@@ -1138,7 +1144,7 @@ msgid "Word Builder - Food"
 msgstr ""
 
 msgid "Images from: http://www.art4apps.org/ - Art4Apps by Smart4Kids - Creative Commons License (CC BY-SA)"
-msgstr ""
+msgstr "Imatges de: http://www.art4apps.org/ - Art4Apps by Smart4Kids - Llicència Creative Commons (CC BY-SA)"
 
 msgid "Decimals and Fractions"
 msgstr "Decimals i fraccions"
@@ -1177,22 +1183,22 @@ msgid "preschool"
 msgstr "preescolar"
 
 msgid "Year 1"
-msgstr ""
+msgstr "1r any"
 
 msgid "Year 2"
-msgstr ""
+msgstr "2n any"
 
 msgid "Year 3"
-msgstr ""
+msgstr "3r any"
 
 msgid "Year 4"
-msgstr ""
+msgstr "4t any"
 
 msgid "Year 5"
-msgstr ""
+msgstr "5è any"
 
 msgid "Year 6"
-msgstr ""
+msgstr "6è any"
 
 msgid "show all"
 msgstr "mostra tots"
@@ -1213,7 +1219,7 @@ msgid "Other"
 msgstr "Altres"
 
 msgid "Educational Activity Pack for Kids"
-msgstr ""
+msgstr "Paquet d'activitats educatives per nens i nenes"
 
 msgid ""
 "You may like to install espeak to use its text to speech functionality, however this is not required to successfully use the game: \n"

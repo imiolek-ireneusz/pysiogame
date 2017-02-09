@@ -1,10 +1,11 @@
 Translations:
     Catalan - Guillem Jover - http://www.hadrons.org/~guillem/
+            - updated by Jordi Mallach
     English UK - Ireneusz Imiolek (some corrections needed)
     English US - Ireneusz Imiolek (some corrections needed)
     Finnish - Aapo Rantalainen
     French - Gino Ingras
-           - edited by Johnny Jazeix
+           - updated by Johnny Jazeix
     German - Oliver van der Bürie
     Greek - Στέλιος, versys650gr, sdim, lucinos and other members of the Official Greek Community of Linux Mint - http://linuxmint.gr
           - recently updated by Alexandros Moskofidis (Αλέξανδρος Μοσκοφίδης)

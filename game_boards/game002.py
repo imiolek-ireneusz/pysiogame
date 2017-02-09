@@ -60,7 +60,8 @@ class Board(gd.BoardGame):
         self.board.add_unit(left, top, lang_width, 1, classes.board.Label, ["Catalan", "Català"], colors[top % 2], "",
                             6)
         self.board.add_unit(left + lang_width, top, credits_width, 1, classes.board.Label,
-                            ["Guillem Jover", "http://www.hadrons.org/~guillem/"], colors[top % 2], "", 6)
+                            ["Guillem Jover (www.hadrons.org/~guillem/)", "updated by Jordi Mallach"], colors[top % 2],
+                            "", 6)
         top += 1
         self.board.add_unit(0, top, lang_width, 1, classes.board.Label, ["English", "English"], colors[top % 2], "", 6)
         self.board.add_unit(left + lang_width, top, credits_width, 1, classes.board.Label,
@@ -75,7 +76,7 @@ class Board(gd.BoardGame):
         self.board.add_unit(left, top, lang_width, 1, classes.board.Label, ["French", "Français"], colors[top % 2], "",
                             6)
         self.board.add_unit(left + lang_width, top, credits_width, 1, classes.board.Label,
-                            ["Gino Ingras", "edited by Johnny Jazeix"],
+                            ["Gino Ingras", "updated by Johnny Jazeix"],
                             colors[top % 2], "", 6)
         top += 1
         self.board.add_unit(left, top, lang_width, 1, classes.board.Label, ["German", "Deutsch"], colors[top % 2], "",
@@ -120,7 +121,7 @@ class Board(gd.BoardGame):
         self.board.add_unit(left, top, lang_width, 1, classes.board.Label, ["Spanish", "Español"], colors[top % 2], "",
                             6)
         self.board.add_unit(left + lang_width, top, credits_width, 1, classes.board.Label,
-                            ["Miriam Ruiz (http://www.miriamruiz.es)", "updated by: Mario Izquierdo"],
+                            ["Miriam Ruiz (www.miriamruiz.es)", "updated by Mario Izquierdo"],
                             colors[top % 2], "", 6)
         top += 1
         self.board.add_unit(left, top, lang_width, 1, classes.board.Label, ["Ukrainian", "Українська"], colors[top % 2],
@@ -137,7 +138,7 @@ class Board(gd.BoardGame):
                             6)
         self.board.add_unit(left + lang_width, top, data[0] - lang_width, 1, classes.board.Label, [
             "Στέλιος, versys650gr, sdim, lucinos and other members of The Official Greek Community of Linux Mint,",
-            "updated and edited by Alexandros Moskofidis (Αλέξανδρος Μοσκοφίδης)"], colors[top % 2], "", 6)
+            "updated by Alexandros Moskofidis (Αλέξανδρος Μοσκοφίδης)"], colors[top % 2], "", 6)
 
         top += 1
         self.board.add_unit(0, top, data[0], 1, classes.board.Letter, "<<", colors[top % 2], "", 0)

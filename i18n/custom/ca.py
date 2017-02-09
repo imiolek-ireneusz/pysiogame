@@ -21,15 +21,16 @@ numbers2090 = ['vint', 'trenta', 'quaranta', 'cinquanta', 'seixanta', 'setanta',
 # The following 2 lines are not to be translated but replaced with a sequence of words starting in each of the letters of your alphabet in order, best if these words have a corresponding picture in images/flashcard_images.jpg. The second line has the number of the image that the word describes.
 # The images are numbered from left to bottom such that the top left is numbered 0, the last image is 73, if none of the available things have names that start with any of the letters we can add new pictures.
 dp['abc_flashcards_word_sequence'] = ['Ànec', 'Barca', 'Coala', 'Calçat', 'Dofí', 'Elefant', 'Formiga', 'Gat',
-                                      'Hipopotam', 'Iglú', 'Joguina', 'Kiwi', 'Lleó', 'Mússol', 'Nit', 'Oceà', 'Poma',
-                                      'Quadern', 'Ratolí', 'Síndria', 'Tomàquet', 'Ull', 'Violí', 'Windsurf', 'Xilofon',
+                                      'Hipopòtam', 'Iglú', 'Joguina', 'Kiwi', 'Lleó', 'Mussol', 'Nit', 'Oceà', 'Poma',
+                                      'Quadern', 'Ratolí', 'Síndria', 'Tomàquet', 'Ull', 'Violí', 'Windsurf', 'Xilòfon',
                                       'Yoga', 'Zebra']
 d['abc_flashcards_word_sequence'] = ['<1>À<2>nec', '<1>B<2>arca', '<1>C<2>oala', '<2>Cal<1>ç<2>at', '<1>D<2>ofí',
-                                     '<1>E<2>l<1>e<2>fant', '<1>F<2>ormiga', '<1>G<2>at', '<1>H<2>ipopotam',
-                                     '<1>I<2>glú', '<1>J<2>oguina', '<1>K<2>iwi', '<1>L<2>leó', '<1>M<2>ússol',
+                                     '<1>E<2>l<1>e<2>fant', '<1>F<2>ormiga', '<1>G<2>at', '<1>H<2>ipopòtam',
+                                     '<1>I<2>glú', '<1>J<2>oguina', '<1>K<2>iwi', '<1>L<2>leó', '<1>M<2>ussol',
                                      '<1>N<2>it', '<1>O<2>ceà', '<1>P<2>oma', '<1>Q<2>uadern', '<1>R<2>atolí',
                                      '<1>S<2>índria', '<1>T<2>omàque<1>t', '<1>U<2>ll', '<1>V<2>iolí', '<1>W<2>indsurf',
-                                     '<1>X<2>ilofon', '<1>Y<2>oga', '<1>Z<2>ebra']
+                                     '<1>X<2>ilòfon', '<1>Y<2>oga', '<1>Z<2>ebra']
+ 
 
 d['abc_flashcards_frame_sequence'] = [3, 1, 72, 60, 59, 4, 0, 2, 47, 8, 58, 74, 11, 14, 54, 52, 42, 13, 12, 26, 33, 75,
                                       21, 66, 23, 32, 25]
