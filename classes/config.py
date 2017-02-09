@@ -119,35 +119,27 @@ class Config:
         self.set_font_family()
 
         if self.fribidi_loaded:
-            self.lang_titles = ["English", "American English", "Català", "Српски", "Español", "Ελληνικά", "Français",
-                                "תירבע",
-                                "Italiano", "Polski", "Português", "Русский", "Suomalainen", "Українська", self.arabic,
-                                "Deutsch", "Dansk", "Nederlands", "Slovenčina", "Test Language"]
-            self.all_lng = ["en_GB", "en_US", "ca", "sr", "es_ES", "el", "fr", "he", "it", "pl", "pt_PT", "ru", "fi",
-                            "uk",
-                            "ar", "de", "da", "nl", "sk", "te_ST"]
-            self.ok_lng = ["en_GB", "en_US", "ca", "sr", "es_ES", "el", "fr", "he", "it", "pl", "pt_PT", "ru", "fi",
-                           "uk",
-                           "de"]
+            self.lang_titles = ["English", "American English", "Català", "Deutsch", "Español", "Français", "Italiano",
+                                "Polski", "Português", "Suomalainen", "Ελληνικά", "Русский", "Српски", "Українська",
+                                "תירבע", self.arabic, "Dansk", "Nederlands", "Slovenčina", "Test Language"]
+            self.all_lng = ["en_GB", "en_US", "ca", "de", "es_ES", "fr", "it", "pl", "pt_PT", "fi", "el", "ru", "sr",
+                            "uk", "he", "ar", "da", "nl", "sk", "te_ST"]
+            self.ok_lng = ["en_GB", "en_US", "ca", "de", "es_ES", "fr", "it", "pl", "pt_PT", "fi", "el", "ru", "sr",
+                           "uk", "he"]
         else:
-            self.lang_titles = ["English", "American English", "Català", "Српски", "Deutsch", "Español", "Ελληνικά",
-                                "Français",
-                                "תירבע", "Italiano", "Polski", "Português", "Русский", "Suomalainen", "Українська",
-                                "Dansk", "Nederlands", "Slovenčina", "Test Language"]
-            self.all_lng = ["en_GB", "en_US", "ca", "sr", "de", "es_ES", "el", "fr", "he", "it", "pl", "pt_PT", "ru",
-                            "fi",
-                            "uk", "da", "nl", "sk", "te_ST"]
-            self.ok_lng = ["en_GB", "en_US", "ca", "sr", "de", "es_ES", "el", "fr", "he", "it", "pl", "pt_PT", "ru",
-                           "fi",
-                           "uk"]
+            self.lang_titles = ["English", "American English", "Català", "Deutsch", "Español", "Français", "Italiano",
+                                "Polski", "Português", "Suomalainen", "Ελληνικά", "Русский", "Српски", "Українська",
+                                "תירבע", "Dansk", "Nederlands", "Slovenčina", "Test Language"]
+            self.all_lng = ["en_GB", "en_US", "ca", "de", "es_ES", "fr", "it", "pl", "pt_PT", "fi", "el", "ru", "sr",
+                            "uk", "he", "da", "nl", "sk", "te_ST"]
+            self.ok_lng = ["en_GB", "en_US", "ca", "de", "es_ES", "fr", "it", "pl", "pt_PT", "fi", "el", "ru", "sr",
+                           "uk", "he"]
 
         self.id2lng = {1: "English", 5: "Català", 19: "Српски", 12: "Deutsch", 8: "Español", 16: "Ελληνικά",
-                       17: "תירבע",
-                       11: "Italiano", 3: "Polski", 9: "Português", 13: "Русский", 15: "Suomalainen", 14: "Українська",
-                       2: self.arabic, 6: "Dansk", 10: "Français", 7: "Nederlands", 4: "Slovenčina"}
+                       17: "תירבע", 11: "Italiano", 3: "Polski", 9: "Português", 13: "Русский", 15: "Suomalainen",
+                       14: "Українська", 2: self.arabic, 6: "Dansk", 10: "Français", 7: "Nederlands", 4: "Slovenčina"}
         self.id2imgsuffix = {1: "", 5: "", 18: "ru", 12: "", 8: "", 16: "el", 17: "he", 11: "", 3: "", 9: "", 13: "ru",
-                             15: "",
-                             14: "ru", 2: "ar", 6: "", 10: "", 7: "", 4: ""}
+                             15: "", 14: "ru", 2: "ar", 6: "", 10: "", 7: "", 4: ""}
 
     def set_font_family(self, variant=0):
         self.font_variant = variant
