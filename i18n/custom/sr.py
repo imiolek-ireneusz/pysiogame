@@ -72,6 +72,29 @@ def n2txt(n, twoliner=False):
 ha = ["сат", "сата", "сата", "сата", "сати", "сати", "сати", "сати", "сати", "сати", "сати", "сати"]
 ma = ["минут", "минута"]
 
+
+def time2str_short(h, m):
+    """takes 2 variables: h - hour, m - minute, returns time as a string, ie. five to seven - for 6:55"""
+    if m > 29:
+        if h == 12:
+            h = 1
+        else:
+            h += 1
+
+    if m == 0:
+        return "%s %s" % (n2txt(h), ha[h - 1])
+    elif m == 1:
+        return "%s и минут" % n2txt(h)
+    elif m == 30:
+        return "пола %s" % n2txt(h)
+    elif m == 59:
+        return "минут до %s" % n2txt(h)
+    elif m < 30:
+        return "%s и %s" % (n2txt(h), n2txt(m))
+    elif m > 30:
+        return "%s до %s" % (n2txt(60 - m), n2txt(h))
+    return ""
+
 def time2str(h, m):
     """takes 2 variables: h - hour, m - minute, returns time as a string, ie. five to seven - for 6:55"""
     if m > 29:
@@ -93,15 +116,15 @@ def time2str(h, m):
     if m == 0:
         return "%s %s" % (n2txt(h), ha[h - 1])
     elif m == 1:
-        return "%s и минут" % n2txt(h)
+        return "%s %s и минут" % (ha[h - 1], n2txt(h))
     elif m == 30:
         return "пола %s" % n2txt(h)
     elif m == 59:
-        return "минут до %s" % n2txt(h)
+        return "минут до %s %s" % (n2txt(h), ha[h - 1])
     elif m < 30:
-        return "%s и %s %s" % (n2txt(h), n2txt(m), mx)
+        return "%s %s и %s %s" % (n2txt(h), ha[h - 1], n2txt(m), mx)
     elif m > 30:
-        return "%s %s до %s" % (n2txt(60 - m), mx, n2txt(h))
+        return "%s %s до %s %s" % (n2txt(60 - m), mx, n2txt(h), ha[h - 1])
     return ""
 
 

@@ -345,7 +345,8 @@ class MenuCategory(pygame.sprite.Sprite):
 
 
 class MenuItem(pygame.sprite.Sprite):
-    def __init__(self, menu, dbgameid, item_id, cat_id, title, subtitle, constructor, icon_size, img_src, variant=0):
+    def __init__(self, menu, dbgameid, item_id, cat_id, title, subtitle, constructor, icon_size, img_src, variant=0,
+                 var2=0):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
         self.menu = menu
@@ -358,6 +359,7 @@ class MenuItem(pygame.sprite.Sprite):
         self.cat_id = cat_id
         self.game_constructor = constructor
         self.variant = variant
+        self.var2 = var2
         self.dbgameid = dbgameid
 
         self.title = ex.unival(title)
@@ -569,6 +571,7 @@ class Menu:
         self.prev_cat = -1
         self.game_constructor = game000.Board
         self.game_variant = 0
+        self.game_var2 = 0
         self.icon_size = 50
         self.cat_icon_size = 58
         self.initial_cat_h = 105
@@ -857,6 +860,7 @@ class Menu:
                     self.active_o = each
                     self.game_constructor = each.game_constructor
                     self.game_variant = each.variant
+                    self.game_var2 = each.var2
                     self.tab_r_scroll = (self.scroll_r // self.scroll_step)
                     row = (pos[1] - 3 - self.l.misio_pos[3] - self.arrow_h - self.scroll_r) // (
                     self.icon_size + self.y_margin)
@@ -879,6 +883,7 @@ class Menu:
                 self.active_o = each
                 self.game_constructor = each.game_constructor
                 self.game_variant = each.variant
+                self.game_var2 = each.var2
                 self.tab_r_scroll = -1
                 self.tab_game_id = -1
 
@@ -983,7 +988,12 @@ class Menu:
                 lbl = self.lang.d["Decimals, fractions, ratios and percentages"]
             self.add_category(2, lbl, "", "ico_c_10.png")
             self.add_category(2, self.lang.d["Shapes and Solids"], "", "ico_c_14.png")
-        self.add_category(2, self.lang.d["Clock_cat"], "", "ico_c_15.png")
+
+        if self.mainloop.lang.lang == 'sr':
+            self.add_category(2, self.lang.d["Clock_cat"], "полная форма", "ico_c_15.png")
+            self.add_category(2, self.lang.d["Clock_cat"], "краткая форма", "ico_c_15.png")
+        else:
+            self.add_category(2, self.lang.d["Clock_cat"], "", "ico_c_15.png")
 
         self.add_category(3, self.lang.d["Art"], "", "ico_c_16.png")
         self.add_category(3, self.lang.d["Memory"], "", "ico_c_17.png")
@@ -991,10 +1001,10 @@ class Menu:
 
         self.update_panel_height()
 
-    def add_game(self, dbgameid, cat_id, min_age, max_age, constructor, title, subtitle, img_src, variant=0):
+    def add_game(self, dbgameid, cat_id, min_age, max_age, constructor, title, subtitle, img_src, variant=0, var2=0):
         if min_age <= self.uage <= max_age or self.uage == 7:
             new_game = MenuItem(self, dbgameid, len(self.games), cat_id, title, subtitle, constructor, self.icon_size,
-                                img_src, variant)
+                                img_src, variant, var2)
             self.games.append(new_game)
         self.saved_levels[dbgameid] = 1
 
@@ -1288,6 +1298,23 @@ class Menu:
                           self.lang.d["Russian official - subtitle"], "ico_g_1006.png", variant=1)
             self.add_game(106, c_id, 0, 7, game065.Board, self.lang.d["Clock2 - Russian official time"],
                           self.lang.d["Russian official - txt_only"], "ico_g_1007.png", variant=1)
+
+        if self.mainloop.lang.lang == 'sr':
+            c_id += 1
+            self.add_game(135, c_id, 0, 7, game081.Board, self.lang.d["Clock0"], self.lang.d["Play_w_clock"],
+                          "ico_g_1008.png", var2=1)
+            self.add_game(66, c_id, 0, 7, game066.Board, self.lang.d["Clock0"], self.lang.d["Play_w_clock"],
+                          "ico_g_1000.png", variant=0, var2=1)
+            self.add_game(142, c_id, 0, 7, game066.Board, self.lang.d["Clock0"], self.lang.d["Play_w_clock"],
+                          "ico_g_1000.png", variant=2, var2=1)
+            self.add_game(67, c_id, 0, 7, game063.Board, self.lang.d["Clock1"] + " - " + self.lang.d["Read time"], "",
+                          "ico_g_1001.png", var2=1)
+            self.add_game(68, c_id, 0, 7, game064.Board, self.lang.d["Clock2"] + " - " + self.lang.d["Set time"], "",
+                          "ico_g_1002.png", var2=1)
+            self.add_game(69, c_id, 0, 7, game065.Board, self.lang.d["Clock2"] + " - " + self.lang.d["Set time"],
+                          self.lang.d["txt_only"], "ico_g_1003.png", variant=0, var2=1)
+
+            self.add_game(70, c_id, 0, 7, game078.Board, self.lang.d["TimeMatching"], "", "ico_g_1004.png")
 
         # "Art"
         c_id += 1

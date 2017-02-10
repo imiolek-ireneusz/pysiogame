@@ -111,7 +111,10 @@ class Board(gd.BoardGame):
         tt = [random.choice(h_pool), random.choice(m_pool)]
         self.target_time = tt
         if self.mainloop.m.game_variant == 0:
-            self.text_string = self.lang.time2str(tt[0], tt[1])
+            if self.mainloop.m.game_var2 == 0:
+                self.text_string = self.lang.time2str(tt[0], tt[1])
+            else:
+                self.text_string = self.lang.time2str_short(tt[0], tt[1])
         elif self.mainloop.m.game_variant == 1:
             self.text_string = self.lang.time2officialstr(tt[0], tt[1])
         self.time = [6, 0]
