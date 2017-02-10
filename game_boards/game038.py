@@ -40,9 +40,9 @@ class Board(gd.BoardGame):
         self.layout.update_layout(data[0], data[1])
         scale = self.layout.scale
         self.board.level_start(data[0], data[1], scale)
-        image_src = [os.path.join('memory', "n_img%da.png" % (i)) for i in range(1, 22)]
-        self.word_list = [self.lang.n2txt(i) for i in range(1,
-                                                            21)]  # self.lang.numbers # ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty']
+        image_src = [os.path.join('memory', "n_img%da.png" % i) for i in range(1, 22)]
+        self.word_list = [self.lang.n2txt(i) for i in range(1, 21)]
+        # self.lang.numbers # ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty']
         self.card_fronts = []
         if data[0] > 20:
             x = (data[0] - 20) // 2

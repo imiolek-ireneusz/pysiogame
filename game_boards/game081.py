@@ -147,7 +147,10 @@ class Board(gd.BoardGame):
             self.lang.numbers[0] = "un"
         tt = self.time
 
-        self.text_string = self.lang.time2str(tt[0], tt[1])
+        if self.mainloop.m.game_var2 == 0:
+            self.text_string = self.lang.time2str(tt[0], tt[1])
+        else:
+            self.text_string = self.lang.time2str_short(tt[0], tt[1])
         self.text_time.value = self.text_string
         self.text_time.update_me = True
         self.ans_h.value = "%02d" % self.time[0]

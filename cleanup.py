@@ -101,7 +101,8 @@ if __name__ == "__main__":
 
         with open(os.path.join(path, "classes", "cversion.py"), "w") as s_file:
             s_file.write('ver = "%s"' % v)
-            print("\nVersion updated - based on todays date - no version number in parent folder name.\n")
+            print(
+            "\nVersion updated - based on todays date - no version number in parent folder name. Please remember to change version number in pysiogame.6 file before release.\n")
 
     # move the files to the locale directory based on its locale code
     distribute_mo(path, popath, ".mo")

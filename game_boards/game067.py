@@ -203,15 +203,18 @@ class Board(gd.BoardGame):
     def paint_bg_letter(self):
         txt = self.active_letter
         val = ex.unival(txt)
-        text = self.canvas_block.font.render("%s" % (val), 1, (220, 220, 220, 0))
+        try:
+            text = self.canvas_block.font.render("%s" % (val), 1, (220, 220, 220, 0))
 
-        font_x = ((self.board.scale * self.canvas_block.grid_w - self.canvas_block.font.size(val)[0]) // 2)
-        font_y = ((self.board.scale * self.canvas_block.grid_h - self.canvas_block.font.size(val)[
-            1]) // 2)  # - 3*self.board.scale
+            font_x = ((self.board.scale * self.canvas_block.grid_w - self.canvas_block.font.size(val)[0]) // 2)
+            font_y = ((self.board.scale * self.canvas_block.grid_h - self.canvas_block.font.size(val)[
+                1]) // 2)  # - 3*self.board.scale
 
-        self.canvas.fill(self.bg_color)
-        self.canvas.blit(text, (font_x, font_y))
-        self.copy_to_screen()
+            self.canvas.fill(self.bg_color)
+            self.canvas.blit(text, (font_x, font_y))
+            self.copy_to_screen()
+        except:
+            pass
 
     # states => mouse states => 0 - mouse_btn_down, 1 - mouse_move, 2 - mouse_btn_up
 

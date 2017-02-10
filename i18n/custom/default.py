@@ -107,6 +107,9 @@ class I18n():
         self.b["all groups"] = _("show all")
         self.b["show activities for:"] = _("show activities for:")
 
+        self.b["Apply"] = _("Apply")
+        self.b["Hello"] = _("Hello")
+
         # self.d["Educational Activity Pack for Kids"] = _("Educational Activity Pack for Kids")
         self.d["Credits_long"] = _(
             "Laby, 2010 by Mehdi Cherti (mehdidc) \n Sounds by various authors who contributed their works to freesound.org. \n Images by various authors who contributed their works to openclipart.org (Public Domain) and http://www.art4apps.org/ - Art4Apps by Smart4Kids - under a Creative Commons License (CC BY-SA). \n Please view credits.txt for more info about authors of media files used in this project")
@@ -506,7 +509,6 @@ class I18n():
         self.d["Find missing number"] = _("Find missing number")
         self.d["Language arts"] = _("Language arts")
         self.d["Other"] = _("Other")
-
         self.d["please install espeak"] = _(
             "You may like to install espeak to use its text to speech functionality, however this is not required to successfully use the game: \nhttp://espeak.sourceforge.net/")
 

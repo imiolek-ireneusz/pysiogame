@@ -1,4 +1,4 @@
-pysiogame
+pySioGame
 =========
 
 Educational Activity Pack for Kids

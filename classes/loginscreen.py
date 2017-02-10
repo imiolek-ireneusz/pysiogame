@@ -160,6 +160,9 @@ class PEdit(pygame.sprite.Sprite):
                     # self.ls.flogin()
 
                 self.ls.set_scrollbar_top(self.ls.scroll_min_top)
+        elif self.select_item and self.focus_order > -1 and self.ls.state == "FONTS":
+            # print(self.value)
+            self.ls.update_sample_font(self.value)
         if self.users and self.focus_order > -1 and self.ls.state == "USERS":
             self.ls.fdetails(self.value)  # print("clicked on user")
 
@@ -341,15 +344,18 @@ class PLabel(pygame.sprite.Sprite):
                     val = self.value
             else:
                 val = self.value
-            text = self.font_v.render("%s" % (val), 1, self.font_color)
+            try:
+                text = self.font_v.render("%s" % (val), 1, self.font_color)
 
-            if self.right_align:
-                self.font_x = (self.w - self.font_v.size(val)[0]) - 5
-            else:
-                self.font_x = 0
-            self.font_y = (self.h - self.font_v.size(val)[1]) // 2
+                if self.right_align:
+                    self.font_x = (self.w - self.font_v.size(val)[0]) - 5
+                else:
+                    self.font_x = 0
+                self.font_y = (self.h - self.font_v.size(val)[1]) // 2
 
-            self.image.blit(text, (self.font_x, self.font_y))
+                self.image.blit(text, (self.font_x, self.font_y))
+            except:
+                pass
 
     def handle(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -1085,6 +1091,69 @@ class LoginScreen:
         for each in form_elements:
             self.edit_list.add(each)
 
+    def add_fonts_elements(self):
+        self.scroll_item_count = 10
+        self.db_status = self.login_welcome_msg
+        # if self.register_enabled:
+        self.halfw = self.w // 2 - 50
+        label_w = 310
+        # else:
+        #    self.halfw = self.w -100
+        #    label_w = 660
+        # header
+        self.hlb1 = PLabel(self, label_w, 30, self.left + 20, self.top + 15, self.lang.b["Log in:"])
+        self.hlb1.font_color = self.header_font_color
+        self.hlb1.font_v = self.font_1
+        self.edit_list.add(self.hlb1)
+
+        btn_top = 333  # 278
+
+        self.loginbtn = PButton(self, self.halfw // 2 - 40, 30, self.left + 20 + self.halfw // 2,
+                                self.top + btn_top + 30, 3, self.lang.b["Apply"], self.fapplyfont)
+        self.edit_list.add(self.loginbtn)
+
+        self.select = []
+
+        hs = [60, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        for i in range(10):
+            self.select.append(PEdit(self, self.halfw - 40 - 20, 30, self.left + 20, self.top + hs[i], 0))
+            self.select[i].select_item = True
+            self.edit_list.add(self.select[i])
+
+        self.scroll_max_h = self.scroll_item_count * 30 - 4  # 150
+        self.scroll_min_h = 30
+        self.scroll_min_top = self.top + 60 + 2
+
+        self.scroll_bg = PEdit(self, 20, self.scroll_item_count * 30, self.left + self.halfw - 40 - 20 + 20,
+                               self.top + 60, -1)
+        self.edit_list.add(self.scroll_bg)
+        self.scroll_bg.select_item = True
+
+        self.scroll_bar = PScrollBar(self, 16, 30, self.left + self.halfw - 40 - 20 + 20 + 2, self.top + 62, 0)
+        self.edit_list.add(self.scroll_bar)
+        text = self.lang.b["Hello"]
+        self.sample_text = PLabel(self, 250, 100, self.left + self.halfw + 20, self.top + 30, text)
+        self.sample_text.font_color = self.header_font_color
+        self.sample_text.font_v = self.font_1
+        self.edit_list.add(self.sample_text)
+
+        text = "0123456789"
+        self.sample_text2 = PLabel(self, 250, 100, self.left + self.halfw + 20, self.top + 100, text)
+        self.sample_text2.font_color = self.header_font_color
+        self.sample_text2.font_v = self.font_1
+        self.edit_list.add(self.sample_text2)
+
+        self.reload_font_selects()
+        # self.reload_scroll_bar()
+
+    def update_sample_font(self, font_name):
+        try:
+            self.sample_text.font_v = pygame.font.Font(pygame.font.match_font(font_name.lower()),
+                                                       (int(self.points * 4.0)))
+            self.sample_text2.font_v = self.sample_text.font_v
+        except:
+            pass
+
     def showfdeluser(self):
         # self.delete_btn.visible = False
         # self.delete_imgbtn.visible = False
@@ -1216,23 +1285,6 @@ class LoginScreen:
         self.edit_list.add(self.cpassword)
         self.edit_list.add(self.savebtn)
 
-    def add_side_btns_old(self):
-        sp = 30  # spacing
-        self.login_tab = PIMGButton(self, 70, 70, self.left + self.w - 85, self.top + sp, 1, "login_login_n.png",
-                                    "login_login.png", self.flogint)
-        self.btn_list.add(self.login_tab)
-
-        self.settings_tab = PIMGButton(self, 70, 70, self.left + self.w - 85, self.top + sp + 70 + sp, 1,
-                                       "login_settings_n.png", "login_settings.png", self.fprefs)
-        self.btn_list.add(self.settings_tab)
-
-        self.lang_tab = PIMGButton(self, 70, 70, self.left + self.w - 85, self.top + sp + 70 + sp + 70 + sp, 1,
-                                   "login_lang_n.png", "login_lang.png", self.flang)
-        self.btn_list.add(self.lang_tab)
-
-        self.users_tab = PIMGButton(self, 70, 70, self.left + self.w - 85, self.top + sp + 70 + sp + 70 + sp + 70 + sp,
-                                    1, "login_users_n.png", "login_users.png", self.fusers)
-        self.btn_list.add(self.users_tab)
 
     def add_side_btns(self):
         sp = 20  # spacing
@@ -1243,9 +1295,15 @@ class LoginScreen:
         self.settings_tab = PIMGButton(self, 70, 70, self.left + self.w - 85, self.top + sp + 70 + sp, 1,
                                        "login_settings_n.png", "login_settings.png", self.fprefs)
         self.btn_list.add(self.settings_tab)
-
+        """
         self.lang_tab = PIMGButton(self, 70, 70, self.left + self.w - 85, self.top + sp + 70 + sp + 70 + sp, 1,
                                    "login_lang_n.png", "login_lang.png", self.flang)
+        """
+        # TODO change this back to flang
+        self.lang_tab = PIMGButton(self, 70, 70, self.left + self.w - 85, self.top + sp + 70 + sp + 70 + sp, 1,
+                                   "login_lang_n.png", "login_lang.png", self.flang)
+        # self.lang_tab = PIMGButton(self, 70, 70, self.left + self.w - 85, self.top + sp + 70 + sp + 70 + sp, 1,
+        #                           "login_lang_n.png", "login_lang.png", self.ffonts)
         self.btn_list.add(self.lang_tab)
 
         self.users_tab = PIMGButton(self, 70, 70, self.left + self.w - 85, self.top + sp + 70 + sp + 70 + sp + 70 + sp,
@@ -1266,6 +1324,22 @@ class LoginScreen:
         for i in range(j, j + self.scroll_item_count):
             if i < self.usr_count:
                 self.select[index].value = self.usernames_filtered[i]
+                index += 1
+            else:
+                self.select[index].value = ""
+                index += 1
+
+    def reload_font_selects(self, j=0):
+        # self.load_usernames()
+        # self.usernames_filtered = self.filter_usernames()
+        system_font_list = pygame.font.get_fonts()
+        sorted_font_list = sorted(system_font_list)
+        self.usr_count = len(sorted_font_list)
+        self.reload_scroll_bar_h()
+        index = 0
+        for i in range(j, j + self.scroll_item_count):
+            if i < self.usr_count:
+                self.select[index].value = sorted_font_list[i].title()
                 index += 1
             else:
                 self.select[index].value = ""
@@ -1342,13 +1416,32 @@ class LoginScreen:
         else:
             self.set_scrollbar_top(self.scroll_min_top)
 
+    def update_fonts_scrollbar_top(self, top):
+        if self.usr_count > self.scroll_item_count:
+            # self.scroll_bar.dist2top
+            if top > self.scroll_max_top + self.scroll_bar.dist2top:
+                t = self.scroll_max_top
+            elif top < self.scroll_min_top + self.scroll_bar.dist2top:
+                t = self.scroll_min_top
+            else:
+                t = top - self.scroll_bar.dist2top
+            self.set_scrollbar_top(t)
+
+            bar_offset = t - self.scroll_min_top
+            usr_offset = int((bar_offset * (self.usr_count - self.scroll_item_count)) / float(self.max_offset))
+            self.reload_font_selects(usr_offset)
+        else:
+            self.set_scrollbar_top(self.scroll_min_top)
+
     def set_scrollbar_top(self, t):
-        if self.state == "USERS" and self.scroll_bar.top != t:
+        if (self.state == "USERS" or self.state == "FONTS") and self.scroll_bar.top != t:
             if self.in_focus is not None:
                 if self.scroll_down == False:
                     self.in_focus.onBlur()
                 focus_changed = True
-                self.fdetails(None)
+                if self.state == "USERS":
+                    self.fdetails(None)
+
         self.scroll_bar.top = t
         self.scroll_bar.rect.top = t
         self.scroll_bar.rect_init()
@@ -1411,6 +1504,14 @@ class LoginScreen:
                 # text1 = self.font_1.render(self.lang.b["Default Language:"], 1, self.header_font_color)
                 # self.screen.blit(text1, (20,20))
 
+            elif self.state == "FONTS":
+                lines = [[self.left + 10, self.top + 10], [self.left + 690, self.top + 10],
+                         [self.left + 690, self.top + self.h - 60], [self.left + 10, self.top + self.h - 60]]
+                pygame.draw.polygon(self.screen, self.bg_col, lines, 0)
+                pygame.draw.lines(self.screen, (255, 255, 255), True, lines, 1)
+                # text1 = self.font_1.render(self.lang.b["Default Language:"], 1, self.header_font_color)
+                # self.screen.blit(text1, (20,20))
+
             elif self.state == "ADMINLOGIN":
                 lines = [[self.left + 10, self.top + 10], [self.left + 690, self.top + 10],
                          [self.left + 690, self.top + self.h - 60], [self.left + 10, self.top + self.h - 60]]
@@ -1447,7 +1548,10 @@ class LoginScreen:
                         1] + each.rect.height >= pos[1] >= each.rect.topleft[1]:
                         each.handle(event)
             else:
-                self.update_scrollbar_top(pos[1])
+                if self.state == "LOGIN" or self.state == "USERS":
+                    self.update_scrollbar_top(pos[1])
+                elif self.state == "FONTS":
+                    self.update_fonts_scrollbar_top(pos[1])
 
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = event.pos
@@ -1463,7 +1567,7 @@ class LoginScreen:
                     self.in_focus = each
                     each.handle(event)
 
-            if focus_changed == False and self.prev_focus is not None and self.state != "LANG":
+            if focus_changed is False and self.prev_focus is not None and self.state != "LANG":
                 self.prev_focus.onBlur()
                 self.prev_focus = None
                 self.in_focus = None
@@ -1471,15 +1575,26 @@ class LoginScreen:
 
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 4:
             self.scroll_bar.dist2top = 0
-            self.update_scrollbar_top(self.scroll_bar.top - 5)
+            # self.update_scrollbar_top(self.scroll_bar.top - 5)
+            if self.state == "LOGIN" or self.state == "USERS":
+                self.update_scrollbar_top(self.scroll_bar.top - 5)
+            elif self.state == "FONTS":
+                self.update_fonts_scrollbar_top(self.scroll_bar.top - 5)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 5:
             self.scroll_bar.dist2top = 0
-            self.update_scrollbar_top(self.scroll_bar.top + 5)
+            # self.update_scrollbar_top(self.scroll_bar.top + 5)
+            if self.state == "LOGIN" or self.state == "USERS":
+                self.update_scrollbar_top(self.scroll_bar.top + 5)
+            elif self.state == "FONTS":
+                self.update_fonts_scrollbar_top(self.scroll_bar.top + 5)
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             pos = event.pos
             if self.scroll_down:
                 self.scroll_down = False
-                self.update_scrollbar_top(pos[1])
+                if self.state == "LOGIN" or self.state == "USERS":
+                    self.update_scrollbar_top(pos[1])
+                elif self.state == "FONTS":
+                    self.update_fonts_scrollbar_top(pos[1])
             for each in self.all_list:
                 if each.rect.topleft[0] + each.rect.width >= pos[0] >= each.rect.topleft[0] and each.rect.topleft[
                     1] + each.rect.height >= pos[1] >= each.rect.topleft[1]:
@@ -1496,6 +1611,10 @@ class LoginScreen:
                 self.in_focus.onBlur()
                 self.in_focus = each
                 self.in_focus.onFocus()
+
+    def fapplyfont(self):
+        pass
+
 
     def flogin(self):
         if self.require_pass:
@@ -1712,6 +1831,22 @@ class LoginScreen:
         self.update_me = True
         self.mainloop.redraw_needed[0] = True
 
+    def ffonts(self):
+        self.edit_list.empty()
+        if (self.admin_authorised or not self.require_adminpass) or not self.admin_exists:
+            self.state = "FONTS"
+            self.add_fonts_elements()
+            self.merge_sprite_lists()
+        else:
+            self.state = "ADMINLOGIN"
+            self.loginto = "FONTS"
+            self.add_admin_login_elements()
+            self.merge_sprite_lists()
+        self.swich_hl(self.settings_tab)
+
+        self.update_me = True
+        self.mainloop.redraw_needed[0] = True
+
     def fadminlogin(self):
         if len(self.username.value) < 3:
             self.db_status = self.lang.b["Please enter user name (at least 3 characters long)"]
@@ -1740,6 +1875,8 @@ class LoginScreen:
                     self.fprefs()
                 elif self.loginto == "LANG":
                     self.flang()
+                elif self.loginto == "FONTS":
+                    self.ffonts()
 
     def fprefsave(self):
         self.update_me = True

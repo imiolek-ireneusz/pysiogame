@@ -173,15 +173,17 @@ class MenuCategoryGroup(pygame.sprite.Sprite):
         self.toggle_select()
 
     def toggle_select(self):
-        if self.selected == True:
-            self.hide_icons()
-            self.play_sound(6)
-            pygame.event.post(
-                pygame.event.Event(pygame.MOUSEMOTION, {"pos": pygame.mouse.get_pos(), "rel": None, "buttons": None}))
-        else:
-            self.show_icons()
-            self.play_sound(5)
-        self.menu.update_panel_height()
+        if not self.menu.ldrag:
+            if self.selected == True:
+                self.hide_icons()
+                self.play_sound(6)
+                pygame.event.post(
+                    pygame.event.Event(pygame.MOUSEMOTION,
+                                       {"pos": pygame.mouse.get_pos(), "rel": None, "buttons": None}))
+            else:
+                self.show_icons()
+                self.play_sound(5)
+            self.menu.update_panel_height()
 
     def hide_icons(self):
         self.selected = False
@@ -343,7 +345,8 @@ class MenuCategory(pygame.sprite.Sprite):
 
 
 class MenuItem(pygame.sprite.Sprite):
-    def __init__(self, menu, dbgameid, item_id, cat_id, title, subtitle, constructor, icon_size, img_src, variant=0):
+    def __init__(self, menu, dbgameid, item_id, cat_id, title, subtitle, constructor, icon_size, img_src, variant=0,
+                 var2=0):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
         self.menu = menu
@@ -356,6 +359,7 @@ class MenuItem(pygame.sprite.Sprite):
         self.cat_id = cat_id
         self.game_constructor = constructor
         self.variant = variant
+        self.var2 = var2
         self.dbgameid = dbgameid
 
         self.title = ex.unival(title)
@@ -509,7 +513,7 @@ class ScrollArrowItem(pygame.sprite.Sprite):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             self.mouse_dn = True
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1 and self.mouse_dn:
-            pass
+            self.mouse_dn = False
 
         elif event.type == pygame.MOUSEMOTION:
             self.on_mouse_over()
@@ -567,6 +571,7 @@ class Menu:
         self.prev_cat = -1
         self.game_constructor = game000.Board
         self.game_variant = 0
+        self.game_var2 = 0
         self.icon_size = 50
         self.cat_icon_size = 58
         self.initial_cat_h = 105
@@ -598,7 +603,17 @@ class Menu:
         self.bookmarks_list = pygame.sprite.LayeredUpdates()
         self.larrows_list = pygame.sprite.LayeredUpdates()
         self.rarrows_list = pygame.sprite.LayeredUpdates()
-        self.swipe_reset()
+
+        self.lswipe_mouse_dn = None
+        self.lswipe_mouse_up = None
+        self.lswiped = False
+        self.rswipe_mouse_dn = None
+        self.rswipe_mouse_up = None
+        self.rswiped = False
+        self.lswipe_t = 0
+        self.rswipe_t = 0
+        self.ldrag = False
+        self.rdrag = False
         self.add_arrows()
         self.create_menu()
 
@@ -627,6 +642,8 @@ class Menu:
         self.rswipe_mouse_dn = None
         self.rswipe_mouse_up = None
         self.rswiped = False
+        self.lswipe_t = 0
+        self.rswipe_t = 0
 
     def load_levels(self):
         if self.mainloop.config.save_levels:
@@ -729,6 +746,23 @@ class Menu:
                         if self.mainloop.mouse_over[1] is not None:
                             self.mainloop.mouse_over[1].on_mouse_out()
                             self.mainloop.mouse_over[1] = None
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                self.lswipe_mouse_dn = True
+                self.lswipe_t = pos[1]
+            elif event.type == pygame.MOUSEBUTTONUP:
+                self.lswipe_mouse_dn = False
+                if self.ldrag:
+                    self.ldrag = False
+            elif event.type == pygame.MOUSEMOTION:
+                if self.lswipe_mouse_dn is True:
+                    if pos[1] > self.lswipe_t + self.cat_icon_size + self.y_margin:
+                        self.scroll_menu(-1, 0)
+                        self.lswipe_t = pos[1]
+                        self.ldrag = True
+                    elif pos[1] < self.lswipe_t - (self.cat_icon_size + self.y_margin):
+                        self.scroll_menu(1, 0)
+                        self.lswipe_t = pos[1]
+                        self.ldrag = True
         else:
             pass
 
@@ -755,12 +789,22 @@ class Menu:
                             self.mainloop.mouse_over[2].on_mouse_out()
 
                         self.mainloop.mouse_over[2] = None
+                    if self.rswipe_mouse_dn is True:
+                        if pos[1] > self.rswipe_t + self.icon_size + self.y_margin:
+                            self.scroll_menu(-1, 1)
+                            self.rswipe_t = pos[1]
+                            self.rdrag = True
+                        elif pos[1] < self.rswipe_t - (self.icon_size + self.y_margin):
+                            self.scroll_menu(1, 1)
+                            self.rswipe_t = pos[1]
+                            self.rdrag = True
                 else:
                     for each in self.rarrows_list:
                         if each.rect.topleft[0] + each.rect.width >= pos[0] >= each.rect.topleft[0] and \
                                                         each.rect.topleft[1] + each.rect.height >= pos[1] >= \
                                         each.rect.topleft[1]:
                             each.handle(event)
+
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = [event.pos[0] - self.mainloop.layout.menu_l_w, event.pos[1]]
                 if self.l.screen_h - self.arrow_h > pos[1] > self.l.misio_pos[3] + self.arrow_h:
@@ -777,11 +821,16 @@ class Menu:
                                             each.rect.topleft[1]:
                                 self.scroll_menu(direction=each.direction, pane=1)
                                 each.handle(event)
+                self.rswipe_mouse_dn = True
+                self.rswipe_t = pos[1]
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 pos = [event.pos[0] - self.mainloop.layout.menu_l_w, event.pos[1]]
                 if self.l.screen_h - self.arrow_h > pos[1] > self.l.misio_pos[3] + self.arrow_h:
                     self.on_mouse_up(pos, event)
                 self.swipe_reset()
+                self.rswipe_mouse_dn = False
+                if self.rdrag:
+                    self.rdrag = False
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 4:
                 self.scroll_menu(direction=-1, pane=1)
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 5:
@@ -811,6 +860,7 @@ class Menu:
                     self.active_o = each
                     self.game_constructor = each.game_constructor
                     self.game_variant = each.variant
+                    self.game_var2 = each.var2
                     self.tab_r_scroll = (self.scroll_r // self.scroll_step)
                     row = (pos[1] - 3 - self.l.misio_pos[3] - self.arrow_h - self.scroll_r) // (
                     self.icon_size + self.y_margin)
@@ -833,6 +883,7 @@ class Menu:
                 self.active_o = each
                 self.game_constructor = each.game_constructor
                 self.game_variant = each.variant
+                self.game_var2 = each.var2
                 self.tab_r_scroll = -1
                 self.tab_game_id = -1
 
@@ -937,7 +988,12 @@ class Menu:
                 lbl = self.lang.d["Decimals, fractions, ratios and percentages"]
             self.add_category(2, lbl, "", "ico_c_10.png")
             self.add_category(2, self.lang.d["Shapes and Solids"], "", "ico_c_14.png")
-        self.add_category(2, self.lang.d["Clock_cat"], "", "ico_c_15.png")
+
+        if self.mainloop.lang.lang == 'sr':
+            self.add_category(2, self.lang.d["Clock_cat"], "полная форма", "ico_c_15.png")
+            self.add_category(2, self.lang.d["Clock_cat"], "краткая форма", "ico_c_15.png")
+        else:
+            self.add_category(2, self.lang.d["Clock_cat"], "", "ico_c_15.png")
 
         self.add_category(3, self.lang.d["Art"], "", "ico_c_16.png")
         self.add_category(3, self.lang.d["Memory"], "", "ico_c_17.png")
@@ -945,10 +1001,10 @@ class Menu:
 
         self.update_panel_height()
 
-    def add_game(self, dbgameid, cat_id, min_age, max_age, constructor, title, subtitle, img_src, variant=0):
+    def add_game(self, dbgameid, cat_id, min_age, max_age, constructor, title, subtitle, img_src, variant=0, var2=0):
         if min_age <= self.uage <= max_age or self.uage == 7:
             new_game = MenuItem(self, dbgameid, len(self.games), cat_id, title, subtitle, constructor, self.icon_size,
-                                img_src, variant)
+                                img_src, variant, var2)
             self.games.append(new_game)
         self.saved_levels[dbgameid] = 1
 
@@ -1069,7 +1125,7 @@ class Menu:
                           "ico_g_0201.png")
             self.add_game(19, c_id, 0, 7, game025.Board, self.lang.d["Word Maze + 4"], self.lang.d["Collect all"],
                           "ico_g_0202.png")
-            if self.mainloop.lang.lang[0:2] in ["en", "pl", "uk", "ru", "fr", "de", "el"]:
+            if self.mainloop.lang.lang[0:2] in ["en", "pl", "uk", "ru", "fr", "de", "el", "sr"]:
                 self.add_game(107, c_id, 0, 7, game082.Board, self.lang.d["Word Builder - Animals"],
                               self.lang.d["Complete the word"], "ico_g_0203.png", variant=0)
                 self.add_game(110, c_id, 0, 7, game082.Board, self.lang.d["Word Builder - People"],
@@ -1242,6 +1298,23 @@ class Menu:
                           self.lang.d["Russian official - subtitle"], "ico_g_1006.png", variant=1)
             self.add_game(106, c_id, 0, 7, game065.Board, self.lang.d["Clock2 - Russian official time"],
                           self.lang.d["Russian official - txt_only"], "ico_g_1007.png", variant=1)
+
+        if self.mainloop.lang.lang == 'sr':
+            c_id += 1
+            self.add_game(135, c_id, 0, 7, game081.Board, self.lang.d["Clock0"], self.lang.d["Play_w_clock"],
+                          "ico_g_1008.png", var2=1)
+            self.add_game(66, c_id, 0, 7, game066.Board, self.lang.d["Clock0"], self.lang.d["Play_w_clock"],
+                          "ico_g_1000.png", variant=0, var2=1)
+            self.add_game(142, c_id, 0, 7, game066.Board, self.lang.d["Clock0"], self.lang.d["Play_w_clock"],
+                          "ico_g_1000.png", variant=2, var2=1)
+            self.add_game(67, c_id, 0, 7, game063.Board, self.lang.d["Clock1"] + " - " + self.lang.d["Read time"], "",
+                          "ico_g_1001.png", var2=1)
+            self.add_game(68, c_id, 0, 7, game064.Board, self.lang.d["Clock2"] + " - " + self.lang.d["Set time"], "",
+                          "ico_g_1002.png", var2=1)
+            self.add_game(69, c_id, 0, 7, game065.Board, self.lang.d["Clock2"] + " - " + self.lang.d["Set time"],
+                          self.lang.d["txt_only"], "ico_g_1003.png", variant=0, var2=1)
+
+            self.add_game(70, c_id, 0, 7, game078.Board, self.lang.d["TimeMatching"], "", "ico_g_1004.png")
 
         # "Art"
         c_id += 1

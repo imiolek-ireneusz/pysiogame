@@ -216,8 +216,10 @@ class Unit(pygame.sprite.Sprite):
                                     val = value[i]
                             else:
                                 val = value[i]
-
-                            text = self.font.render("%s" % (val), 1, self.font_color)
+                            try:
+                                text = self.font.render("%s" % (val), 1, self.font_color)
+                            except:
+                                pass
 
                             if self.align == 0:
                                 font_x = ((board.scale * self.grid_w - self.font.size(val)[0]) // 2)
@@ -249,8 +251,10 @@ class Unit(pygame.sprite.Sprite):
                                     # center = (board.scale*self.grid_h)//2
                                     start_at = 5  # center - (step*lv - line_margin)//2
                                     font_y = start_at + step * i
-
-                            self.image.blit(text, (font_x, font_y))
+                            try:
+                                self.image.blit(text, (font_x, font_y))
+                            except:
+                                pass
 
             if self.speaker_val_update:
                 self.speaker_val = self.value
@@ -911,12 +915,41 @@ class Board:
         self.draw_grid = True
         self.check_laby = False
         self.laby_dir = -1
+
+        self.font_path_default = None
+        self.font_path_default2 = None
+        self.font_path_hand = None
+        self.font_path_print = None
+
+        self.load_default_fonts()
         self.level_start(x_count, y_count, scale)
         self.animation_c_set = False
         self.ac_l = 0
         self.ac_r = 0
         self.ac_t = 0
         self.ac_b = 0
+
+    def load_default_fonts(self):
+        self.font_path_default = os.path.join('res', 'fonts', self.mainloop.config.font_dir,
+                                              self.mainloop.config.font_name_1)
+        self.font_path_default2 = os.path.join('res', 'fonts', self.mainloop.config.font_dir,
+                                               self.mainloop.config.font_name_2)
+        self.font_path_hand = os.path.join('res', 'fonts', 'pysiogameFonts', 'pysiogameHand.ttf')
+        self.font_path_print = os.path.join('res', 'fonts', 'pysiogameFonts', 'pysiogameLatinPrint.ttf')
+
+        self.load_fonts()
+
+    def load_fonts(self):
+        system_font_list = pygame.font.get_fonts()
+        """
+        if len(system_font_list) > 0:
+            #print(system_font_list[0:10])
+            self.font_path_hand = pygame.font.match_font(system_font_list[random.randint(0, len(system_font_list)-1)], bold=False, italic=False)
+            self.font_path_print = pygame.font.match_font(system_font_list[random.randint(0, len(system_font_list)-1)], bold=False, italic=False)
+
+            self.font_path_default = pygame.font.match_font(system_font_list[random.randint(0, len(system_font_list)-1)], bold=False, italic=False)
+            self.font_path_default2 = pygame.font.match_font(system_font_list[random.randint(0, len(system_font_list)-1)], bold=False, italic=False)
+        """
 
     def level_start(self, x_count, y_count, scale):
         self.grid = []  # square availability list
@@ -939,6 +972,7 @@ class Board:
         self.all_sprites_list = pygame.sprite.LayeredUpdates()  # pygame.sprite.RenderPlain()
         # self.sprites_to_draw = pygame.sprite.RenderPlain()
 
+
         # scaling and creating font sizes:
         self.points = int(round((self.scale * 72 / 96) * 1.2, 0))
 
@@ -956,49 +990,31 @@ class Board:
         # split_path = os.path.split(font_path)
         # print(split_path[-1])
 
-        self.font_sizes = [pygame.font.Font(
-            os.path.join('res', 'fonts', self.mainloop.config.font_dir, self.mainloop.config.font_name_1),
-            (int(float(self.points) / float(sizes[i])))) for i in range(len(sizes))]
+        self.font_sizes = [pygame.font.Font(self.font_path_default, (int(float(self.points) / float(sizes[i]))))
+                           for i in range(len(sizes))]
         # 12+ handwritten
         h_sizes = [25, 17, 10, 1.1, 1.5, 2, 2.3, 0.7]
-        handwritten_sizes = [pygame.font.Font(os.path.join('res', 'fonts', 'pysiogameFonts', 'pysiogameHand.ttf'),
-                                              (int(float(self.points) * float(h_sizes[i])))) for i in
-                             range(len(h_sizes))]
+        handwritten_sizes = [pygame.font.Font(self.font_path_hand, (int(float(self.points) * float(h_sizes[i]))))
+                             for i in range(len(h_sizes))]
         # handwritten_sizes = [pygame.font.Font(font_path, (int(float(self.points) * float(h_sizes[i])))) for i in range(len(h_sizes))]
 
         self.font_sizes.extend(handwritten_sizes)
         # 20
-        self.font_sizes.append(
-            pygame.font.Font(os.path.join('res', 'fonts', 'pysiogameFonts', 'pysiogameLatinPrint.ttf'),
-                             (int(float(self.points) * float(30)))))
+        self.font_sizes.append(pygame.font.Font(self.font_path_print, (int(float(self.points) * float(30)))))
         # 21 - extra large normal print
-        self.font_sizes.append(pygame.font.Font(
-            os.path.join('res', 'fonts', self.mainloop.config.font_dir, self.mainloop.config.font_name_1),
-            (int(self.points * 2.0))))
-        self.font_sizes.append(pygame.font.Font(
-            os.path.join('res', 'fonts', self.mainloop.config.font_dir, self.mainloop.config.font_name_1),
-            (int(self.points * 1.5))))
+        self.font_sizes.append(pygame.font.Font(self.font_path_default, (int(self.points * 2.0))))
+        self.font_sizes.append(pygame.font.Font(self.font_path_default, (int(self.points * 1.5))))
         # 23 - mini clock sizes
-        self.font_sizes.append(pygame.font.Font(
-            os.path.join('res', 'fonts', self.mainloop.config.font_dir, self.mainloop.config.font_name_1),
-            (int(self.points / 15))))
-        self.font_sizes.append(pygame.font.Font(
-            os.path.join('res', 'fonts', self.mainloop.config.font_dir, self.mainloop.config.font_name_1),
-            (int(self.points / 25))))
+        self.font_sizes.append(pygame.font.Font(self.font_path_default, (int(self.points / 15))))
+        self.font_sizes.append(pygame.font.Font(self.font_path_default, (int(self.points / 25))))
 
         # 25 - h2 - title size
-        self.font_sizes.append(pygame.font.Font(
-            os.path.join('res', 'fonts', self.mainloop.config.font_dir, self.mainloop.config.font_name_1),
-            (int(self.points))))
+        self.font_sizes.append(pygame.font.Font(self.font_path_default, (int(self.points))))
 
         # 26 clock font
-        self.font_sizes.append(pygame.font.Font(
-            os.path.join('res', 'fonts', self.mainloop.config.font_dir, self.mainloop.config.font_name_2),
-            (int(float(self.points) / float(sizes[7])))))
+        self.font_sizes.append(pygame.font.Font(self.font_path_default2, (int(float(self.points) / float(sizes[7])))))
         # 27 credits line under word building games
-        self.font_sizes.append(pygame.font.Font(
-            os.path.join('res', 'fonts', self.mainloop.config.font_dir, self.mainloop.config.font_name_2),
-            (int(float(self.points) / float(sizes[4])))))
+        self.font_sizes.append(pygame.font.Font(self.font_path_default2, (int(float(self.points) / float(sizes[4])))))
 
         self.board_bg = BoardBg(self, 0, 0, x_count, y_count, "", (255, 255, 255))
         self.unit_list.add(self.board_bg)
